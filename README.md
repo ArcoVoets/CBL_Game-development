@@ -11,3 +11,16 @@
   = survival
   - omstandigheden steeds moeilijker
   - als enige overblijven
+
+- World
+  - Creatures
+    - Codes (DNA) -> PropContainer
+      - Speed, damage, max energy, resistance, enz.. -> Code -> Prop
+      - Changed by pairing
+    - Stats -> PropContainer
+      - Energy -> Stat -> Prop
+        - Changed by actions (based on env)
+    - Actions
+      - Eat, Pair -> Action
+  - Environment
+    - Temp, weather, enz..
