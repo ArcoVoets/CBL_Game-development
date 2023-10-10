@@ -7,6 +7,8 @@ import javax.swing.*;
  * Main class of CBL game.
  */
 class Main {
+    World world = new World();
+
     void setupScreen() {
         JFrame screenFrame = new JFrame("Game");
         screenFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
