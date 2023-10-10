@@ -6,7 +6,7 @@
     - pairen met andere wezens -> beïnvloedt permanente eigenschappen
     - voeding enz. -> tijdelijke eigenschap
   - andere wezens in wereld
-    = bepalen zelf (random/evt. later neural network)
+    = bepalen zelf (weighted decision making)
     - verder zelfde als wezen van speler
 - omgeving
   = computer bepaald (volledig random)
@@ -26,9 +26,10 @@
         - Changed by actions (based on env)
     - Actions
       - Eat, Pair -> Action
-      - Random/Neural network/players
+      - Weighted decision making/players
   - Environment
     - Temp, weather, enz..
 
 Usefull websites:
-- https://nathanrooy.github.io/posts/2017-11-30/evolving-simple-organisms-using-a-genetic-algorithm-and-deep-learning/
+
+- <https://nathanrooy.github.io/posts/2017-11-30/evolving-simple-organisms-using-a-genetic-algorithm-and-deep-learning/>
