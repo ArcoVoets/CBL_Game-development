@@ -31,9 +31,9 @@ class Main {
 
         screenFrame.add(rightPanel, BorderLayout.EAST);
 
-        JPanel statsPanel = new StatsPanel();
-        statsPanel.setPreferredSize(new Dimension(150, 300));
-        screenFrame.add(statsPanel, BorderLayout.WEST);
+        JPanel worldPanel = new WorldPanel();
+        worldPanel.setPreferredSize(new Dimension(500, 300));
+        screenFrame.add(worldPanel, BorderLayout.CENTER);
 
         screenFrame.setVisible(true);
     }
