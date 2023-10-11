@@ -9,6 +9,9 @@ import javax.swing.*;
 class Main {
     World world = new World();
 
+    /**
+     * Sets up the screen with the frames.
+     */
     void setupScreen() {
         JFrame screenFrame = new JFrame("Game");
         screenFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -27,8 +30,14 @@ class Main {
         environmentPanel.setPreferredSize(new Dimension(150, 300));
         rightPanel.add(environmentPanel, BorderLayout.NORTH);
 
-        JPanel codesPanel = new CodesPanel();
-        codesPanel.setPreferredSize(new Dimension(150, 300));
+        // used for testing
+        Property property = new Property("Hello", 5, 20);
+        Property property2 = new Property("Hello2", 10, 20);
+        Property[] properties = { property, property2 };
+        PropertyContainer propertyContainer = new PropertyContainer(properties);
+
+        JPanel codesPanel = new CodesPanel(propertyContainer);
+        codesPanel.setPreferredSize(new Dimension(300, 300));
         rightPanel.add(codesPanel, BorderLayout.CENTER);
 
         screenFrame.add(rightPanel, BorderLayout.EAST);
