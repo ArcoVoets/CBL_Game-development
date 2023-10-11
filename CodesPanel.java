@@ -1,8 +1,10 @@
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicProgressBarUI;
 
 /**
  * CodesPanel.
+ * Displays the codes in the PropertyContainer.
  */
 public class CodesPanel extends JPanel {
     JProgressBar[] progressBars;
@@ -10,51 +12,81 @@ public class CodesPanel extends JPanel {
     /**
      * Constructor.
      * 
-     * @param propertyContainer Foo
+     * @param propertyContainer PropertyContainer to show
      */
     public CodesPanel(PropertyContainer propertyContainer) {
-        setBackground(Color.BLUE);
-
-        progressBars = new JProgressBar[propertyContainer.properties.length];
-
-        Dimension panelSize = getSize();
-        int panelWidth = (int) panelSize.getWidth();
-        int progressBarLengthPercentage = 80;
-
-        JPanel pane = new JPanel(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.VERTICAL;
-        c.gridx = 0;
-
-        for (int i = 0; i < propertyContainer.properties.length; i++) {
-            JProgressBar progressBar = progressBars[i];
+        setBackground(Color.BLACK);
+        int numProperties = propertyContainer.properties.length;
+        progressBars = new JProgressBar[numProperties];
+        for (int i = 0; i < numProperties; i++) {
             Property property = propertyContainer.properties[i];
 
-            // show key
-            JLabel label = new JLabel(property.key);
-            c.gridy = 2 * i;
-            pane.add(label, c);
-
-            progressBar = new JProgressBar();
-            progressBar.setSize(
-                    new Dimension((panelWidth * progressBarLengthPercentage) / 100, 10));
-            progressBar.setMaximum(property.maxValue);
-            progressBar.setValue(property.value);
-
-            c.gridy = 2 * i + 1;
-            pane.add(progressBar, c);
+            // create progresbars
+            progressBars[i] = new JProgressBar();
+            progressBars[i].setUI(new BasicProgressBarUI());
+            progressBars[i].setBackground(Color.WHITE);
+            progressBars[i].setForeground(Color.BLUE);
+            progressBars[i].setBorder(BorderFactory.createEmptyBorder());
+            progressBars[i].setString(String.format("%d/%d", property.value, property.maxValue));
+            progressBars[i].setStringPainted(true);
         }
-        this.add(pane);
     }
 
     /**
-     * Displays the codes in the PropertyContainer.
+     * Draws the progressbars.
+     * 
+     * @param propertyContainer Porpertycontainer to show
+     */
+    public void drawProgressBars(PropertyContainer propertyContainer) {
+        setPreferredSize(new Dimension(300, 700));
+        int numProperties = propertyContainer.properties.length;
+
+        JPanel pane = new JPanel(new GridLayout(numProperties * 2, 1));
+        int rowHeigth = getPreferredSize().height / (numProperties * 2);
+        int columnWidth = getPreferredSize().width;
+        pane.setBackground(getBackground());
+        pane.setPreferredSize(getPreferredSize());
+        pane.setBorder(
+                BorderFactory.createEmptyBorder(
+                        0,
+                        columnWidth / 10,
+                        rowHeigth / 2,
+                        columnWidth / 10));
+
+        Font font = new Font("MS Sans Serif", Font.BOLD, 25);
+
+        for (int i = 0; i < numProperties; i++) {
+            Property property = propertyContainer.properties[i];
+
+            // show key
+            JLabel label = new JLabel(property.key, SwingConstants.LEFT);
+            label.setVerticalAlignment(SwingConstants.BOTTOM);
+            label.setFont(font);
+            label.setForeground(Color.BLUE);
+            label.setBackground(getBackground());
+            pane.add(label);
+
+            progressBars[i].setMaximum(property.maxValue);
+            progressBars[i].setValue(property.value);
+
+            progressBars[i].setString(String.format("%d/%d", property.value, property.maxValue));
+
+            pane.add(progressBars[i]);
+        }
+        this.add(pane);
+
+    }
+
+    /**
+     * Updates the codes in the PropertyContainer.
      * 
      * @param propertyContainer PropertyContainer to display codes in
      */
-    public void displayCodes(PropertyContainer propertyContainer) {
+    public void updateCodes(PropertyContainer propertyContainer) {
         for (int i = 0; i < propertyContainer.properties.length; i++) {
-            progressBars[i].setValue(propertyContainer.properties[i].value);
+            Property property = propertyContainer.properties[i];
+            progressBars[i].setValue(property.value);
+            progressBars[i].setString(String.format("%d/%d", property.value, property.maxValue));
         }
     }
 }

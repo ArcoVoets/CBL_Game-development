@@ -19,25 +19,29 @@ class Main {
         screenFrame.setMinimumSize(new Dimension(800, 600));
         screenFrame.setUndecorated(true);
 
-        JPanel buttonsPanel = new ButtonsPanel();
+        ButtonsPanel buttonsPanel = new ButtonsPanel();
         buttonsPanel.setPreferredSize(new Dimension(800, 50));
         screenFrame.add(buttonsPanel, BorderLayout.SOUTH);
 
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new BorderLayout());
 
-        JPanel environmentPanel = new EnvironmentPanel();
+        EnvironmentPanel environmentPanel = new EnvironmentPanel();
         environmentPanel.setPreferredSize(new Dimension(150, 300));
         rightPanel.add(environmentPanel, BorderLayout.NORTH);
 
         // used for testing
         Property property = new Property("Hello", 5, 20);
         Property property2 = new Property("Hello2", 10, 20);
-        Property[] properties = { property, property2 };
+
+        Property property3 = new Property("Hello3", 70, 100);
+        Property property4 = new Property("Hello4", 10, 20);
+        Property[] properties = { property, property2, property3, property4 };
         PropertyContainer propertyContainer = new PropertyContainer(properties);
 
-        JPanel codesPanel = new CodesPanel(propertyContainer);
+        CodesPanel codesPanel = new CodesPanel(propertyContainer);
         codesPanel.setPreferredSize(new Dimension(300, 300));
+        codesPanel.drawProgressBars(propertyContainer);
         rightPanel.add(codesPanel, BorderLayout.CENTER);
 
         screenFrame.add(rightPanel, BorderLayout.EAST);
