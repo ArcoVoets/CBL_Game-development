@@ -12,22 +12,25 @@ public class WorldPanel extends JPanel implements Panel {
     }
 
     public void Draw(int width, int height) {
-        setSize(width, height);
+        setPreferredSize(new Dimension(width, height));
         removeAll();
 
         setBackground(Color.GRAY);
 
         playerCreaturePanel = new CreaturePanel(world.playerCreature, CreaturePanel.CreatureLayout.HORIZONTAL);
-        playerCreaturePanel.setPreferredSize(new Dimension(getWidth(), getHeight() / 2));
         add(playerCreaturePanel, BorderLayout.SOUTH);
         playerCreaturePanel.Draw(width, height / 2);
+
+        JPanel worldCreatureContainerPanel = new JPanel(new GridLayout(1, world.worldCreatures.length));
+        worldCreatureContainerPanel.setPreferredSize(new Dimension(width, height / 2));
+        ;
+        add(worldCreatureContainerPanel, BorderLayout.CENTER);
 
         int worldCreatureWidth = width / world.worldCreatures.length;
         worldCreaturePanels = new CreaturePanel[world.worldCreatures.length];
         for (int i = 0; i < world.worldCreatures.length; i++) {
             worldCreaturePanels[i] = new CreaturePanel(world.worldCreatures[i], CreaturePanel.CreatureLayout.VERTICAL);
-            worldCreaturePanels[i].setPreferredSize(new Dimension(100, 100));
-            add(worldCreaturePanels[i], BorderLayout.CENTER);
+            worldCreatureContainerPanel.add(worldCreaturePanels[i]);
             worldCreaturePanels[i].Draw(worldCreatureWidth, height / 2);
         }
     }

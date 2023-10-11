@@ -18,7 +18,7 @@ public class CreaturePanel extends JPanel implements Panel {
     }
 
     public void Draw(int width, int height) {
-        setSize(width, height);
+        setPreferredSize(new Dimension(width, height));
         removeAll();
 
         setBackground(Color.WHITE);
@@ -29,7 +29,6 @@ public class CreaturePanel extends JPanel implements Panel {
         int statsHeight;
 
         spritePanel = new SpritePanel("./robot-idle.gif");
-        spritePanel.setPreferredSize(new Dimension(100, 100));
         if (layout == CreatureLayout.HORIZONTAL) {
             add(spritePanel, BorderLayout.EAST);
             spriteWidth = height;
@@ -46,7 +45,6 @@ public class CreaturePanel extends JPanel implements Panel {
         spritePanel.Draw(spriteWidth, spriteHeight);
 
         statsPanel = new StatsPanel(creature.statsContainer);
-        statsPanel.setPreferredSize(new Dimension(100, 100));
         add(statsPanel, BorderLayout.CENTER);
         statsPanel.Draw(statsWidth, statsHeight);
     }

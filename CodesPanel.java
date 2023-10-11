@@ -6,7 +6,7 @@ public class CodesPanel extends JPanel implements Panel {
     }
 
     public void Draw(int width, int height) {
-        setSize(width, height);
+        setPreferredSize(new Dimension(width, height));
         removeAll();
 
         setBackground(Color.BLUE);

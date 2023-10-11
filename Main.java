@@ -31,20 +31,17 @@ class Main {
 
         int environmentPanelHeight = screenHeight / 2 - buttonsPanelHeight / 2;
         EnvironmentPanel environmentPanel = new EnvironmentPanel();
-        environmentPanel.setPreferredSize(new Dimension(150, 300));
         rightPanel.add(environmentPanel, BorderLayout.NORTH);
         environmentPanel.Draw(rightPanelWidth, environmentPanelHeight);
 
         int codesPanelHeight = screenHeight / 2 - buttonsPanelHeight / 2;
         CodesPanel codesPanel = new CodesPanel();
-        codesPanel.setPreferredSize(new Dimension(150, 300));
         rightPanel.add(codesPanel, BorderLayout.CENTER);
         codesPanel.Draw(rightPanelWidth, codesPanelHeight);
 
         screenFrame.add(rightPanel, BorderLayout.EAST);
 
         WorldPanel worldPanel = new WorldPanel(world);
-        worldPanel.setPreferredSize(new Dimension(500, 300));
         screenFrame.add(worldPanel, BorderLayout.CENTER);
         worldPanel.Draw(screenWidth - rightPanelWidth, screenHeight - buttonsPanelHeight);
 
