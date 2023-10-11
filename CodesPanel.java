@@ -1,10 +1,14 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class CodesPanel extends JPanel {
+public class CodesPanel extends JPanel implements Panel {
     public CodesPanel() {
+    }
+
+    public void Draw(int width, int height) {
+        setPreferredSize(new Dimension(width, height));
+        removeAll();
+
         setBackground(Color.BLUE);
     }
 }

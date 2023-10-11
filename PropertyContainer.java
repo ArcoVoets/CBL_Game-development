@@ -7,8 +7,4 @@ public class PropertyContainer {
     PropertyContainer(Property[] properties) {
         this.properties = properties;
     }
-
-    PropertyContainer() {
-        this(new Property[0]);
-    }
 }
