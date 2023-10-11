@@ -1,10 +1,18 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class StatsPanel extends JPanel {
-    public StatsPanel() {
+public class StatsPanel extends JPanel implements Panel {
+    PropertyContainer statsContainer;
+
+    public StatsPanel(PropertyContainer statsContainer) {
+        super(new BorderLayout());
+        this.statsContainer = statsContainer;
+    }
+
+    public void Draw(int width, int height) {
+        setSize(width, height);
+        removeAll();
+
         setBackground(Color.ORANGE);
     }
 }
