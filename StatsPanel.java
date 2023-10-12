@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.Arrays;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 
@@ -6,6 +7,7 @@ import javax.swing.plaf.basic.BasicProgressBarUI;
  * StatsPanel.
  */
 class StatsPanel extends PropertyPanel {
+    boolean[] showProperty;
 
     /**
      * Constructor.
@@ -29,10 +31,17 @@ class StatsPanel extends PropertyPanel {
         setBackground(Color.ORANGE);
 
         int numProperties = propertyContainer.properties.length;
+
+        if (showProperty == null) {
+            showProperty = new boolean[numProperties];
+            Arrays.fill(showProperty, true);
+        }
+
+        int numShowedProperties = elementFrequency(showProperty, true);
         progressBars = new JProgressBar[numProperties];
 
-        JPanel pane = new JPanel(new GridLayout(numProperties * 2, 1));
-        int rowHeight = getPreferredSize().height / (numProperties * 2);
+        JPanel pane = new JPanel(new GridLayout(numShowedProperties * 2, 1));
+        int rowHeight = getPreferredSize().height / (numShowedProperties * 2);
         int columnWidth = getPreferredSize().width;
         pane.setBackground(getBackground());
         pane.setPreferredSize(getPreferredSize());
@@ -46,6 +55,9 @@ class StatsPanel extends PropertyPanel {
         Font font = new Font("MS Sans Serif", Font.BOLD, 25);
 
         for (int i = 0; i < numProperties; i++) {
+            if (!showProperty[i]) {
+                continue;
+            }
             Property property = propertyContainer.properties[i];
 
             // create and show key
@@ -66,10 +78,27 @@ class StatsPanel extends PropertyPanel {
             progressBars[i].setMaximum(property.maxValue);
             progressBars[i].setValue(property.value);
             progressBars[i].setString(String.format("%d/%d", property.value, property.maxValue));
+            colorProgressBar(property, progressBars[i]);
 
             pane.add(progressBars[i]);
         }
         this.add(pane);
+    }
+
+    /**
+     * Colors the progressBar based on the value.
+     * 
+     * @param property The property to color the progressBar for
+     * @param progressBar The progressBar to color
+     */
+    private void colorProgressBar(Property property, JProgressBar progressBar) {
+        if (property.value >= 0.9 * property.maxValue) {
+            progressBar.setForeground(Color.GREEN);
+        } else if (property.value >= 0.3 * property.maxValue) {
+            progressBar.setForeground(Color.ORANGE);
+        } else {
+            progressBar.setForeground(Color.RED);
+        }
     }
 
     /**
@@ -80,11 +109,12 @@ class StatsPanel extends PropertyPanel {
     void changeFilter(String[] newFilter) {
         for (int i = 0; i < progressBars.length; i++) {
             if (arrayContains(newFilter, propertyContainer.properties[i].key)) {
-                progressBars[i].setVisible(true);
+                showProperty[i] = true;
             } else {
-                progressBars[i].setVisible(false);
+                showProperty[i] = false;
             }
         }
+        draw(this.getPreferredSize().width, this.getPreferredSize().height);
     }
 
     /**
@@ -101,5 +131,23 @@ class StatsPanel extends PropertyPanel {
             }
         }
         return false;
+    }
+
+    /**
+     * Returns the frequency of value in array.
+     * 
+     * @param <T> The type of the array
+     * @param showProperty The array to check
+     * @param b The value to count the frequency of in the array
+     * @return The frequency of value in array
+     */
+    private int elementFrequency(boolean[] showProperty, boolean b) {
+        int frequency = 0;
+        for (boolean element : showProperty) {
+            if (element == b) {
+                frequency++;
+            }
+        }
+        return frequency;
     }
 }
