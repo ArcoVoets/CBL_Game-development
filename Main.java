@@ -8,6 +8,23 @@ class Main {
     World world = new World(new Creature(), new Creature[] {
         new Creature(), new Creature(), new Creature(), new Creature(), new Creature()
     });
+    // codesColorScheme
+    Range[] codesRanges = {
+        new Range(0, 100)
+    };
+    Color[] codesColors = {
+        Color.BLUE, Color.WHITE
+    };
+    ColorScheme codesColorScheme = new ColorScheme(codesRanges, codesColors);
+
+    // statsColorScheme
+    Range[] statsRanges = {
+        new Range(0, 19), new Range(20, 39), new Range(40, 89), new Range(90, 100)
+    };
+    Color[] statsColors = {
+        Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.WHITE
+    };
+    ColorScheme statsColorScheme = new ColorScheme(statsRanges, statsColors);
 
     /**
      * Sets up the screen with the frames.
@@ -46,14 +63,14 @@ class Main {
         PropertyContainer propertyContainer = new PropertyContainer(properties);
 
         int codesPanelHeight = screenHeight / 2 - buttonsPanelHeight / 2;
-        CodesPanel codesPanel = new CodesPanel(propertyContainer);
+        CodesPanel codesPanel = new CodesPanel(propertyContainer, codesColorScheme);
 
         rightPanel.add(codesPanel, BorderLayout.CENTER);
         codesPanel.draw(rightPanelWidth, codesPanelHeight);
 
         screenFrame.add(rightPanel, BorderLayout.EAST);
 
-        WorldPanel worldPanel = new WorldPanel(world);
+        WorldPanel worldPanel = new WorldPanel(world, statsColorScheme);
         screenFrame.add(worldPanel, BorderLayout.CENTER);
         worldPanel.draw(screenWidth - rightPanelWidth, screenHeight - buttonsPanelHeight);
 

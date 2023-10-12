@@ -10,6 +10,7 @@ class CreaturePanel extends JPanel implements Panel {
     SpritePanel spritePanel;
     StatsPanel statsPanel;
     CreatureLayout layout;
+    ColorScheme colorScheme;
 
     /**
      * Constructor.
@@ -17,10 +18,11 @@ class CreaturePanel extends JPanel implements Panel {
      * @param creature Creature to show
      * @param layout Layout of the panel
      */
-    public CreaturePanel(Creature creature, CreatureLayout layout) {
+    public CreaturePanel(Creature creature, CreatureLayout layout, ColorScheme colorScheme) {
         super(new BorderLayout());
         this.creature = creature;
         this.layout = layout;
+        this.colorScheme = colorScheme;
     }
 
     /**
@@ -56,7 +58,7 @@ class CreaturePanel extends JPanel implements Panel {
         }
         spritePanel.draw(spriteWidth, spriteHeight);
 
-        statsPanel = new StatsPanel(creature.statsContainer);
+        statsPanel = new StatsPanel(creature.statsContainer, colorScheme);
         add(statsPanel, BorderLayout.CENTER);
         statsPanel.draw(statsWidth, statsHeight);
     }

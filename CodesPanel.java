@@ -13,8 +13,9 @@ class CodesPanel extends PropertyPanel {
      * 
      * @param propertyContainer PropertyContainer to show
      */
-    public CodesPanel(PropertyContainer propertyContainer) {
+    public CodesPanel(PropertyContainer propertyContainer, ColorScheme colorScheme) {
         this.propertyContainer = propertyContainer;
+        this.colorScheme = colorScheme;
     }
 
     /**
@@ -67,6 +68,7 @@ class CodesPanel extends PropertyPanel {
             progressBars[i].setMaximum(property.maxValue);
             progressBars[i].setValue(property.value);
             progressBars[i].setString(String.format("%d/%d", property.value, property.maxValue));
+            colorProgressBar(property, progressBars[i], colorScheme);
 
             pane.add(progressBars[i]);
         }

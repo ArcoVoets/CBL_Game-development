@@ -1,3 +1,4 @@
+import java.awt.*;
 import javax.swing.*;
 
 /**
@@ -7,6 +8,7 @@ import javax.swing.*;
 abstract class PropertyPanel extends JPanel implements Panel {
     JProgressBar[] progressBars;
     PropertyContainer propertyContainer;
+    ColorScheme colorScheme;
 
     /**
      * Draws the progressBars.
@@ -25,6 +27,18 @@ abstract class PropertyPanel extends JPanel implements Panel {
             Property property = propertyContainer.properties[i];
             progressBars[i].setValue(property.value);
             progressBars[i].setString(String.format("%d/%d", property.value, property.maxValue));
+            colorProgressBar(property, progressBars[i], colorScheme);
         }
+    }
+
+    /**
+     * Colors the progressBar based on the value.
+     * 
+     * @param property The property to color the progressBar for
+     * @param progressBar The progressBar to color
+     */
+    void colorProgressBar(Property property, JProgressBar progressBar, ColorScheme colorScheme) {
+        Color color = colorScheme.getColor(100 * property.value / property.maxValue);
+        progressBar.setForeground(color);
     }
 }

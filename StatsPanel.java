@@ -14,8 +14,9 @@ class StatsPanel extends PropertyPanel {
      * 
      * @param propertyContainer The stats container.
      */
-    public StatsPanel(PropertyContainer propertyContainer) {
+    public StatsPanel(PropertyContainer propertyContainer, ColorScheme colorScheme) {
         this.propertyContainer = propertyContainer;
+        this.colorScheme = colorScheme;
     }
 
     /**
@@ -78,27 +79,11 @@ class StatsPanel extends PropertyPanel {
             progressBars[i].setMaximum(property.maxValue);
             progressBars[i].setValue(property.value);
             progressBars[i].setString(String.format("%d/%d", property.value, property.maxValue));
-            colorProgressBar(property, progressBars[i]);
+            colorProgressBar(property, progressBars[i], colorScheme);
 
             pane.add(progressBars[i]);
         }
         this.add(pane);
-    }
-
-    /**
-     * Colors the progressBar based on the value.
-     * 
-     * @param property The property to color the progressBar for
-     * @param progressBar The progressBar to color
-     */
-    private void colorProgressBar(Property property, JProgressBar progressBar) {
-        if (property.value >= 0.9 * property.maxValue) {
-            progressBar.setForeground(Color.GREEN);
-        } else if (property.value >= 0.3 * property.maxValue) {
-            progressBar.setForeground(Color.ORANGE);
-        } else {
-            progressBar.setForeground(Color.RED);
-        }
     }
 
     /**
