@@ -1,54 +1,64 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
  * Main class of CBL game.
  */
 class Main {
-    World world = new World();
+    // World world = new World();
+    World world = new World(new Creature(), new Creature[] {
+            new Creature(), new Creature(), new Creature(), new Creature(), new Creature()
+    });
 
     /**
      * Sets up the screen with the frames.
      */
     void setupScreen() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenWidth = (int) screenSize.getWidth();
+        int screenHeight = (int) screenSize.getHeight();
+
         JFrame screenFrame = new JFrame("Game");
         screenFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         screenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        screenFrame.setMinimumSize(new Dimension(800, 600));
         screenFrame.setUndecorated(true);
 
-        ButtonsPanel buttonsPanel = new ButtonsPanel();
-        buttonsPanel.setPreferredSize(new Dimension(800, 50));
-        screenFrame.add(buttonsPanel, BorderLayout.SOUTH);
 
+        int buttonsPanelHeight = screenHeight / 10;
+        ButtonsPanel buttonsPanel = new ButtonsPanel();
+        screenFrame.add(buttonsPanel, BorderLayout.SOUTH);
+        buttonsPanel.Draw(screenWidth, buttonsPanelHeight);
+
+        int rightPanelWidth = screenWidth / 5;
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new BorderLayout());
 
+
+        int environmentPanelHeight = screenHeight / 2 - buttonsPanelHeight / 2;
         EnvironmentPanel environmentPanel = new EnvironmentPanel();
-        environmentPanel.setPreferredSize(new Dimension(150, 300));
         rightPanel.add(environmentPanel, BorderLayout.NORTH);
+        environmentPanel.Draw(rightPanelWidth, environmentPanelHeight);
+
 
         // used for testing
         Property property = new Property("Hello", 5, 20);
         Property property2 = new Property("Hello2", 10, 20);
-
         Property property3 = new Property("Hello3", 70, 100);
         Property property4 = new Property("Hello4", 10, 20);
         Property[] properties = { property, property2, property3, property4 };
         PropertyContainer propertyContainer = new PropertyContainer(properties);
 
+        int codesPanelHeight = screenHeight / 2 - buttonsPanelHeight / 2;
         CodesPanel codesPanel = new CodesPanel(propertyContainer);
-        codesPanel.setPreferredSize(new Dimension(300, 300));
-        codesPanel.drawProgressBars(propertyContainer);
+
         rightPanel.add(codesPanel, BorderLayout.CENTER);
+        codesPanel.Draw(rightPanelWidth, codesPanelHeight, propertyContainer);
 
         screenFrame.add(rightPanel, BorderLayout.EAST);
 
-        JPanel worldPanel = new WorldPanel();
-        worldPanel.setPreferredSize(new Dimension(500, 300));
+        WorldPanel worldPanel = new WorldPanel(world);
         screenFrame.add(worldPanel, BorderLayout.CENTER);
+        worldPanel.Draw(screenWidth - rightPanelWidth, screenHeight - buttonsPanelHeight);
 
         screenFrame.setVisible(true);
     }

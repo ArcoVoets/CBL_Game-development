@@ -37,8 +37,11 @@ public class CodesPanel extends JPanel {
      * 
      * @param propertyContainer Porpertycontainer to show
      */
-    public void drawProgressBars(PropertyContainer propertyContainer) {
-        setPreferredSize(new Dimension(300, 700));
+    public void Draw(int width, int heigth, PropertyContainer propertyContainer) {
+        setPreferredSize(new Dimension(width, height));
+        removeAll();
+        setBackground(Color.BLACK);
+        
         int numProperties = propertyContainer.properties.length;
 
         JPanel pane = new JPanel(new GridLayout(numProperties * 2, 1));

@@ -1,10 +1,14 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class ButtonsPanel extends JPanel {
+public class ButtonsPanel extends JPanel implements Panel {
     public ButtonsPanel() {
+    }
+
+    public void Draw(int width, int height) {
+        setPreferredSize(new Dimension(width, height));
+        removeAll();
+
         setBackground(Color.GREEN);
     }
 }
