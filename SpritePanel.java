@@ -2,7 +2,7 @@ import java.awt.*;
 import java.net.URL;
 import javax.swing.*;
 
-public class SpritePanel extends JPanel implements Panel {
+class SpritePanel extends JPanel implements Panel {
     ImageIcon icon;
 
     public SpritePanel(String spritePath) {

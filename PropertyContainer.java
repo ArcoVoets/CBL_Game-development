@@ -1,7 +1,7 @@
 /**
  * PropertyContainer.
  */
-public class PropertyContainer {
+class PropertyContainer {
     Property[] properties;
 
     PropertyContainer(Property[] properties) {

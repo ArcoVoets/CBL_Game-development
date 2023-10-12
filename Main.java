@@ -7,7 +7,7 @@ import javax.swing.*;
 class Main {
     // World world = new World();
     World world = new World(new Creature(), new Creature[] {
-            new Creature(), new Creature(), new Creature(), new Creature(), new Creature()
+        new Creature(), new Creature(), new Creature(), new Creature(), new Creature()
     });
 
     /**
@@ -49,7 +49,7 @@ class Main {
         CodesPanel codesPanel = new CodesPanel(propertyContainer);
 
         rightPanel.add(codesPanel, BorderLayout.CENTER);
-        codesPanel.draw(rightPanelWidth, codesPanelHeight);
+        codesPanel.draw(rightPanelWidth, codesPanelHeight, propertyContainer);
 
         screenFrame.add(rightPanel, BorderLayout.EAST);
 

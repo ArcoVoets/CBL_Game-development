@@ -6,12 +6,13 @@ import javax.swing.plaf.basic.BasicProgressBarUI;
  * CodesPanel.
  * Displays the codes in the PropertyContainer.
  */
-public class CodesPanel extends PropertyPanel {
+class CodesPanel extends PropertyPanel {
 
     /**
      * Constructor.
      * 
-     * @param propertyContainer PropertyContainer to show
+     * @param propertyContainer
+     *            PropertyContainer to show
      */
     public CodesPanel(PropertyContainer propertyContainer) {
         this.propertyContainer = propertyContainer;
@@ -38,11 +39,11 @@ public class CodesPanel extends PropertyPanel {
         pane.setBackground(getBackground());
         pane.setPreferredSize(getPreferredSize());
         pane.setBorder(
-                BorderFactory.createEmptyBorder(
-                        0,
-                        columnWidth / 10,
-                        rowHeight / 2,
-                        columnWidth / 10));
+            BorderFactory.createEmptyBorder(
+                0,
+                columnWidth / 10,
+                rowHeight / 2,
+                columnWidth / 10));
 
         Font font = new Font("MS Sans Serif", Font.BOLD, 25);
 
@@ -71,7 +72,5 @@ public class CodesPanel extends PropertyPanel {
             pane.add(progressBars[i]);
         }
         this.add(pane);
-
     }
-
 }

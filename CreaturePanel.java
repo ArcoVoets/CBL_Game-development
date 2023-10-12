@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class CreaturePanel extends JPanel implements Panel {
+class CreaturePanel extends JPanel implements Panel {
     enum CreatureLayout {
         HORIZONTAL, VERTICAL
     }

@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class WorldPanel extends JPanel implements Panel {
+class WorldPanel extends JPanel implements Panel {
     World world;
     CreaturePanel playerCreaturePanel;
     CreaturePanel[] worldCreaturePanels;

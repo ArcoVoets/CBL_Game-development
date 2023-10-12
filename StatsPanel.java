@@ -5,7 +5,7 @@ import javax.swing.plaf.basic.BasicProgressBarUI;
 /**
  * StatsPanel.
  */
-public class StatsPanel extends PropertyPanel {
+class StatsPanel extends PropertyPanel {
 
     /**
      * Constructor.
