@@ -15,7 +15,7 @@ public class Range {
         if (low > high) {
             throw new IllegalArgumentException("low must be less than or equal to high");
         }
-        if (Math.min(low, high) < 0 || Math.max(low, high) > 100) {
+        if (low < 0 || high > 100) {
             throw new IllegalArgumentException(
                 "low and high must be percentages (between 0 and 100 (inclusive))");
         }

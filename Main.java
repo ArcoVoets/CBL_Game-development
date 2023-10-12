@@ -8,23 +8,16 @@ class Main {
     World world = new World(new Creature(), new Creature[] {
         new Creature(), new Creature(), new Creature(), new Creature(), new Creature()
     });
-    // codesColorScheme
-    Range[] codesRanges = {
-        new Range(0, 100)
-    };
-    Color[] codesColors = {
-        Color.BLUE, Color.WHITE
-    };
-    ColorScheme codesColorScheme = new ColorScheme(codesRanges, codesColors);
 
-    // statsColorScheme
-    Range[] statsRanges = {
-        new Range(0, 19), new Range(20, 39), new Range(40, 89), new Range(90, 100)
-    };
-    Color[] statsColors = {
-        Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.WHITE
-    };
-    ColorScheme statsColorScheme = new ColorScheme(statsRanges, statsColors);
+    ColorScheme codesColorScheme = new ColorScheme(new ColorRange[] {
+        new ColorRange(0, 100, Color.BLUE)
+    }, Color.WHITE);
+    ColorScheme statsColorScheme = new ColorScheme(new ColorRange[] {
+        new ColorRange(0, 19, Color.RED),
+        new ColorRange(20, 39, Color.ORANGE),
+        new ColorRange(40, 89, Color.YELLOW),
+        new ColorRange(90, 100, Color.GREEN)
+    }, Color.WHITE);
 
     /**
      * Sets up the screen with the frames.

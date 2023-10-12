@@ -3,24 +3,29 @@ import java.awt.*;
 /**
  * ColorScheme.
  */
-public class ColorScheme {
-    Range[] ranges;
-    Color[] colors;
+class ColorScheme {
+    ColorRange[] colors;
+    Color defaultColor;
+
+    /**
+     * Constructor.
+     *
+     * @param colors The colors to use
+     * @param defaultColor The default color
+     */
+    public ColorScheme(ColorRange[] colors, Color defaultColor) {
+        this.colors = colors;
+        this.defaultColor = defaultColor;
+    }
 
     /**
      * Constructor.
      * 
-     * @param ranges The ranges to use
-     * @param colors The colors to use, the last color is used for values outside
-     *            the ranges
+     * @param colors The colors to use
      */
-    public ColorScheme(Range[] ranges, Color[] colors) {
-        if (colors.length != ranges.length + 1) {
-            throw new IllegalArgumentException(
-                "The number of colors must be one more than the number of ranges");
-        }
-        this.colors = colors;
-        this.ranges = ranges;
+
+    public ColorScheme(ColorRange[] colors) {
+        this(colors, Color.BLACK);
     }
 
     /**
@@ -30,11 +35,28 @@ public class ColorScheme {
      * @return The color for the percentage
      */
     Color getColor(int percentage) {
-        for (int i = 0; i < ranges.length; i++) {
-            if (ranges[i].contains(percentage)) {
-                return colors[i];
-            }
+        for (ColorRange color : colors) {
+            if (color.range.contains(percentage))
+                return color.color;
         }
-        return colors[colors.length];
+        return defaultColor;
+    }
+}
+
+class ColorRange {
+    public Range range;
+    public Color color;
+
+    public ColorRange(Range range, Color color) {
+        this.range = range;
+        this.color = color;
+    }
+
+    public ColorRange(int min, int max, Color color) {
+        this(new Range(min, max), color);
+    }
+
+    public ColorRange(int min, int max, int r, int g, int b, int a) {
+        this(new Range(min, max), new Color(r, g, b, a));
     }
 }
