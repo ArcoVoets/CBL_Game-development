@@ -1,3 +1,3 @@
 public interface Panel {
-    public void Draw(int width, int height);
+    public void draw(int width, int height);
 }

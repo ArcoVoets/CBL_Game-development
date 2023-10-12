@@ -26,7 +26,7 @@ class Main {
         int buttonsPanelHeight = screenHeight / 10;
         ButtonsPanel buttonsPanel = new ButtonsPanel();
         screenFrame.add(buttonsPanel, BorderLayout.SOUTH);
-        buttonsPanel.Draw(screenWidth, buttonsPanelHeight);
+        buttonsPanel.draw(screenWidth, buttonsPanelHeight);
 
         int rightPanelWidth = screenWidth / 5;
         JPanel rightPanel = new JPanel();
@@ -35,7 +35,7 @@ class Main {
         int environmentPanelHeight = screenHeight / 2 - buttonsPanelHeight / 2;
         EnvironmentPanel environmentPanel = new EnvironmentPanel();
         rightPanel.add(environmentPanel, BorderLayout.NORTH);
-        environmentPanel.Draw(rightPanelWidth, environmentPanelHeight);
+        environmentPanel.draw(rightPanelWidth, environmentPanelHeight);
 
         // used for testing
         Property property = new Property("Hello", 5, 20);
@@ -49,13 +49,13 @@ class Main {
         CodesPanel codesPanel = new CodesPanel(propertyContainer);
 
         rightPanel.add(codesPanel, BorderLayout.CENTER);
-        codesPanel.draw(rightPanelWidth, codesPanelHeight, propertyContainer);
+        codesPanel.draw(rightPanelWidth, codesPanelHeight);
 
         screenFrame.add(rightPanel, BorderLayout.EAST);
 
         WorldPanel worldPanel = new WorldPanel(world);
         screenFrame.add(worldPanel, BorderLayout.CENTER);
-        worldPanel.Draw(screenWidth - rightPanelWidth, screenHeight - buttonsPanelHeight);
+        worldPanel.draw(screenWidth - rightPanelWidth, screenHeight - buttonsPanelHeight);
 
         screenFrame.setVisible(true);
     }

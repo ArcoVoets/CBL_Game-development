@@ -17,7 +17,7 @@ public class CreaturePanel extends JPanel implements Panel {
         this.layout = layout;
     }
 
-    public void Draw(int width, int height) {
+    public void draw(int width, int height) {
         setPreferredSize(new Dimension(width, height));
         removeAll();
 
@@ -42,10 +42,10 @@ public class CreaturePanel extends JPanel implements Panel {
             statsWidth = width;
             statsHeight = height - spriteHeight;
         }
-        spritePanel.Draw(spriteWidth, spriteHeight);
+        spritePanel.draw(spriteWidth, spriteHeight);
 
         statsPanel = new StatsPanel(creature.statsContainer);
         add(statsPanel, BorderLayout.CENTER);
-        statsPanel.Draw(statsWidth, statsHeight);
+        statsPanel.draw(statsWidth, statsHeight);
     }
 }

@@ -16,7 +16,7 @@ public class SpritePanel extends JPanel implements Panel {
         icon = new ImageIcon(resource);
     }
 
-    public void Draw(int width, int height) {
+    public void draw(int width, int height) {
         setPreferredSize(new Dimension(width, height));
         removeAll();
 
