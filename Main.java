@@ -49,7 +49,7 @@ class Main {
         CodesPanel codesPanel = new CodesPanel(propertyContainer);
 
         rightPanel.add(codesPanel, BorderLayout.CENTER);
-        codesPanel.draw(rightPanelWidth, codesPanelHeight, propertyContainer);
+        codesPanel.draw(rightPanelWidth, codesPanelHeight);
 
         screenFrame.add(rightPanel, BorderLayout.EAST);
 
