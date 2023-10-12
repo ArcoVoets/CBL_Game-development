@@ -37,15 +37,15 @@ public class CodesPanel extends JPanel {
      * 
      * @param propertyContainer Porpertycontainer to show
      */
-    public void Draw(int width, int heigth, PropertyContainer propertyContainer) {
+    public void draw(int width, int height, PropertyContainer propertyContainer) {
         setPreferredSize(new Dimension(width, height));
         removeAll();
         setBackground(Color.BLACK);
-        
+
         int numProperties = propertyContainer.properties.length;
 
         JPanel pane = new JPanel(new GridLayout(numProperties * 2, 1));
-        int rowHeigth = getPreferredSize().height / (numProperties * 2);
+        int rowHeight = getPreferredSize().height / (numProperties * 2);
         int columnWidth = getPreferredSize().width;
         pane.setBackground(getBackground());
         pane.setPreferredSize(getPreferredSize());
@@ -53,7 +53,7 @@ public class CodesPanel extends JPanel {
                 BorderFactory.createEmptyBorder(
                         0,
                         columnWidth / 10,
-                        rowHeigth / 2,
+                        rowHeight / 2,
                         columnWidth / 10));
 
         Font font = new Font("MS Sans Serif", Font.BOLD, 25);

@@ -23,7 +23,6 @@ class Main {
         screenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         screenFrame.setUndecorated(true);
 
-
         int buttonsPanelHeight = screenHeight / 10;
         ButtonsPanel buttonsPanel = new ButtonsPanel();
         screenFrame.add(buttonsPanel, BorderLayout.SOUTH);
@@ -33,12 +32,10 @@ class Main {
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new BorderLayout());
 
-
         int environmentPanelHeight = screenHeight / 2 - buttonsPanelHeight / 2;
         EnvironmentPanel environmentPanel = new EnvironmentPanel();
         rightPanel.add(environmentPanel, BorderLayout.NORTH);
         environmentPanel.Draw(rightPanelWidth, environmentPanelHeight);
-
 
         // used for testing
         Property property = new Property("Hello", 5, 20);
@@ -52,7 +49,7 @@ class Main {
         CodesPanel codesPanel = new CodesPanel(propertyContainer);
 
         rightPanel.add(codesPanel, BorderLayout.CENTER);
-        codesPanel.Draw(rightPanelWidth, codesPanelHeight, propertyContainer);
+        codesPanel.draw(rightPanelWidth, codesPanelHeight, propertyContainer);
 
         screenFrame.add(rightPanel, BorderLayout.EAST);
 
