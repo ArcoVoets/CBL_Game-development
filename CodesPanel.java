@@ -6,13 +6,14 @@ import javax.swing.plaf.basic.BasicProgressBarUI;
  * CodesPanel.
  * Displays the codes in the PropertyContainer.
  */
-public class CodesPanel extends JPanel {
+class CodesPanel extends JPanel {
     JProgressBar[] progressBars;
 
     /**
      * Constructor.
      * 
-     * @param propertyContainer PropertyContainer to show
+     * @param propertyContainer
+     *            PropertyContainer to show
      */
     public CodesPanel(PropertyContainer propertyContainer) {
         setBackground(Color.BLACK);
@@ -35,7 +36,8 @@ public class CodesPanel extends JPanel {
     /**
      * Draws the progressbars.
      * 
-     * @param propertyContainer Porpertycontainer to show
+     * @param propertyContainer
+     *            Porpertycontainer to show
      */
     public void draw(int width, int height, PropertyContainer propertyContainer) {
         setPreferredSize(new Dimension(width, height));
@@ -50,11 +52,11 @@ public class CodesPanel extends JPanel {
         pane.setBackground(getBackground());
         pane.setPreferredSize(getPreferredSize());
         pane.setBorder(
-                BorderFactory.createEmptyBorder(
-                        0,
-                        columnWidth / 10,
-                        rowHeight / 2,
-                        columnWidth / 10));
+            BorderFactory.createEmptyBorder(
+                0,
+                columnWidth / 10,
+                rowHeight / 2,
+                columnWidth / 10));
 
         Font font = new Font("MS Sans Serif", Font.BOLD, 25);
 
@@ -83,7 +85,8 @@ public class CodesPanel extends JPanel {
     /**
      * Updates the codes in the PropertyContainer.
      * 
-     * @param propertyContainer PropertyContainer to display codes in
+     * @param propertyContainer
+     *            PropertyContainer to display codes in
      */
     public void updateCodes(PropertyContainer propertyContainer) {
         for (int i = 0; i < propertyContainer.properties.length; i++) {

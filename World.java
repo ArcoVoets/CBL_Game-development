@@ -1,4 +1,4 @@
-public class World {
+class World {
     Creature playerCreature;
     Creature[] worldCreatures;
 

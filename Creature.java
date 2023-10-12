@@ -1,4 +1,4 @@
-public class Creature {
+class Creature {
     PropertyContainer codesContainer;
     PropertyContainer statsContainer;
 

@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class ButtonsPanel extends JPanel implements Panel {
+class ButtonsPanel extends JPanel implements Panel {
     public ButtonsPanel() {
     }
 

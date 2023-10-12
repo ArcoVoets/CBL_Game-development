@@ -1,3 +1,3 @@
-public class Actions {
+class Actions {
 
 }

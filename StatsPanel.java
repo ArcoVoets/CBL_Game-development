@@ -4,7 +4,7 @@ import javax.swing.*;
 /**
  * Statspanel.
  */
-public class StatsPanel extends JPanel implements Panel {
+class StatsPanel extends JPanel implements Panel {
     PropertyContainer statsContainer;
 
     /**
