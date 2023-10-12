@@ -11,8 +11,7 @@ class CodesPanel extends PropertyPanel {
     /**
      * Constructor.
      * 
-     * @param propertyContainer
-     *            PropertyContainer to show
+     * @param propertyContainer PropertyContainer to show
      */
     public CodesPanel(PropertyContainer propertyContainer) {
         this.propertyContainer = propertyContainer;
@@ -21,8 +20,8 @@ class CodesPanel extends PropertyPanel {
     /**
      * Draws the progressBars.
      * 
-     * @param width  width of the panel in pixels
-     * @param height height of the panel in pixels
+     * @param width Width of the panel in pixels
+     * @param height Height of the panel in pixels
      */
     @Override
     public void draw(int width, int height) {
@@ -39,11 +38,11 @@ class CodesPanel extends PropertyPanel {
         pane.setBackground(getBackground());
         pane.setPreferredSize(getPreferredSize());
         pane.setBorder(
-            BorderFactory.createEmptyBorder(
-                0,
-                columnWidth / 10,
-                rowHeight / 2,
-                columnWidth / 10));
+                BorderFactory.createEmptyBorder(
+                        0,
+                        columnWidth / 10,
+                        rowHeight / 2,
+                        columnWidth / 10));
 
         Font font = new Font("MS Sans Serif", Font.BOLD, 25);
 

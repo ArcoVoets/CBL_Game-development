@@ -6,11 +6,20 @@ class WorldPanel extends JPanel implements Panel {
     CreaturePanel playerCreaturePanel;
     CreaturePanel[] worldCreaturePanels;
 
+    /**
+     * Constructor.
+     * @param world World to show
+     */
     public WorldPanel(World world) {
         super(new BorderLayout());
         this.world = world;
     }
 
+    /**
+     * Draws the world.
+     * @param width Width of the panel in pixels
+     * @param height Height of the panel in pixels
+     */
     public void draw(int width, int height) {
         setPreferredSize(new Dimension(width, height));
         removeAll();
