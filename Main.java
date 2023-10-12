@@ -41,7 +41,8 @@ class Main {
         Property property2 = new Property("Hello2", 10, 20);
         Property property3 = new Property("Hello3", 70, 100);
         Property property4 = new Property("Hello4", 10, 20);
-        Property[] properties = { property, property2, property3, property4 };
+        Property[] properties = {
+            property, property2, property3, property4 };
         PropertyContainer propertyContainer = new PropertyContainer(properties);
 
         int codesPanelHeight = screenHeight / 2 - buttonsPanelHeight / 2;

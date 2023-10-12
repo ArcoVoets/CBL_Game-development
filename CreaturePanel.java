@@ -13,6 +13,7 @@ class CreaturePanel extends JPanel implements Panel {
 
     /**
      * Constructor.
+     * 
      * @param creature Creature to show
      * @param layout Layout of the panel
      */
@@ -24,6 +25,7 @@ class CreaturePanel extends JPanel implements Panel {
 
     /**
      * Draws the sprite and stats.
+     * 
      * @param width Width of the panel in pixels
      * @param height Height of the panel in pixels
      */

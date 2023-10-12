@@ -7,6 +7,7 @@ class EnvironmentPanel extends JPanel implements Panel {
 
     /**
      * Draws the environment.
+     * 
      * @param width Width of the panel in pixels
      * @param height Height of the panel in pixels
      */

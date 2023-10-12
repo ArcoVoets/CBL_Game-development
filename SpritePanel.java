@@ -7,6 +7,7 @@ class SpritePanel extends JPanel implements Panel {
 
     /**
      * Constructor.
+     * 
      * @param spritePath Path to the sprite
      */
     public SpritePanel(String spritePath) {
@@ -22,6 +23,7 @@ class SpritePanel extends JPanel implements Panel {
 
     /**
      * Draws the sprite.
+     * 
      * @param width Width of the panel in pixels
      * @param height Height of the panel in pixels
      */
@@ -42,6 +44,7 @@ class SpritePanel extends JPanel implements Panel {
 
     /**
      * Scales the icon to the given width and height.
+     * 
      * @param icon Icon to scale
      * @param width Width to scale to
      * @param height Height to scale to

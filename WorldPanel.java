@@ -8,6 +8,7 @@ class WorldPanel extends JPanel implements Panel {
 
     /**
      * Constructor.
+     * 
      * @param world World to show
      */
     public WorldPanel(World world) {
@@ -17,6 +18,7 @@ class WorldPanel extends JPanel implements Panel {
 
     /**
      * Draws the world.
+     * 
      * @param width Width of the panel in pixels
      * @param height Height of the panel in pixels
      */

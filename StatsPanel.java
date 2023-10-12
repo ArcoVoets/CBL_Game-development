@@ -37,11 +37,11 @@ class StatsPanel extends PropertyPanel {
         pane.setBackground(getBackground());
         pane.setPreferredSize(getPreferredSize());
         pane.setBorder(
-                BorderFactory.createEmptyBorder(
-                        0,
-                        columnWidth / 10,
-                        rowHeight / 2,
-                        columnWidth / 10));
+            BorderFactory.createEmptyBorder(
+                0,
+                columnWidth / 10,
+                rowHeight / 2,
+                columnWidth / 10));
 
         Font font = new Font("MS Sans Serif", Font.BOLD, 25);
 
@@ -94,7 +94,7 @@ class StatsPanel extends PropertyPanel {
      * @param value The value to check for in the array
      */
     private <T> boolean arrayContains(
-            T[] array, T value) {
+        T[] array, T value) {
         for (T element : array) {
             if (element == value) {
                 return true;

@@ -38,11 +38,11 @@ class CodesPanel extends PropertyPanel {
         pane.setBackground(getBackground());
         pane.setPreferredSize(getPreferredSize());
         pane.setBorder(
-                BorderFactory.createEmptyBorder(
-                        0,
-                        columnWidth / 10,
-                        rowHeight / 2,
-                        columnWidth / 10));
+            BorderFactory.createEmptyBorder(
+                0,
+                columnWidth / 10,
+                rowHeight / 2,
+                columnWidth / 10));
 
         Font font = new Font("MS Sans Serif", Font.BOLD, 25);
 

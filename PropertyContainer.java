@@ -6,6 +6,7 @@ class PropertyContainer {
 
     /**
      * Constructor.
+     * 
      * @param properties Properties in the container
      */
     PropertyContainer(Property[] properties) {
