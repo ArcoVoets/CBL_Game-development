@@ -9,12 +9,10 @@ abstract class PropertyPanel extends JPanel implements Panel {
     PropertyContainer propertyContainer;
 
     /**
-     * Draws the progressbars.
+     * Draws the progressBars.
      * 
-     * @param width
-     *            width of the panel in pixels
-     * @param height
-     *            height of the panel in pixels
+     * @param width Width of the panel in pixels
+     * @param height Height of the panel in pixels
      */
     public abstract void draw(int width, int height);
 

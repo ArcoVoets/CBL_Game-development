@@ -19,8 +19,8 @@ class StatsPanel extends PropertyPanel {
     /**
      * Draws the progressBars.
      * 
-     * @param width  width of the panel in pixels
-     * @param height height of the panel in pixels
+     * @param width Width of the panel in pixels
+     * @param height Height of the panel in pixels
      */
     @Override
     public void draw(int width, int height) {

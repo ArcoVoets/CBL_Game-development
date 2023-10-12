@@ -5,7 +5,6 @@ import javax.swing.*;
  * Main class of CBL game.
  */
 class Main {
-    // World world = new World();
     World world = new World(new Creature(), new Creature[] {
         new Creature(), new Creature(), new Creature(), new Creature(), new Creature()
     });

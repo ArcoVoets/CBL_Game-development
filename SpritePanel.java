@@ -5,6 +5,10 @@ import javax.swing.*;
 class SpritePanel extends JPanel implements Panel {
     ImageIcon icon;
 
+    /**
+     * Constructor.
+     * @param spritePath Path to the sprite
+     */
     public SpritePanel(String spritePath) {
         super(new BorderLayout());
 
@@ -16,6 +20,11 @@ class SpritePanel extends JPanel implements Panel {
         icon = new ImageIcon(resource);
     }
 
+    /**
+     * Draws the sprite.
+     * @param width Width of the panel in pixels
+     * @param height Height of the panel in pixels
+     */
     public void draw(int width, int height) {
         setPreferredSize(new Dimension(width, height));
         removeAll();
@@ -31,10 +40,17 @@ class SpritePanel extends JPanel implements Panel {
         add(picLabel, BorderLayout.CENTER);
     }
 
+    /**
+     * Scales the icon to the given width and height.
+     * @param icon Icon to scale
+     * @param width Width to scale to
+     * @param height Height to scale to
+     * @return Scaled icon
+     */
     private ImageIcon scaleIcon(ImageIcon icon, int width, int height) {
         Image image = icon.getImage();
-        Image new_image = image.getScaledInstance(width, height, Image.SCALE_DEFAULT);
-        icon.setImage(new_image);
+        Image newImage = image.getScaledInstance(width, height, Image.SCALE_DEFAULT);
+        icon.setImage(newImage);
         return icon;
     }
 }
