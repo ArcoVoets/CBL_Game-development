@@ -1,4 +1,3 @@
-import java.awt.*;
 import javax.swing.*;
 
 /**
@@ -12,8 +11,10 @@ abstract class PropertyPanel extends JPanel implements Panel {
     /**
      * Draws the progressbars.
      * 
-     * @param width  width of the panel in pixels
-     * @param height height of the panel in pixels
+     * @param width
+     *            width of the panel in pixels
+     * @param height
+     *            height of the panel in pixels
      */
     public abstract void draw(int width, int height);
 
