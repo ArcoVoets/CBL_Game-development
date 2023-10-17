@@ -48,6 +48,12 @@ class ColorRange {
     public Range range;
     public Color color;
 
+    /**
+     * Constructor.
+     * 
+     * @param range The range (in percentages) for which the color should be showed
+     * @param color The color to show
+     */
     public ColorRange(Range range, Color color) {
         this.range = range;
         this.color = color;
