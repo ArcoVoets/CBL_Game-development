@@ -48,6 +48,20 @@ class Property {
         this.value = value;
     }
 
+    public void AddValue(int value) {
+        this.value += value;
+        if (this.value > maxValue) {
+            this.value = maxValue;
+        }
+    }
+
+    public void SubtractValue(int value) {
+        this.value -= value;
+        if (this.value < minValue) {
+            this.value = minValue;
+        }
+    }
+
     public int getMinValue() {
         return minValue;
     }

@@ -42,10 +42,10 @@ class Main {
                 }),
             new Actions(new Action[] {
                 new Action("Eat", (Creature creature) -> {
-                    creature.statsContainer.properties[0].value += 1;
+                    creature.statsContainer.properties[0].AddValue(1);
                 }),
                 new Action("Pair", (Creature creature) -> {
-                    creature.statsContainer.properties[0].value -= 1;
+                    creature.statsContainer.properties[0].SubtractValue(1);
                 })
             }, this::updateScreen));
     }
@@ -65,10 +65,10 @@ class Main {
                 }),
             new Actions(new Action[] {
                 new Action("Eat", (Creature creature) -> {
-                    creature.statsContainer.properties[0].value += 1;
+                    creature.statsContainer.properties[0].AddValue(1);
                 }),
                 new Action("Pair", (Creature creature) -> {
-                    creature.statsContainer.properties[0].value -= 1;
+                    creature.statsContainer.properties[0].SubtractValue(1);
                 })
             }, this::updateScreen));
     }
@@ -79,7 +79,8 @@ class Main {
     void setupWorld() {
         Creature playerCreature = createPlayerCreature();
         Creature[] worldCreatures = new Creature[] {
-            createWorldCreature(), createWorldCreature(), createWorldCreature(), createWorldCreature(),
+            createWorldCreature(), createWorldCreature(), createWorldCreature(),
+            createWorldCreature(),
             createWorldCreature()
         };
 
@@ -124,7 +125,8 @@ class Main {
         environmentPanel.draw(rightPanelWidth, environmentPanelHeight);
 
         int codesPanelHeight = screenHeight / 2 - buttonsPanelHeight / 2;
-        codesPanel = new CodesPanel(world.playerCreature.codesContainer, codesColorScheme);
+        codesPanel = new CodesPanel(world.playerCreature.codesContainer,
+            codesColorScheme);
 
         rightPanel.add(codesPanel, BorderLayout.CENTER);
         codesPanel.draw(rightPanelWidth, codesPanelHeight);
