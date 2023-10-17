@@ -36,8 +36,9 @@ class ColorScheme {
      */
     Color getColor(int percentage) {
         for (ColorRange color : colors) {
-            if (color.range.contains(percentage))
+            if (color.range.contains(percentage)) {
                 return color.color;
+            }
         }
         return defaultColor;
     }
@@ -47,6 +48,12 @@ class ColorRange {
     public Range range;
     public Color color;
 
+    /**
+     * Constructor.
+     * 
+     * @param range The range (in percentages) for which the color should be showed
+     * @param color The color to show
+     */
     public ColorRange(Range range, Color color) {
         this.range = range;
         this.color = color;
