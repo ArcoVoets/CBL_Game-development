@@ -19,6 +19,13 @@ class Main {
         new ColorRange(40, 89, Color.YELLOW),
         new ColorRange(90, 100, Color.GREEN)
     }, Color.WHITE);
+    ColorScheme environmentStatsColorScheme = new ColorScheme(new ColorRange[] {
+        new ColorRange(new Range(0, 19), Color.BLUE),
+        new ColorRange(new Range(20, 59), Color.GREEN),
+        new ColorRange(new Range(60, 79), Color.YELLOW),
+        new ColorRange(new Range(80, 89), Color.ORANGE),
+        new ColorRange(new Range(90, 100), Color.RED)
+    }, Color.WHITE);
 
     Creature createPlayerCreature() {
         return new Creature(
@@ -101,8 +108,18 @@ class Main {
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new BorderLayout());
 
+        // used for testing
+        Property temperature = new Property("Temperature", 20, -20, 100, "°C");
+        Property[] environmentProperties = {
+            temperature };
+        PropertyContainer environmentPropertyContainer = new PropertyContainer(
+            environmentProperties);
+        // end used for testing
+
         int environmentPanelHeight = screenHeight / 2 - buttonsPanelHeight / 2;
-        EnvironmentPanel environmentPanel = new EnvironmentPanel();
+        EnvironmentPanel environmentPanel = new EnvironmentPanel(
+            environmentPropertyContainer,
+            environmentStatsColorScheme);
         rightPanel.add(environmentPanel, BorderLayout.NORTH);
         environmentPanel.draw(rightPanelWidth, environmentPanelHeight);
 
@@ -116,7 +133,8 @@ class Main {
 
         worldPanel = new WorldPanel(world, statsColorScheme);
         screenFrame.add(worldPanel, BorderLayout.CENTER);
-        worldPanel.draw(screenWidth - rightPanelWidth, screenHeight - buttonsPanelHeight);
+        worldPanel.draw(screenWidth - rightPanelWidth,
+            screenHeight - buttonsPanelHeight);
 
         screenFrame.setVisible(true);
     }
