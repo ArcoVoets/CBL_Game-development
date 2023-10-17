@@ -13,7 +13,8 @@ class CodesPanel extends PropertyPanel {
      * 
      * @param propertyContainer PropertyContainer to show
      */
-    public CodesPanel(PropertyContainer propertyContainer, ColorScheme colorScheme) {
+    public CodesPanel(PropertyContainer propertyContainer,
+        ColorScheme colorScheme) {
         this.propertyContainer = propertyContainer;
         this.colorScheme = colorScheme;
     }
@@ -33,12 +34,12 @@ class CodesPanel extends PropertyPanel {
         int numProperties = propertyContainer.properties.length;
         progressBars = new JProgressBar[numProperties];
 
-        JPanel pane = new JPanel(new GridLayout(numProperties * 2, 1));
+        JPanel gridPanel = new JPanel(new GridLayout(numProperties * 2, 1));
         int rowHeight = getPreferredSize().height / (numProperties * 2);
         int columnWidth = getPreferredSize().width;
-        pane.setBackground(getBackground());
-        pane.setPreferredSize(getPreferredSize());
-        pane.setBorder(
+        gridPanel.setBackground(getBackground());
+        gridPanel.setPreferredSize(getPreferredSize());
+        gridPanel.setBorder(
             BorderFactory.createEmptyBorder(
                 0,
                 columnWidth / 10,
@@ -51,12 +52,12 @@ class CodesPanel extends PropertyPanel {
             Property property = propertyContainer.properties[i];
 
             // create and show key
-            JLabel label = new JLabel(property.key, SwingConstants.LEFT);
+            JLabel label = new JLabel(property.getKey(), SwingConstants.LEFT);
             label.setVerticalAlignment(SwingConstants.BOTTOM);
             label.setFont(font);
             label.setForeground(Color.BLUE);
             label.setBackground(getBackground());
-            pane.add(label);
+            gridPanel.add(label);
 
             // create and show progressBar
             progressBars[i] = new JProgressBar();
@@ -65,13 +66,15 @@ class CodesPanel extends PropertyPanel {
             progressBars[i].setForeground(Color.BLUE);
             progressBars[i].setBorder(BorderFactory.createEmptyBorder());
             progressBars[i].setStringPainted(true);
-            progressBars[i].setMaximum(property.maxValue);
-            progressBars[i].setValue(property.value);
-            progressBars[i].setString(String.format("%d/%d", property.value, property.maxValue));
+            progressBars[i].setMaximum(property.getMaxValue());
+            progressBars[i].setValue(property.getValue());
+            progressBars[i].setString(
+                String.format("%d/%d", property.getValue(),
+                    property.getMaxValue()));
             colorProgressBar(property, progressBars[i], colorScheme);
 
-            pane.add(progressBars[i]);
+            gridPanel.add(progressBars[i]);
         }
-        this.add(pane);
+        this.add(gridPanel);
     }
 }

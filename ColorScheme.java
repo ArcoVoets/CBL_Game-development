@@ -36,8 +36,9 @@ class ColorScheme {
      */
     Color getColor(int percentage) {
         for (ColorRange color : colors) {
-            if (color.range.contains(percentage))
+            if (color.range.contains(percentage)) {
                 return color.color;
+            }
         }
         return defaultColor;
     }

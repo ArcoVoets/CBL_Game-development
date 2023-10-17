@@ -14,7 +14,8 @@ class StatsPanel extends PropertyPanel {
      * 
      * @param propertyContainer The stats container.
      */
-    public StatsPanel(PropertyContainer propertyContainer, ColorScheme colorScheme) {
+    public StatsPanel(PropertyContainer propertyContainer,
+        ColorScheme colorScheme) {
         this.propertyContainer = propertyContainer;
         this.colorScheme = colorScheme;
     }
@@ -62,7 +63,7 @@ class StatsPanel extends PropertyPanel {
             Property property = propertyContainer.properties[i];
 
             // create and show key
-            JLabel label = new JLabel(property.key, SwingConstants.LEFT);
+            JLabel label = new JLabel(property.getKey(), SwingConstants.LEFT);
             label.setVerticalAlignment(SwingConstants.BOTTOM);
             label.setFont(font);
             label.setForeground(Color.BLUE);
@@ -76,9 +77,11 @@ class StatsPanel extends PropertyPanel {
             progressBars[i].setForeground(Color.BLUE);
             progressBars[i].setBorder(BorderFactory.createEmptyBorder());
             progressBars[i].setStringPainted(true);
-            progressBars[i].setMaximum(property.maxValue);
-            progressBars[i].setValue(property.value);
-            progressBars[i].setString(String.format("%d/%d", property.value, property.maxValue));
+            progressBars[i].setMaximum(property.getMaxValue());
+            progressBars[i].setValue(property.getValue());
+            progressBars[i].setString(
+                String.format("%d/%d", property.getValue(),
+                    property.getMaxValue()));
             colorProgressBar(property, progressBars[i], colorScheme);
 
             pane.add(progressBars[i]);
@@ -93,7 +96,8 @@ class StatsPanel extends PropertyPanel {
      */
     void changeFilter(String[] newFilter) {
         for (int i = 0; i < progressBars.length; i++) {
-            if (arrayContains(newFilter, propertyContainer.properties[i].key)) {
+            if (arrayContains(newFilter,
+                propertyContainer.properties[i].getKey())) {
                 showProperty[i] = true;
             } else {
                 showProperty[i] = false;

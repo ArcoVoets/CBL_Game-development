@@ -1,5 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicProgressBarUI;
 
 /**
  * PropertyPanel.
@@ -25,8 +26,17 @@ abstract class PropertyPanel extends JPanel implements Panel {
     public void update() {
         for (int i = 0; i < propertyContainer.properties.length; i++) {
             Property property = propertyContainer.properties[i];
-            progressBars[i].setValue(property.value);
-            progressBars[i].setString(String.format("%d/%d", property.value, property.maxValue));
+            progressBars[i]
+                .setValue((property.getValue() - property.getMinValue()));
+            if (property.getMinValue() == 0) {
+                progressBars[i].setString(
+                    String.format("%d/%d", property.getValue(),
+                        property.getMaxValue()));
+            } else {
+                progressBars[i].setString(
+                    String.format("%d%s", property.getValue(),
+                        property.getUnit()));
+            }
             colorProgressBar(property, progressBars[i], colorScheme);
         }
     }
@@ -37,8 +47,27 @@ abstract class PropertyPanel extends JPanel implements Panel {
      * @param property The property to color the progressBar for
      * @param progressBar The progressBar to color
      */
-    void colorProgressBar(Property property, JProgressBar progressBar, ColorScheme colorScheme) {
-        Color color = colorScheme.getColor(100 * property.value / property.maxValue);
+    void colorProgressBar(Property property, JProgressBar progressBar,
+        ColorScheme colorScheme) {
+        Color color = colorScheme
+            .getColor(
+                100 * (property.getValue() - property.getMinValue())
+                    / (property.getMaxValue() - property.getMinValue()));
         progressBar.setForeground(color);
+        progressBar.setUI(new BasicProgressBarUI() {
+            protected Color getSelectionBackground() {
+                return Color.black;
+            }
+
+            protected Color getSelectionForeground() {
+                if ((color.getRed() * 3 + color.getGreen() * 2
+                    + color.getBlue() * 1)
+                    / 6 < 80) {
+                    return Color.white;
+                } else {
+                    return Color.black;
+                }
+            }
+        });
     }
 }
