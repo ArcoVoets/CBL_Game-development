@@ -58,4 +58,11 @@ class WorldPanel extends JPanel implements Panel {
             worldCreaturePanels[i].draw(worldCreatureWidth, height / 2);
         }
     }
+
+    public void update() {
+        playerCreaturePanel.update();
+        for (int i = 0; i < worldCreaturePanels.length; i++) {
+            worldCreaturePanels[i].update();
+        }
+    }
 }

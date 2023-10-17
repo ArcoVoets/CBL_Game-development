@@ -62,4 +62,8 @@ class CreaturePanel extends JPanel implements Panel {
         add(statsPanel, BorderLayout.CENTER);
         statsPanel.draw(statsWidth, statsHeight);
     }
+
+    public void update() {
+        statsPanel.update();
+    }
 }

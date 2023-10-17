@@ -5,10 +5,10 @@ import javax.swing.*;
  * Main class of CBL game.
  */
 class Main {
-    World world = new World(new Creature(), new Creature[] {
-        new Creature(), new Creature(), new Creature(), new Creature(),
-        new Creature()
-    });
+    World world;
+
+    CodesPanel codesPanel;
+    WorldPanel worldPanel;
 
     ColorScheme codesColorScheme = new ColorScheme(new ColorRange[] {
         new ColorRange(0, 100, Color.BLUE)
@@ -27,6 +27,65 @@ class Main {
         new ColorRange(new Range(90, 100), Color.RED)
     }, Color.WHITE);
 
+    Creature createPlayerCreature() {
+        return new Creature(
+            new PropertyContainer(
+                new Property[] {
+                    new Property("speed", 5, 20),
+                    new Property("damage", 10, 20),
+                    new Property("max energy", 70, 100),
+                    new Property("heat resistance", 10, 20),
+                }),
+            new PropertyContainer(
+                new Property[] {
+                    new Property("energy", 10, 10)
+                }),
+            new Actions(new Action[] {
+                new Action("Eat", (Creature creature) -> {
+                    creature.statsContainer.properties[0].value += 1;
+                }),
+                new Action("Pair", (Creature creature) -> {
+                    creature.statsContainer.properties[0].value -= 1;
+                })
+            }, this::updateScreen));
+    }
+
+    Creature createWorldCreature() {
+        return new Creature(
+            new PropertyContainer(
+                new Property[] {
+                    new Property("speed", 5, 20),
+                    new Property("damage", 10, 20),
+                    new Property("max energy", 70, 100),
+                    new Property("heat resistance", 10, 20),
+                }),
+            new PropertyContainer(
+                new Property[] {
+                    new Property("energy", 10, 10)
+                }),
+            new Actions(new Action[] {
+                new Action("Eat", (Creature creature) -> {
+                    creature.statsContainer.properties[0].value += 1;
+                }),
+                new Action("Pair", (Creature creature) -> {
+                    creature.statsContainer.properties[0].value -= 1;
+                })
+            }, this::updateScreen));
+    }
+
+    /**
+     * Sets up the world with creatures.
+     */
+    void setupWorld() {
+        Creature playerCreature = createPlayerCreature();
+        Creature[] worldCreatures = new Creature[] {
+            createWorldCreature(), createWorldCreature(), createWorldCreature(), createWorldCreature(),
+            createWorldCreature()
+        };
+
+        world = new World(playerCreature, worldCreatures);
+    }
+
     /**
      * Sets up the screen with the frames.
      */
@@ -41,7 +100,7 @@ class Main {
         screenFrame.setUndecorated(true);
 
         int buttonsPanelHeight = screenHeight / 10;
-        ButtonsPanel buttonsPanel = new ButtonsPanel();
+        ButtonsPanel buttonsPanel = new ButtonsPanel(world.playerCreature);
         screenFrame.add(buttonsPanel, BorderLayout.SOUTH);
         buttonsPanel.draw(screenWidth, buttonsPanelHeight);
 
@@ -64,26 +123,15 @@ class Main {
         rightPanel.add(environmentPanel, BorderLayout.NORTH);
         environmentPanel.draw(rightPanelWidth, environmentPanelHeight);
 
-        // used for testing
-        Property property = new Property("Hello", 5, 20);
-        Property property2 = new Property("Hello2", 10, 20);
-        Property property3 = new Property("Hello3", 70, 100);
-        Property property4 = new Property("Hello4", 10, 20);
-        Property[] properties = {
-            property, property2, property3, property4 };
-        PropertyContainer propertyContainer = new PropertyContainer(properties);
-        // end used for testing
-
         int codesPanelHeight = screenHeight / 2 - buttonsPanelHeight / 2;
-        CodesPanel codesPanel = new CodesPanel(propertyContainer,
-            codesColorScheme);
+        codesPanel = new CodesPanel(world.playerCreature.codesContainer, codesColorScheme);
 
         rightPanel.add(codesPanel, BorderLayout.CENTER);
         codesPanel.draw(rightPanelWidth, codesPanelHeight);
 
         screenFrame.add(rightPanel, BorderLayout.EAST);
 
-        WorldPanel worldPanel = new WorldPanel(world, statsColorScheme);
+        worldPanel = new WorldPanel(world, statsColorScheme);
         screenFrame.add(worldPanel, BorderLayout.CENTER);
         worldPanel.draw(screenWidth - rightPanelWidth,
             screenHeight - buttonsPanelHeight);
@@ -91,7 +139,14 @@ class Main {
         screenFrame.setVisible(true);
     }
 
+    void updateScreen() {
+        codesPanel.update();
+        worldPanel.update();
+    }
+
     public static void main(String[] args) {
-        new Main().setupScreen();
+        Main main = new Main();
+        main.setupWorld();
+        main.setupScreen();
     }
 }

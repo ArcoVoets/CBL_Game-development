@@ -2,7 +2,10 @@ import java.awt.*;
 import javax.swing.*;
 
 class ButtonsPanel extends JPanel implements Panel {
-    public ButtonsPanel() {
+    Creature creature;
+
+    public ButtonsPanel(Creature creature) {
+        this.creature = creature;
     }
 
     /**
@@ -13,7 +16,14 @@ class ButtonsPanel extends JPanel implements Panel {
      */
     public void draw(int width, int height) {
         setPreferredSize(new Dimension(width, height));
+        setLayout(new GridLayout(1, creature.actionsContainer.actions.length));
         removeAll();
+
+        for (Action action : creature.actionsContainer.actions) {
+            JButton button = new JButton(action.name);
+            button.addActionListener(e -> action.Execute(creature));
+            add(button);
+        }
 
         setBackground(Color.GREEN);
     }
