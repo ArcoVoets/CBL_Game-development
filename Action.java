@@ -12,10 +12,12 @@ abstract public class Action {
     }
 
     public void execute(Creature creature) {
-        creature.statsContainer.getProperty("energy").SubtractValue(1);
-        runAction(creature);
+        boolean success = runAction(creature);
+        if (success) {
+            creature.statsContainer.getProperty("energy").SubtractValue(1);
+        }
         actionCallback.Callback();
     }
 
-    abstract void runAction(Creature creature);
+    abstract boolean runAction(Creature creature);
 }

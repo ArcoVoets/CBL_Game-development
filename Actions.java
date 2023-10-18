@@ -1,4 +1,6 @@
 class Actions {
+    public static Creature selectedCreature;
+
     Action[] actions;
     ActionCallback actionCallback;
 
