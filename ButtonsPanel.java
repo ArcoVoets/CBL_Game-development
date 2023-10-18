@@ -21,7 +21,7 @@ class ButtonsPanel extends JPanel implements Panel {
 
         for (Action action : creature.actionsContainer.actions) {
             JButton button = new JButton(action.name);
-            button.addActionListener(e -> action.Execute(creature));
+            button.addActionListener(e -> action.execute(creature));
             add(button);
         }
 

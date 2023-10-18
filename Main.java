@@ -41,12 +41,8 @@ class Main {
                     new Property("energy", 10, 10)
                 }),
             new Actions(new Action[] {
-                new Action("Eat", (Creature creature) -> {
-                    creature.statsContainer.properties[0].AddValue(1);
-                }),
-                new Action("Pair", (Creature creature) -> {
-                    creature.statsContainer.properties[0].SubtractValue(1);
-                })
+                new EatAction(),
+                new PairAction()
             }, this::updateScreen));
     }
 
@@ -64,12 +60,8 @@ class Main {
                     new Property("energy", 10, 10)
                 }),
             new Actions(new Action[] {
-                new Action("Eat", (Creature creature) -> {
-                    creature.statsContainer.properties[0].AddValue(1);
-                }),
-                new Action("Pair", (Creature creature) -> {
-                    creature.statsContainer.properties[0].SubtractValue(1);
-                })
+                new EatAction(),
+                new PairAction()
             }, this::updateScreen));
     }
 
@@ -80,8 +72,7 @@ class Main {
         Creature playerCreature = createPlayerCreature();
         Creature[] worldCreatures = new Creature[] {
             createWorldCreature(), createWorldCreature(), createWorldCreature(),
-            createWorldCreature(),
-            createWorldCreature()
+            createWorldCreature(), createWorldCreature()
         };
 
         world = new World(playerCreature, worldCreatures);
@@ -95,7 +86,7 @@ class Main {
         int screenWidth = (int) screenSize.getWidth();
         int screenHeight = (int) screenSize.getHeight();
 
-        JFrame screenFrame = new JFrame("Game");
+        JFrame screenFrame = new JFrame();
         screenFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         screenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         screenFrame.setUndecorated(true);

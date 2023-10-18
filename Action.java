@@ -1,25 +1,20 @@
-public class Action {
-    interface ActionExecuter {
-        void Execute(Creature creature);
-    }
+abstract public class Action {
 
-    int index;
     public String name;
-    public ActionExecuter actionExecuter;
     public ActionCallback actionCallback;
 
-    public Action(String name, ActionExecuter actionExecuter) {
+    public Action(String name) {
         this.name = name;
-        this.actionExecuter = actionExecuter;
     }
 
-    public void setCallback(int index, ActionCallback actionCallback) {
-        this.index = index;
+    public void setCallback(ActionCallback actionCallback) {
         this.actionCallback = actionCallback;
     }
 
-    public void Execute(Creature creature) {
-        actionExecuter.Execute(creature);
+    public void execute(Creature creature) {
+        runAction(creature);
         actionCallback.Callback();
     }
+
+    abstract void runAction(Creature creature);
 }

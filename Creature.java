@@ -6,7 +6,8 @@ class Creature {
     /**
      * Constructor.
      */
-    public Creature(PropertyContainer codesContainer, PropertyContainer statsContainer, Actions actionsContainer) {
+    public Creature(PropertyContainer codesContainer,
+        PropertyContainer statsContainer, Actions actionsContainer) {
         this.codesContainer = codesContainer;
         this.statsContainer = statsContainer;
         this.actionsContainer = actionsContainer;
