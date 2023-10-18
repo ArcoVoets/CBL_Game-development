@@ -6,6 +6,7 @@ class CodesContainer extends AbstractList<Code>
     private final Code[] a;
     public int averageHeatResistance = 0;
     public int averageColdResistance = 0;
+    public int averageLuminosity = 0;
     public int averageMaxEnergy = 0;
     public int averageMaxDamage = 0;
 

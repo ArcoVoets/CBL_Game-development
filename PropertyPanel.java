@@ -54,18 +54,19 @@ abstract class PropertyPanel extends JPanel implements Panel {
                 100 * (property.getValue() - property.getMinValue())
                     / (property.getMaxValue() - property.getMinValue()));
         progressBar.setForeground(color);
+
         progressBar.setUI(new BasicProgressBarUI() {
             protected Color getSelectionBackground() {
-                return Color.black;
+                return Color.BLACK;
             }
 
             protected Color getSelectionForeground() {
                 if ((color.getRed() * 3 + color.getGreen() * 2
                     + color.getBlue() * 1)
                     / 6 < 80) {
-                    return Color.white;
+                    return Color.WHITE;
                 } else {
-                    return Color.black;
+                    return Color.BLACK;
                 }
             }
         });
