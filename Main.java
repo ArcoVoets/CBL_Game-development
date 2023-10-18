@@ -7,7 +7,7 @@ import javax.swing.*;
 class Main {
     World world;
 
-    CodesPanel codesPanel;
+    ProgressBarPanel codesPanel;
     WorldPanel worldPanel;
 
     ColorScheme codesColorScheme = new ColorScheme(new ColorRange[] {
@@ -31,14 +31,7 @@ class Main {
         return new Creature(
             new PropertyContainer(
                 new Property[] {
-                    new Property("speed", 5, 20),
-                    new Property("damage", 10, 20),
-                    new Property("max energy", 70, 100),
-                    new Property("heat resistance", 10, 20),
-                }),
-            new PropertyContainer(
-                new Property[] {
-                    new Property("energy", 10, 10)
+                    new Property("energy", 5, 20)
                 }),
             new Actions(new Action[] {
                 new EatAction(),
@@ -50,14 +43,7 @@ class Main {
         return new Creature(
             new PropertyContainer(
                 new Property[] {
-                    new Property("speed", 5, 20),
-                    new Property("damage", 10, 20),
-                    new Property("max energy", 70, 100),
-                    new Property("heat resistance", 10, 20),
-                }),
-            new PropertyContainer(
-                new Property[] {
-                    new Property("energy", 10, 10)
+                    new Property("energy", 5, 20)
                 }),
             new Actions(new Action[] {
                 new EatAction(),
@@ -116,7 +102,8 @@ class Main {
         environmentPanel.draw(rightPanelWidth, environmentPanelHeight);
 
         int codesPanelHeight = screenHeight / 2 - buttonsPanelHeight / 2;
-        codesPanel = new CodesPanel(world.playerCreature.codesContainer,
+        codesPanel = new ProgressBarPanel(
+            world.playerCreature.codesContainer,
             codesColorScheme);
 
         rightPanel.add(codesPanel, BorderLayout.CENTER);
