@@ -12,6 +12,7 @@ abstract public class Action {
     }
 
     public void execute(Creature creature) {
+        creature.statsContainer.getProperty("energy").SubtractValue(1);
         runAction(creature);
         actionCallback.Callback();
     }

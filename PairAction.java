@@ -5,6 +5,5 @@ class PairAction extends Action {
 
     @Override
     public void runAction(Creature creature) {
-        creature.statsContainer.properties[0].SubtractValue(1);
     }
 }

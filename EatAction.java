@@ -5,6 +5,6 @@ class EatAction extends Action {
 
     @Override
     public void runAction(Creature creature) {
-        creature.statsContainer.properties[0].AddValue(1);
+        creature.statsContainer.getProperty("energy").AddValue(2);
     }
 }

@@ -12,4 +12,13 @@ class PropertyContainer {
     PropertyContainer(Property[] properties) {
         this.properties = properties;
     }
+
+    Property getProperty(String key) {
+        for (Property property : properties) {
+            if (property.getKey().equals(key)) {
+                return property;
+            }
+        }
+        return null;
+    }
 }
