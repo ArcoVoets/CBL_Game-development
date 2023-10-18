@@ -35,10 +35,6 @@ class Main {
      */
     Creature createPlayerCreature() {
         return new Creature(
-            new PropertyContainer(
-                new Property[] {
-                    new Property("energy", 15, 20)
-                }),
             new Actions(new Action[] {
                 new EatAction(),
                 new PairAction()
@@ -53,10 +49,6 @@ class Main {
      */
     Creature createWorldCreature() {
         return new Creature(
-            new PropertyContainer(
-                new Property[] {
-                    new Property("energy", 15, 20)
-                }),
             new Actions(new Action[] {
                 new EatAction(),
                 new PairAction()
@@ -99,24 +91,17 @@ class Main {
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new BorderLayout());
 
-        // used for testing
-        Property temperature = new Property("Temperature", 20, -20, 100, "°C");
-        Property[] environmentProperties = {
-            temperature };
-        PropertyContainer environmentPropertyContainer = new PropertyContainer(
-            environmentProperties);
-
         int environmentPanelHeight = screenHeight / 2 - buttonsPanelHeight / 2;
-        EnvironmentPanel environmentPanel = new EnvironmentPanel(
-            environmentPropertyContainer,
-            environmentStatsColorScheme);
+        ProgressBarPanel environmentPanel = new ProgressBarPanel(
+            environment,
+            environmentStatsColorScheme, Color.PINK);
         rightPanel.add(environmentPanel, BorderLayout.NORTH);
         environmentPanel.draw(rightPanelWidth, environmentPanelHeight);
 
         int codesPanelHeight = screenHeight / 2 - buttonsPanelHeight / 2;
         codesPanel = new ProgressBarPanel(
             world.playerCreature.codesContainer,
-            codesColorScheme);
+            codesColorScheme, Color.GREEN);
 
         rightPanel.add(codesPanel, BorderLayout.CENTER);
         codesPanel.draw(rightPanelWidth, codesPanelHeight);

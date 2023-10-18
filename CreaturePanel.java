@@ -9,7 +9,7 @@ class CreaturePanel extends JPanel implements Panel {
 
     Creature creature;
     SpritePanel spritePanel;
-    StatsPanel statsPanel;
+    ProgressBarPanel statsPanel;
     CreatureLayout layout;
     ColorScheme colorScheme;
 
@@ -60,7 +60,8 @@ class CreaturePanel extends JPanel implements Panel {
         }
         spritePanel.draw(spriteWidth, spriteHeight);
 
-        statsPanel = new StatsPanel(creature.statsContainer, colorScheme);
+        statsPanel = new ProgressBarPanel(creature.statsContainer, colorScheme,
+            Color.ORANGE);
         add(statsPanel, BorderLayout.CENTER);
         statsPanel.draw(statsWidth, statsHeight);
 

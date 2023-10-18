@@ -10,6 +10,14 @@ class CodesContainer extends AbstractList<Code>
     public int averageMaxEnergy = 0;
     public int averageMaxDamage = 0;
 
+    public static CodesContainer randomCodesContainer(int length) {
+        Code[] codes = new Code[length];
+        for (int i = 0; i < length; i++) {
+            codes[i] = Code.generateRandomCode();
+        }
+        return new CodesContainer(codes);
+    }
+
     public CodesContainer(Code[] array) {
         a = array;
         updateAverages();

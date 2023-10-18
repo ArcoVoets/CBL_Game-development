@@ -5,7 +5,7 @@ class EatAction extends Action {
 
     @Override
     public boolean runAction(Creature creature) {
-        creature.statsContainer.getProperty("energy").addValue(2);
+        creature.statsContainer.energy.addValue(2);
         return true;
     }
 }

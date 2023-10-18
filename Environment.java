@@ -7,11 +7,11 @@ class Environment implements ProgressBarDataProvider {
      * Constructor.
      */
     Environment() {
-        temperature = new Property("temperature", 20, -20, 100, "°C");
-        luminosity = new Property("luminosity", 50, 100);
+        temperature = new Property("Temperature", 20, -20, 100, "°C");
+        luminosity = new Property("Luminosity", 50, 100);
     }
 
-    int calculateDamage(Creature creature) {
+    int calculateTemperatureDamage(Creature creature) {
         if (temperature
             .getValue() > creature.codesContainer.averageHeatResistance) {
             // creature.statsContainer.getProperty("energy").SubtractValue(1);
@@ -37,7 +37,10 @@ class Environment implements ProgressBarDataProvider {
         return new ProgressBarData[] {
             new ProgressBarData(temperature.getKey(), temperature.getMinValue(),
                 temperature.getMaxValue(),
-                temperature.getValue(), "°C")
+                temperature.getValue(), "°C"),
+            new ProgressBarData(luminosity.getKey(), luminosity.getMinValue(),
+                luminosity.getMaxValue(),
+                luminosity.getValue())
         };
     }
 }

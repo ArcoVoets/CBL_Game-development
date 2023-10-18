@@ -19,9 +19,9 @@ abstract class Action {
     public void execute(Creature creature) {
         boolean success = runAction(creature);
         if (success) {
-            creature.statsContainer.getProperty("energy").subtractValue(
-                creature.environment.calculateDamage(creature));
-            creature.statsContainer.getProperty("luminosity").addValue(
+            creature.statsContainer.energy.subtractValue(
+                creature.environment.calculateTemperatureDamage(creature));
+            creature.statsContainer.energy.addValue(
                 creature.environment.calculateEnergyProduction(creature));
         }
         actionCallback.Callback();

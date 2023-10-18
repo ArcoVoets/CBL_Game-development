@@ -4,6 +4,7 @@ import javax.swing.plaf.basic.BasicProgressBarUI;
 
 public class ProgressBarPanel extends JPanel implements Panel {
     ColorScheme colorScheme;
+    Color backgroundColor;
     ProgressBarDataProvider dataProvider;
     JProgressBar[] progressBars;
 
@@ -12,9 +13,10 @@ public class ProgressBarPanel extends JPanel implements Panel {
      * 
      */
     public ProgressBarPanel(ProgressBarDataProvider dataProvider,
-        ColorScheme colorScheme) {
+        ColorScheme colorScheme, Color backgroundColor) {
         this.dataProvider = dataProvider;
         this.colorScheme = colorScheme;
+        this.backgroundColor = backgroundColor;
     }
 
     /**
@@ -27,7 +29,7 @@ public class ProgressBarPanel extends JPanel implements Panel {
     public void draw(int width, int height) {
         setPreferredSize(new Dimension(width, height));
         removeAll();
-        setBackground(Color.PINK);
+        setBackground(backgroundColor);
 
         ProgressBarData[] data = dataProvider.getProgressBarData();
 
