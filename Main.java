@@ -9,6 +9,7 @@ class Main {
 
     ProgressBarPanel codesPanel;
     WorldPanel worldPanel;
+    Environment environment = new Environment();
 
     ColorScheme codesColorScheme = new ColorScheme(new ColorRange[] {
         new ColorRange(0, 100, Color.BLUE)
@@ -27,28 +28,40 @@ class Main {
         new ColorRange(new Range(90, 100), Color.RED)
     }, Color.WHITE);
 
+    /**
+     * Creates a player creature.
+     * 
+     * @return The player creature
+     */
     Creature createPlayerCreature() {
         return new Creature(
             new PropertyContainer(
                 new Property[] {
-                    new Property("energy", 5, 20)
+                    new Property("energy", 15, 20)
                 }),
             new Actions(new Action[] {
                 new EatAction(),
                 new PairAction()
-            }, this::updateScreen));
+            }, this::updateScreen),
+            environment);
     }
 
+    /**
+     * Creates a world creature.
+     * 
+     * @return The world creature
+     */
     Creature createWorldCreature() {
         return new Creature(
             new PropertyContainer(
                 new Property[] {
-                    new Property("energy", 5, 20)
+                    new Property("energy", 15, 20)
                 }),
             new Actions(new Action[] {
                 new EatAction(),
                 new PairAction()
-            }, this::updateScreen));
+            }, this::updateScreen),
+            environment);
     }
 
     /**
@@ -92,7 +105,6 @@ class Main {
             temperature };
         PropertyContainer environmentPropertyContainer = new PropertyContainer(
             environmentProperties);
-        // end used for testing
 
         int environmentPanelHeight = screenHeight / 2 - buttonsPanelHeight / 2;
         EnvironmentPanel environmentPanel = new EnvironmentPanel(

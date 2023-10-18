@@ -15,7 +15,7 @@ class PairAction extends Action {
         return true;
     }
 
-    final int CODES_MIX_AMOUNT = 3;
+    static final int CODES_MIX_AMOUNT = 3;
 
     void mixCodes(CodesContainer codes,
         CodesContainer otherCodes) {
