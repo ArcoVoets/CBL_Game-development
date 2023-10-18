@@ -1,15 +1,17 @@
 class Creature {
-    PropertyContainer codesContainer;
-    PropertyContainer statsContainer;
+    CodesContainer codesContainer;
+    StatsContainer statsContainer;
+    Environment environment;
     Actions actionsContainer;
 
     /**
      * Constructor.
      */
-    public Creature(PropertyContainer codesContainer,
-        PropertyContainer statsContainer, Actions actionsContainer) {
-        this.codesContainer = codesContainer;
-        this.statsContainer = statsContainer;
+    public Creature(Actions actionsContainer,
+        Environment environment) {
         this.actionsContainer = actionsContainer;
+        this.environment = environment;
+        this.statsContainer = new StatsContainer();
+        this.codesContainer = CodesContainer.randomCodesContainer(6);
     }
 }
