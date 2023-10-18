@@ -1,4 +1,4 @@
-abstract public class Action {
+abstract class Action {
 
     public String name;
     public ActionCallback actionCallback;
