@@ -9,6 +9,9 @@ class PairAction extends Action {
         if (otherCreature == null) {
             return false;
         }
+        if (creature == otherCreature) {
+            return false;
+        }
         CodesContainer properties = creature.codesContainer;
         CodesContainer otherProperties = otherCreature.codesContainer;
         mixCodes(properties, otherProperties);

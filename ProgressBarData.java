@@ -7,6 +7,7 @@ class ProgressBarData {
 
     public ProgressBarData(String key, int min, int max, int value,
         String unit) {
+        this.key = key;
         this.min = min;
         this.max = max;
         this.value = value;

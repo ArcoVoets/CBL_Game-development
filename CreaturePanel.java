@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 class CreaturePanel extends JPanel implements Panel {
@@ -18,7 +19,8 @@ class CreaturePanel extends JPanel implements Panel {
      * @param creature Creature to show
      * @param layout Layout of the panel
      */
-    public CreaturePanel(Creature creature, CreatureLayout layout, ColorScheme colorScheme) {
+    public CreaturePanel(Creature creature, CreatureLayout layout,
+        ColorScheme colorScheme) {
         super(new BorderLayout());
         this.creature = creature;
         this.layout = layout;
@@ -61,6 +63,10 @@ class CreaturePanel extends JPanel implements Panel {
         statsPanel = new StatsPanel(creature.statsContainer, colorScheme);
         add(statsPanel, BorderLayout.CENTER);
         statsPanel.draw(statsWidth, statsHeight);
+
+        addMouseListener(new MouseClickListener(() -> {
+            Actions.selectedCreature = creature;
+        }));
     }
 
     public void update() {

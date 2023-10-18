@@ -77,8 +77,8 @@ public class ProgressBarPanel extends JPanel implements Panel {
             } else {
                 progressBars[i].setString(
                     String.format("%d%s", property.value, property.unit));
-                colorProgressBar(property, progressBars[i], colorScheme);
             }
+            colorProgressBar(property, progressBars[i], colorScheme);
 
             gridPanel.add(progressBars[i]);
         }
