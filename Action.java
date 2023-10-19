@@ -17,12 +17,15 @@ abstract class Action {
      * @param creature The creature for which the action is executed
      */
     public void execute(Creature creature) {
+        int energyCost = 1
+            + creature.environment.calculateTemperatureDamage(creature)
+            - creature.environment.calculateEnergyProduction(creature);
+        if (creature.statsContainer.energy.getValue() < energyCost) {
+            return;
+        }
         boolean success = runAction(creature);
         if (success) {
-            creature.statsContainer.energy.subtractValue(
-                creature.environment.calculateTemperatureDamage(creature));
-            creature.statsContainer.energy.addValue(
-                creature.environment.calculateEnergyProduction(creature));
+            creature.statsContainer.energy.subtractValue(energyCost);
         }
         actionCallback.Callback();
     }
