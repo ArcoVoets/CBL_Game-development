@@ -6,7 +6,7 @@ class PairAction extends Action {
     @Override
     public boolean runAction(Creature creature) {
         Creature otherCreature = Actions.selectedCreature;
-        if (otherCreature == null) {
+        if (otherCreature == null || otherCreature.isDead) {
             return false;
         }
         if (creature == otherCreature) {
@@ -18,7 +18,7 @@ class PairAction extends Action {
         return true;
     }
 
-    static final int CODES_MIX_AMOUNT = 3;
+    static final int CODES_MIX_AMOUNT = 1;
 
     void mixCodes(CodesContainer codes,
         CodesContainer otherCodes) {

@@ -12,4 +12,16 @@ class World {
         this.playerCreature = playerCreature;
         this.worldCreatures = worldCreatures;
     }
+
+    public void deleteCreature(Creature creature) {
+        Creature[] newWorldCreatures = new Creature[worldCreatures.length - 1];
+        int i = 0;
+        for (Creature worldCreature : worldCreatures) {
+            if (worldCreature != creature) {
+                newWorldCreatures[i] = worldCreature;
+                i++;
+            }
+        }
+        worldCreatures = newWorldCreatures;
+    }
 }

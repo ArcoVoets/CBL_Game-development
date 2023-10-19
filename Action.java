@@ -22,8 +22,9 @@ abstract class Action {
         boolean success = runAction(creature);
         if (success) {
             creature.statsContainer.energy.subtractValue(energyCost);
+            creature.environment.updateEnvironmentStats();
+            actionCallback.Callback();
         }
-        actionCallback.Callback();
     }
 
     abstract boolean runAction(Creature creature);

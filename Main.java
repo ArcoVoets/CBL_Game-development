@@ -38,7 +38,7 @@ class Main {
     Creature createPlayerCreature() {
         return new Creature(
             new Actions(new Action[] {
-                new EatAction(this::redrawWorld),
+                new EatAction(this::updateScreen),
                 new PairAction(this::updateScreen)
             }),
             environment);
@@ -52,7 +52,7 @@ class Main {
     Creature createWorldCreature() {
         return new Creature(
             new Actions(new Action[] {
-                new EatAction(this::redrawWorld),
+                new EatAction(this::updateScreen),
                 new PairAction(this::updateScreen)
             }),
             environment);

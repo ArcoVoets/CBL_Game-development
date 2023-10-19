@@ -3,6 +3,7 @@ class Creature {
     StatsContainer statsContainer;
     Environment environment;
     Actions actionsContainer;
+    boolean isDead = false;
 
     /**
      * Constructor.

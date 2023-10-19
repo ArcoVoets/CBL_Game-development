@@ -32,6 +32,11 @@ class Environment implements ProgressBarDataProvider {
         return 0;
     }
 
+    void updateEnvironmentStats() {
+        temperature.addValue((int) ((Math.random() - 0.5) * 5));
+        luminosity.addValue((int) ((Math.random() - 0.5) * 5));
+    }
+
     @Override
     public ProgressBarData[] getProgressBarData() {
         return new ProgressBarData[] {
