@@ -38,6 +38,10 @@ class CreaturePanel extends JPanel implements Panel {
         setPreferredSize(new Dimension(width, height));
         removeAll();
 
+        if (creature.isDead) {
+            setBackground(Color.RED);
+            return;
+        }
         setBackground(Color.WHITE);
 
         int spriteWidth;
@@ -75,6 +79,12 @@ class CreaturePanel extends JPanel implements Panel {
     }
 
     public void update() {
+        if (creature.isDead) {
+            setBackground(Color.RED);
+            add(new JLabel("Dead"), BorderLayout.CENTER);
+            remove(spritePanel);
+            return;
+        }
         statsPanel.update();
         if (creature == Actions.selectedCreature) {
             setBackground(Color.YELLOW);
