@@ -1,13 +1,9 @@
 abstract class Action {
-
     public String name;
-    public ActionCallback actionCallback;
+    public UpdateCallback actionCallback;
 
-    public Action(String name) {
+    public Action(String name, UpdateCallback actionCallback) {
         this.name = name;
-    }
-
-    public void setCallback(ActionCallback actionCallback) {
         this.actionCallback = actionCallback;
     }
 

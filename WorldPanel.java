@@ -6,16 +6,19 @@ class WorldPanel extends JPanel implements Panel {
     CreaturePanel playerCreaturePanel;
     CreaturePanel[] worldCreaturePanels;
     ColorScheme statsColorScheme;
+    UpdateCallback updateCallback;
 
     /**
      * Constructor.
      * 
      * @param world World to show
      */
-    public WorldPanel(World world, ColorScheme statsColorScheme) {
+    public WorldPanel(World world, ColorScheme statsColorScheme,
+        UpdateCallback updateCallback) {
         super(new BorderLayout());
         this.world = world;
         this.statsColorScheme = statsColorScheme;
+        this.updateCallback = updateCallback;
     }
 
     /**
@@ -32,8 +35,9 @@ class WorldPanel extends JPanel implements Panel {
 
         playerCreaturePanel = new CreaturePanel(
             world.playerCreature,
-            CreaturePanel.CreatureLayout.HORIZONTAL,
-            statsColorScheme);
+            CreaturePanel.CreatureLayout.PLAYER,
+            statsColorScheme,
+            updateCallback);
 
         add(playerCreaturePanel, BorderLayout.SOUTH);
         playerCreaturePanel.draw(width, height / 2);
@@ -52,8 +56,8 @@ class WorldPanel extends JPanel implements Panel {
         for (int i = 0; i < world.worldCreatures.length; i++) {
             worldCreaturePanels[i] = new CreaturePanel(
                 world.worldCreatures[i],
-                CreaturePanel.CreatureLayout.VERTICAL,
-                statsColorScheme);
+                CreaturePanel.CreatureLayout.WORLD,
+                statsColorScheme, updateCallback);
 
             worldCreatureContainerPanel.add(worldCreaturePanels[i]);
             worldCreaturePanels[i].draw(worldCreatureWidth, height / 2);

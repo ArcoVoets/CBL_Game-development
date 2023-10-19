@@ -3,7 +3,7 @@ import javax.swing.*;
 
 class CreaturePanel extends JPanel implements Panel {
     enum CreatureLayout {
-        HORIZONTAL, VERTICAL
+        PLAYER, WORLD
     }
 
     Creature creature;
@@ -11,6 +11,7 @@ class CreaturePanel extends JPanel implements Panel {
     ProgressBarPanel statsPanel;
     CreatureLayout layout;
     ColorScheme colorScheme;
+    UpdateCallback updateCallback;
 
     /**
      * Constructor.
@@ -19,11 +20,12 @@ class CreaturePanel extends JPanel implements Panel {
      * @param layout Layout of the panel
      */
     public CreaturePanel(Creature creature, CreatureLayout layout,
-        ColorScheme colorScheme) {
+        ColorScheme colorScheme, UpdateCallback updateCallback) {
         super(new BorderLayout());
         this.creature = creature;
         this.layout = layout;
         this.colorScheme = colorScheme;
+        this.updateCallback = updateCallback;
     }
 
     /**
@@ -44,7 +46,7 @@ class CreaturePanel extends JPanel implements Panel {
         int statsHeight;
 
         spritePanel = new SpritePanel("./robot-idle.gif");
-        if (layout == CreatureLayout.HORIZONTAL) {
+        if (layout == CreatureLayout.PLAYER) {
             add(spritePanel, BorderLayout.EAST);
             spriteWidth = height;
             spriteHeight = height;
@@ -64,12 +66,20 @@ class CreaturePanel extends JPanel implements Panel {
         add(statsPanel, BorderLayout.CENTER);
         statsPanel.draw(statsWidth, statsHeight);
 
-        addMouseListener(new MouseClickListener(() -> {
-            Actions.selectedCreature = creature;
-        }));
+        if (layout == CreatureLayout.WORLD) {
+            addMouseListener(new MouseClickListener(() -> {
+                Actions.selectedCreature = creature;
+                updateCallback.Callback();
+            }));
+        }
     }
 
     public void update() {
         statsPanel.update();
+        if (creature == Actions.selectedCreature) {
+            setBackground(Color.YELLOW);
+        } else {
+            setBackground(Color.WHITE);
+        }
     }
 }

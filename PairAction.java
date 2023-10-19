@@ -1,6 +1,6 @@
 class PairAction extends Action {
-    public PairAction() {
-        super("Pair");
+    public PairAction(UpdateCallback actionCallback) {
+        super("Pair", actionCallback);
     }
 
     @Override

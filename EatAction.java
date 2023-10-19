@@ -1,6 +1,6 @@
 class EatAction extends Action {
-    public EatAction() {
-        super("Eat");
+    public EatAction(UpdateCallback actionCallback) {
+        super("Eat", actionCallback);
     }
 
     @Override

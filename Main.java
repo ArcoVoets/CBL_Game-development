@@ -6,10 +6,12 @@ import javax.swing.*;
  */
 class Main {
     World world;
+    Environment environment = new Environment();
 
     ProgressBarPanel codesPanel;
     WorldPanel worldPanel;
-    Environment environment = new Environment();
+    ButtonsPanel buttonsPanel;
+    ProgressBarPanel environmentPanel;
 
     ColorScheme codesColorScheme = new ColorScheme(new ColorRange[] {
         new ColorRange(0, 100, Color.BLUE)
@@ -36,9 +38,9 @@ class Main {
     Creature createPlayerCreature() {
         return new Creature(
             new Actions(new Action[] {
-                new EatAction(),
-                new PairAction()
-            }, this::updateScreen),
+                new EatAction(this::redrawWorld),
+                new PairAction(this::updateScreen)
+            }),
             environment);
     }
 
@@ -50,9 +52,9 @@ class Main {
     Creature createWorldCreature() {
         return new Creature(
             new Actions(new Action[] {
-                new EatAction(),
-                new PairAction()
-            }, this::updateScreen),
+                new EatAction(this::redrawWorld),
+                new PairAction(this::updateScreen)
+            }),
             environment);
     }
 
@@ -83,7 +85,7 @@ class Main {
         screenFrame.setUndecorated(true);
 
         int buttonsPanelHeight = screenHeight / 10;
-        ButtonsPanel buttonsPanel = new ButtonsPanel(world.playerCreature);
+        buttonsPanel = new ButtonsPanel(world.playerCreature);
         screenFrame.add(buttonsPanel, BorderLayout.SOUTH);
         buttonsPanel.draw(screenWidth, buttonsPanelHeight);
 
@@ -92,7 +94,7 @@ class Main {
         rightPanel.setLayout(new BorderLayout());
 
         int environmentPanelHeight = screenHeight / 2 - buttonsPanelHeight / 2;
-        ProgressBarPanel environmentPanel = new ProgressBarPanel(
+        environmentPanel = new ProgressBarPanel(
             environment,
             environmentStatsColorScheme, Color.PINK);
         rightPanel.add(environmentPanel, BorderLayout.NORTH);
@@ -108,7 +110,8 @@ class Main {
 
         screenFrame.add(rightPanel, BorderLayout.EAST);
 
-        worldPanel = new WorldPanel(world, statsColorScheme);
+        worldPanel = new WorldPanel(world, statsColorScheme,
+            this::updateScreen);
         screenFrame.add(worldPanel, BorderLayout.CENTER);
         worldPanel.draw(screenWidth - rightPanelWidth,
             screenHeight - buttonsPanelHeight);
@@ -119,6 +122,15 @@ class Main {
     void updateScreen() {
         codesPanel.update();
         worldPanel.update();
+        environmentPanel.update();
+        buttonsPanel.update();
+    }
+
+    void redrawWorld() {
+        Dimension dimension = worldPanel.getPreferredSize();
+        int width = (int) dimension.getWidth();
+        int height = (int) dimension.getHeight();
+        worldPanel.draw(width, height);
     }
 
     public static void main(String[] args) {

@@ -27,4 +27,7 @@ class ButtonsPanel extends JPanel implements Panel {
 
         setBackground(Color.GREEN);
     }
+
+    public void update() {
+    }
 }

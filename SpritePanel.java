@@ -31,7 +31,7 @@ class SpritePanel extends JPanel implements Panel {
         setPreferredSize(new Dimension(width, height));
         removeAll();
 
-        setBackground(Color.YELLOW);
+        setOpaque(false);
 
         if (icon == null) {
             return;
@@ -52,8 +52,12 @@ class SpritePanel extends JPanel implements Panel {
      */
     private ImageIcon scaleIcon(ImageIcon icon, int width, int height) {
         Image image = icon.getImage();
-        Image newImage = image.getScaledInstance(width, height, Image.SCALE_DEFAULT);
+        Image newImage = image.getScaledInstance(width, height,
+            Image.SCALE_DEFAULT);
         icon.setImage(newImage);
         return icon;
+    }
+
+    public void update() {
     }
 }
