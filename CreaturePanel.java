@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 class CreaturePanel extends JPanel implements Panel {

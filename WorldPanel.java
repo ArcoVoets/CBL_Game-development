@@ -42,8 +42,9 @@ class WorldPanel extends JPanel implements Panel {
             1,
             world.worldCreatures.length));
 
-        worldCreatureContainerPanel.setPreferredSize(new Dimension(width, height / 2));
-        ;
+        worldCreatureContainerPanel
+            .setPreferredSize(new Dimension(width, height / 2));
+
         add(worldCreatureContainerPanel, BorderLayout.CENTER);
 
         int worldCreatureWidth = width / world.worldCreatures.length;

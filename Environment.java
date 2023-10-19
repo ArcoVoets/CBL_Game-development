@@ -12,21 +12,21 @@ class Environment implements ProgressBarDataProvider {
     }
 
     int calculateTemperatureDamage(Creature creature) {
+        int totalTemperatureDamage = 0;
         if (temperature
             .getValue() > creature.codesContainer.averageHeatResistance) {
-            // creature.statsContainer.getProperty("energy").SubtractValue(1);
-            return 1;
-        } else if (temperature
-            .getValue() < creature.codesContainer.averageColdResistance) {
-            // creature.statsContainer.getProperty("energy").SubtractValue(1);
-            return 1;
+            totalTemperatureDamage++;
         }
-        return 0;
+        if (temperature
+            .getValue() < creature.codesContainer.averageColdResistance) {
+            totalTemperatureDamage++;
+        }
+        return totalTemperatureDamage;
     }
 
     int calculateEnergyProduction(Creature creature) {
-        if (luminosity.getValue() > creature.codesContainer.averageLuminosity) {
-            // creature.statsContainer.getProperty("luminosity").AddValue(1);
+        if (luminosity
+            .getValue() >= creature.codesContainer.averageLightSensitivity) {
             return 1;
         }
         return 0;
