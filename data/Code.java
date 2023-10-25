@@ -1,4 +1,6 @@
-public class Code {
+package data;
+
+class Code {
     static final int MAX_VALUE = 100;
 
     int heatResistance;

@@ -1,3 +1,4 @@
+package panels;
 /**
  * A range of numbers.
  */

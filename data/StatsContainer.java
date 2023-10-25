@@ -1,3 +1,8 @@
+package data;
+
+import interfaces.ProgressBarData;
+import interfaces.ProgressBarDataProvider;
+
 public class StatsContainer implements ProgressBarDataProvider {
     public Property energy = new Property("Energy", 15, 25);
 

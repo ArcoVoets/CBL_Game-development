@@ -1,4 +1,7 @@
+package data;
+
 import java.util.AbstractList;
+import interfaces.*;
 
 class CodesContainer extends AbstractList<Code>
     implements ProgressBarDataProvider {

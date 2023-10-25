@@ -1,5 +1,9 @@
+package panels;
+
 import java.awt.*;
 import javax.swing.*;
+
+import interfaces.*;
 
 class CreaturePanel extends JPanel implements Panel {
     enum CreatureLayout {
@@ -38,7 +42,7 @@ class CreaturePanel extends JPanel implements Panel {
         setPreferredSize(new Dimension(width, height));
         removeAll();
 
-        if (creature.isDead) {
+        if (creature.isDead()) {
             setBackground(Color.RED);
             return;
         }
@@ -65,28 +69,29 @@ class CreaturePanel extends JPanel implements Panel {
         }
         spritePanel.draw(spriteWidth, spriteHeight);
 
-        statsPanel = new ProgressBarPanel(creature.statsContainer, colorScheme,
+        statsPanel = new ProgressBarPanel(creature.getStatsContainer(),
+            colorScheme,
             Color.ORANGE);
         add(statsPanel, BorderLayout.CENTER);
         statsPanel.draw(statsWidth, statsHeight);
 
         if (layout == CreatureLayout.WORLD) {
             addMouseListener(new MouseClickListener(() -> {
-                Actions.selectedCreature = creature;
+                creature.getActionsContainer().SelectCreature();
                 updateCallback.Callback();
             }));
         }
     }
 
     public void update() {
-        if (creature.isDead) {
+        if (creature.isDead()) {
             setBackground(Color.RED);
             add(new JLabel("Dead"), BorderLayout.CENTER);
             remove(spritePanel);
             return;
         }
         statsPanel.update();
-        if (creature == Actions.selectedCreature) {
+        if (creature.getActionsContainer().IsSelectedCreature()) {
             setBackground(Color.YELLOW);
         } else {
             setBackground(Color.WHITE);

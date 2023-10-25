@@ -1,6 +1,10 @@
+package panels;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicProgressBarUI;
+
+import interfaces.ProgressBarData;
+import interfaces.ProgressBarDataProvider;
 
 public class ProgressBarPanel extends JPanel implements Panel {
     ColorScheme colorScheme;

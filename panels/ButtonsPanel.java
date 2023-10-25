@@ -1,7 +1,12 @@
+package panels;
+
 import java.awt.*;
 import javax.swing.*;
 
-class ButtonsPanel extends JPanel implements Panel {
+import interfaces.*;
+import data.Action;
+
+public class ButtonsPanel extends JPanel implements Panel {
     Creature creature;
 
     public ButtonsPanel(Creature creature) {
@@ -16,12 +21,17 @@ class ButtonsPanel extends JPanel implements Panel {
      */
     public void draw(int width, int height) {
         setPreferredSize(new Dimension(width, height));
-        setLayout(new GridLayout(1, creature.actionsContainer.actions.length));
+
+        Action[] actions = creature.getActionsContainer().getActions();
+
+        setLayout(
+            new GridLayout(1,
+                actions.length));
         removeAll();
 
-        for (Action action : creature.actionsContainer.actions) {
+        for (Action action : actions) {
             JButton button = new JButton(action.name);
-            button.addActionListener(e -> action.execute(creature));
+            button.addActionListener(e -> action.execute());
             add(button);
         }
 

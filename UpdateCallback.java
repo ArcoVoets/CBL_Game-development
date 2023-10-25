@@ -1,3 +1,0 @@
-interface UpdateCallback {
-    void Callback();
-}

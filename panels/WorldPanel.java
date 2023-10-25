@@ -1,7 +1,11 @@
+package panels;
+
 import java.awt.*;
 import javax.swing.*;
 
-class WorldPanel extends JPanel implements Panel {
+import interfaces.*;
+
+public class WorldPanel extends JPanel implements Panel {
     World world;
     CreaturePanel playerCreaturePanel;
     CreaturePanel[] worldCreaturePanels;
@@ -34,7 +38,7 @@ class WorldPanel extends JPanel implements Panel {
         setBackground(Color.GRAY);
 
         playerCreaturePanel = new CreaturePanel(
-            world.playerCreature,
+            world.getPlayerCreature(),
             CreaturePanel.CreatureLayout.PLAYER,
             statsColorScheme,
             updateCallback);
@@ -42,20 +46,23 @@ class WorldPanel extends JPanel implements Panel {
         add(playerCreaturePanel, BorderLayout.SOUTH);
         playerCreaturePanel.draw(width, height / 2);
 
+        Creature[] creatures = world.getWorldCreatures();
+
         JPanel worldCreatureContainerPanel = new JPanel(new GridLayout(
             1,
-            world.worldCreatures.length));
+            creatures.length));
 
         worldCreatureContainerPanel
             .setPreferredSize(new Dimension(width, height / 2));
 
         add(worldCreatureContainerPanel, BorderLayout.CENTER);
 
-        int worldCreatureWidth = width / world.worldCreatures.length;
-        worldCreaturePanels = new CreaturePanel[world.worldCreatures.length];
-        for (int i = 0; i < world.worldCreatures.length; i++) {
+        int worldCreatureWidth = width / creatures.length;
+        worldCreaturePanels = new CreaturePanel[world
+            .getWorldCreatures().length];
+        for (int i = 0; i < creatures.length; i++) {
             worldCreaturePanels[i] = new CreaturePanel(
-                world.worldCreatures[i],
+                creatures[i],
                 CreaturePanel.CreatureLayout.WORLD,
                 statsColorScheme, updateCallback);
 

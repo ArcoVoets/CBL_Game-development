@@ -1,11 +1,14 @@
 import java.awt.*;
 import javax.swing.*;
 
+import data.*;
+import panels.*;
+
 /**
  * Main class of CBL game.
  */
 class Main {
-    World world;
+    data.World world;
     Environment environment = new Environment();
 
     ProgressBarPanel codesPanel;
@@ -35,9 +38,9 @@ class Main {
      * 
      * @return The player creature
      */
-    Creature createPlayerCreature() {
-        return new Creature(
-            new Actions(new Action[] {
+    data.Creature createPlayerCreature() {
+        return new data.Creature(
+            new data.Actions(new data.Action[] {
                 new EatAction(this::updateScreen),
                 new PairAction(this::updateScreen)
             }),
@@ -49,9 +52,9 @@ class Main {
      * 
      * @return The world creature
      */
-    Creature createWorldCreature() {
-        return new Creature(
-            new Actions(new Action[] {
+    data.Creature createWorldCreature() {
+        return new data.Creature(
+            new data.Actions(new data.Action[] {
                 new EatAction(this::updateScreen),
                 new PairAction(this::updateScreen)
             }),
@@ -62,13 +65,13 @@ class Main {
      * Sets up the world with creatures.
      */
     void setupWorld() {
-        Creature playerCreature = createPlayerCreature();
-        Creature[] worldCreatures = new Creature[] {
+        data.Creature playerCreature = createPlayerCreature();
+        data.Creature[] worldCreatures = new data.Creature[] {
             createWorldCreature(), createWorldCreature(), createWorldCreature(),
             createWorldCreature(), createWorldCreature()
         };
 
-        world = new World(playerCreature, worldCreatures);
+        world = new data.World(playerCreature, worldCreatures);
     }
 
     /**
@@ -85,7 +88,7 @@ class Main {
         screenFrame.setUndecorated(true);
 
         int buttonsPanelHeight = screenHeight / 10;
-        buttonsPanel = new ButtonsPanel(world.playerCreature);
+        buttonsPanel = new ButtonsPanel(world.getPlayerCreature());
         screenFrame.add(buttonsPanel, BorderLayout.SOUTH);
         buttonsPanel.draw(screenWidth, buttonsPanelHeight);
 
@@ -102,7 +105,7 @@ class Main {
 
         int codesPanelHeight = screenHeight / 2 - buttonsPanelHeight / 2;
         codesPanel = new ProgressBarPanel(
-            world.playerCreature.codesContainer,
+            world.getPlayerCreature().getCodesContainer(),
             codesColorScheme, Color.GREEN);
 
         rightPanel.add(codesPanel, BorderLayout.CENTER);

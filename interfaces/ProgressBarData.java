@@ -1,4 +1,6 @@
-class ProgressBarData {
+package interfaces;
+
+public class ProgressBarData {
     public String key;
     public int min;
     public int max;
@@ -17,8 +19,4 @@ class ProgressBarData {
     public ProgressBarData(String key, int min, int max, int value) {
         this(key, min, max, value, null);
     }
-}
-
-interface ProgressBarDataProvider {
-    public ProgressBarData[] getProgressBarData();
 }

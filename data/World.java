@@ -1,4 +1,6 @@
-class World {
+package data;
+
+public class World implements interfaces.World {
     Creature playerCreature;
     Creature[] worldCreatures;
 
@@ -23,5 +25,15 @@ class World {
             }
         }
         worldCreatures = newWorldCreatures;
+    }
+
+    @Override
+    public Creature getPlayerCreature() {
+        return playerCreature;
+    }
+
+    @Override
+    public Creature[] getWorldCreatures() {
+        return worldCreatures;
     }
 }

@@ -1,11 +1,15 @@
-class EatAction extends Action {
+package data;
+
+import interfaces.*;
+
+public class EatAction extends Action {
 
     public EatAction(UpdateCallback actionCallback) {
         super("Eat", actionCallback);
     }
 
     @Override
-    public boolean runAction(Creature creature) {
+    public boolean runAction() {
         Creature otherCreature = Actions.selectedCreature;
         if (otherCreature == null || otherCreature.isDead) {
             return false;

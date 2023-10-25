@@ -1,10 +1,14 @@
-class PairAction extends Action {
+package data;
+
+import interfaces.UpdateCallback;
+
+public class PairAction extends Action {
     public PairAction(UpdateCallback actionCallback) {
         super("Pair", actionCallback);
     }
 
     @Override
-    public boolean runAction(Creature creature) {
+    public boolean runAction() {
         Creature otherCreature = Actions.selectedCreature;
         if (otherCreature == null || otherCreature.isDead) {
             return false;

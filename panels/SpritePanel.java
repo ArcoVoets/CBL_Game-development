@@ -1,3 +1,4 @@
+package panels;
 import java.awt.*;
 import java.net.URL;
 import javax.swing.*;

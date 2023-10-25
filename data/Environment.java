@@ -1,4 +1,8 @@
-class Environment implements ProgressBarDataProvider {
+package data;
+
+import interfaces.*;
+
+public class Environment implements ProgressBarDataProvider {
 
     private Property temperature;
     private Property luminosity;
@@ -6,7 +10,7 @@ class Environment implements ProgressBarDataProvider {
     /**
      * Constructor.
      */
-    Environment() {
+    public Environment() {
         temperature = new Property("Temperature", 20, -20, 100, "°C");
         luminosity = new Property("Luminosity", 50, 100);
     }
