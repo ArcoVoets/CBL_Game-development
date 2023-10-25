@@ -42,7 +42,7 @@ class CreaturePanel extends JPanel implements Panel {
         removeAll();
 
         if (creature.isDead()) {
-            setBackground(Color.RED);
+            setBackground(Color.WHITE);
             return;
         }
         setBackground(Color.WHITE);
@@ -84,9 +84,8 @@ class CreaturePanel extends JPanel implements Panel {
 
     public void update() {
         if (creature.isDead()) {
-            setBackground(Color.RED);
-            add(new JLabel("Dead"), BorderLayout.CENTER);
-            remove(spritePanel);
+            removeAll();
+            setBackground(Color.WHITE);
             return;
         }
         statsPanel.update();
