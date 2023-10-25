@@ -1,9 +1,8 @@
 package panels;
 
+import interfaces.*;
 import java.awt.*;
 import javax.swing.*;
-
-import interfaces.*;
 
 class CreaturePanel extends JPanel implements Panel {
     enum CreatureLayout {
@@ -77,8 +76,8 @@ class CreaturePanel extends JPanel implements Panel {
 
         if (layout == CreatureLayout.WORLD) {
             addMouseListener(new MouseClickListener(() -> {
-                creature.getActionsContainer().SelectCreature();
-                updateCallback.Callback();
+                creature.getActionsContainer().selectCreature();
+                updateCallback.callback();
             }));
         }
     }
@@ -91,7 +90,7 @@ class CreaturePanel extends JPanel implements Panel {
             return;
         }
         statsPanel.update();
-        if (creature.getActionsContainer().IsSelectedCreature()) {
+        if (creature.getActionsContainer().isSelectedCreature()) {
             setBackground(Color.YELLOW);
         } else {
             setBackground(Color.WHITE);

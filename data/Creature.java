@@ -13,7 +13,7 @@ public class Creature implements interfaces.Creature {
     public Creature(Actions actionsContainer,
         Environment environment) {
         this.actionsContainer = actionsContainer;
-        actionsContainer.SetActionsCreature(this);
+        actionsContainer.setActionsCreature(this);
         this.environment = environment;
         this.statsContainer = new StatsContainer();
         this.codesContainer = CodesContainer.randomCodesContainer(6);

@@ -1,4 +1,5 @@
 package panels;
+
 /**
  * Interface for a panel that can be drawn.
  */

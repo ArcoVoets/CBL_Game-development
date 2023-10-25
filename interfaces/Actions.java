@@ -3,7 +3,7 @@ package interfaces;
 public interface Actions {
     public Action[] getActions();
 
-    public void SelectCreature();
+    public void selectCreature();
 
-    public boolean IsSelectedCreature();
+    public boolean isSelectedCreature();
 }
