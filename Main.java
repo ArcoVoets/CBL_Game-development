@@ -78,48 +78,51 @@ class Main {
      * Sets up the screen with the frames.
      */
     void setupScreen() {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int screenWidth = (int) screenSize.getWidth();
-        int screenHeight = (int) screenSize.getHeight();
+        SwingUtilities.invokeLater(() -> {
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            int screenWidth = (int) screenSize.getWidth();
+            int screenHeight = (int) screenSize.getHeight();
 
-        JFrame screenFrame = new JFrame();
-        screenFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        screenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        screenFrame.setUndecorated(true);
+            JFrame screenFrame = new JFrame();
+            screenFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            screenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            screenFrame.setUndecorated(true);
 
-        int buttonsPanelHeight = screenHeight / 10;
-        buttonsPanel = new ButtonsPanel(world.getPlayerCreature());
-        screenFrame.add(buttonsPanel, BorderLayout.SOUTH);
-        buttonsPanel.draw(screenWidth, buttonsPanelHeight);
+            int buttonsPanelHeight = screenHeight / 10;
+            buttonsPanel = new ButtonsPanel(world.getPlayerCreature());
+            screenFrame.add(buttonsPanel, BorderLayout.SOUTH);
+            buttonsPanel.draw(screenWidth, buttonsPanelHeight);
 
-        int rightPanelWidth = screenWidth / 5;
-        JPanel rightPanel = new JPanel();
-        rightPanel.setLayout(new BorderLayout());
+            int rightPanelWidth = screenWidth / 5;
+            JPanel rightPanel = new JPanel();
+            rightPanel.setLayout(new BorderLayout());
 
-        int environmentPanelHeight = screenHeight / 2 - buttonsPanelHeight / 2;
-        environmentPanel = new ProgressBarPanel(
-            environment,
-            environmentStatsColorScheme, Color.PINK);
-        rightPanel.add(environmentPanel, BorderLayout.NORTH);
-        environmentPanel.draw(rightPanelWidth, environmentPanelHeight);
+            int environmentPanelHeight = screenHeight / 2
+                - buttonsPanelHeight / 2;
+            environmentPanel = new ProgressBarPanel(
+                environment,
+                environmentStatsColorScheme, Color.PINK);
+            rightPanel.add(environmentPanel, BorderLayout.NORTH);
+            environmentPanel.draw(rightPanelWidth, environmentPanelHeight);
 
-        int codesPanelHeight = screenHeight / 2 - buttonsPanelHeight / 2;
-        codesPanel = new ProgressBarPanel(
-            world.getPlayerCreature().getCodesContainer(),
-            codesColorScheme, Color.GREEN);
+            int codesPanelHeight = screenHeight / 2 - buttonsPanelHeight / 2;
+            codesPanel = new ProgressBarPanel(
+                world.getPlayerCreature().getCodesContainer(),
+                codesColorScheme, Color.GREEN);
 
-        rightPanel.add(codesPanel, BorderLayout.CENTER);
-        codesPanel.draw(rightPanelWidth, codesPanelHeight);
+            rightPanel.add(codesPanel, BorderLayout.CENTER);
+            codesPanel.draw(rightPanelWidth, codesPanelHeight);
 
-        screenFrame.add(rightPanel, BorderLayout.EAST);
+            screenFrame.add(rightPanel, BorderLayout.EAST);
 
-        worldPanel = new WorldPanel(world, statsColorScheme,
-            this::updateScreen);
-        screenFrame.add(worldPanel, BorderLayout.CENTER);
-        worldPanel.draw(screenWidth - rightPanelWidth,
-            screenHeight - buttonsPanelHeight);
+            worldPanel = new WorldPanel(world, statsColorScheme,
+                this::updateScreen);
+            screenFrame.add(worldPanel, BorderLayout.CENTER);
+            worldPanel.draw(screenWidth - rightPanelWidth,
+                screenHeight - buttonsPanelHeight);
 
-        screenFrame.setVisible(true);
+            screenFrame.setVisible(true);
+        });
     }
 
     void updateScreen() {
