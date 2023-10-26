@@ -1,9 +1,8 @@
 package panels;
 
+import interfaces.*;
 import java.awt.*;
 import javax.swing.*;
-
-import interfaces.*;
 
 public class WorldPanel extends JPanel implements Panel {
     World world;

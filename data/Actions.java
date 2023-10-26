@@ -11,7 +11,7 @@ public class Actions implements interfaces.Actions {
         this.actions = actions;
     }
 
-    void SetActionsCreature(Creature creature) {
+    void setActionsCreature(Creature creature) {
         this.creature = creature;
         for (Action action : actions) {
             action.setCreature(creature);
@@ -24,12 +24,12 @@ public class Actions implements interfaces.Actions {
     }
 
     @Override
-    public void SelectCreature() {
+    public void selectCreature() {
         selectedCreature = this.creature;
     }
 
     @Override
-    public boolean IsSelectedCreature() {
+    public boolean isSelectedCreature() {
         return selectedCreature == this.creature;
     }
 }

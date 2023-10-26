@@ -1,4 +1,5 @@
 package panels;
+
 /**
  * A range of numbers.
  */
@@ -14,7 +15,8 @@ public class Range {
      */
     public Range(int low, int high) {
         if (low > high) {
-            throw new IllegalArgumentException("low must be less than or equal to high");
+            throw new IllegalArgumentException(
+                "low must be less than or equal to high");
         }
         if (low < 0 || high > 100) {
             throw new IllegalArgumentException(

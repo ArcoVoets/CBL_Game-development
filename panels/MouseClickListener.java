@@ -1,4 +1,5 @@
 package panels;
+
 import java.awt.event.*;
 
 class MouseClickListener implements MouseListener {

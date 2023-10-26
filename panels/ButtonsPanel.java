@@ -1,10 +1,9 @@
 package panels;
 
+import data.Action;
+import interfaces.*;
 import java.awt.*;
 import javax.swing.*;
-
-import interfaces.*;
-import data.Action;
 
 public class ButtonsPanel extends JPanel implements Panel {
     Creature creature;
