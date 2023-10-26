@@ -1,6 +1,9 @@
 package data;
 
+import interfaces.*;
+
 public class World implements interfaces.World {
+    static UpdateCallback winChecker;
     Creature playerCreature;
     Creature[] worldCreatures;
 
@@ -10,9 +13,11 @@ public class World implements interfaces.World {
      * @param playerCreature Player creature to add to the world
      * @param worldCreatures Other creatures in the world
      */
-    public World(Creature playerCreature, Creature[] worldCreatures) {
+    public World(Creature playerCreature, Creature[] worldCreatures,
+        UpdateCallback winChecker) {
         this.playerCreature = playerCreature;
         this.worldCreatures = worldCreatures;
+        World.winChecker = winChecker;
     }
 
     public void deleteCreature(Creature creature) {

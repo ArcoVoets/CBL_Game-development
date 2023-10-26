@@ -1,5 +1,7 @@
 package data;
 
+import javax.swing.JOptionPane;
+
 import interfaces.*;
 
 public abstract class Action implements interfaces.Action {
@@ -16,22 +18,24 @@ public abstract class Action implements interfaces.Action {
         this.creature = creature;
     }
 
+    public int calculateEnergyCost() {
+        return 1
+            + creature.environment.calculateTemperatureDamage(creature)
+            - creature.environment.calculateEnergyProduction(creature);
+    }
+
     /**
      * Executes the action.
      * 
      * @param creature The creature for which the action is executed
      */
     public void execute() {
-        int energyCost = 1
-            + creature.environment.calculateTemperatureDamage(creature)
-            - creature.environment.calculateEnergyProduction(creature);
-        if (creature.statsContainer.energy.getValue() < energyCost) {
-            return;
-        }
+        int energyCost = calculateEnergyCost();
         boolean success = runAction();
         if (success) {
             creature.statsContainer.energy.subtractValue(energyCost);
             creature.environment.updateEnvironmentStats();
+            creature.isDead = creature.statsContainer.energy.getValue() <= 0;
             actionCallback.Callback();
         }
     }

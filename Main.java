@@ -8,6 +8,8 @@ import panels.*;
  * Main class of CBL game.
  */
 class Main {
+    static Main instance;
+
     data.World world;
     Environment environment = new Environment();
 
@@ -71,7 +73,8 @@ class Main {
             createWorldCreature(), createWorldCreature()
         };
 
-        world = new data.World(playerCreature, worldCreatures);
+        world = new data.World(playerCreature, worldCreatures,
+            this::CheckIfWon);
     }
 
     /**
@@ -130,6 +133,7 @@ class Main {
         worldPanel.update();
         environmentPanel.update();
         buttonsPanel.update();
+        CheckIfLost();
     }
 
     void redrawWorld() {
@@ -139,9 +143,32 @@ class Main {
         worldPanel.draw(width, height);
     }
 
+    public void CheckIfWon() {
+        for (Creature creature : world.getWorldCreatures()) {
+            if (!creature.isDead()) {
+                return;
+            }
+        }
+        updateScreen();
+        JOptionPane.showMessageDialog(null, "You killed all other robots",
+            "You won!",
+            JOptionPane.PLAIN_MESSAGE);
+        System.exit(0);
+    }
+
+    public void CheckIfLost() {
+        if (world.getPlayerCreature().isDead()) {
+            JOptionPane.showMessageDialog(null,
+                "You died because you ran out of energy",
+                "You lost!",
+                JOptionPane.PLAIN_MESSAGE);
+            System.exit(0);
+        }
+    }
+
     public static void main(String[] args) {
-        Main main = new Main();
-        main.setupWorld();
-        main.setupScreen();
+        instance = new Main();
+        instance.setupWorld();
+        instance.setupScreen();
     }
 }
