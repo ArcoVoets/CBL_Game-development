@@ -1,4 +1,7 @@
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.*;
 
 import data.*;
@@ -84,7 +87,8 @@ class Main {
 
         JFrame screenFrame = new JFrame();
         screenFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        screenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        screenFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        AltTabStopper.create(screenFrame);
         screenFrame.setUndecorated(true);
 
         int buttonsPanelHeight = screenHeight / 10;
