@@ -100,20 +100,25 @@ class Main {
             JPanel rightPanel = new JPanel();
             rightPanel.setLayout(new BorderLayout());
 
+            JButton closeGameButton = new JButton("Close game");
+            closeGameButton.addActionListener(e -> System.exit(0));
+            closeGameButton.setPreferredSize(new Dimension(rightPanelWidth,
+                buttonsPanelHeight));
+            rightPanel.add(closeGameButton, BorderLayout.NORTH);
+
             int environmentPanelHeight = screenHeight / 2
-                - buttonsPanelHeight / 2;
+                - buttonsPanelHeight / 2 - buttonsPanelHeight;
             environmentPanel = new ProgressBarPanel(
                 environment,
                 environmentStatsColorScheme, Color.PINK);
-            rightPanel.add(environmentPanel, BorderLayout.NORTH);
+            rightPanel.add(environmentPanel, BorderLayout.CENTER);
             environmentPanel.draw(rightPanelWidth, environmentPanelHeight);
 
             int codesPanelHeight = screenHeight / 2 - buttonsPanelHeight / 2;
             codesPanel = new ProgressBarPanel(
                 world.getPlayerCreature().getCodesContainer(),
                 codesColorScheme, Color.GREEN);
-
-            rightPanel.add(codesPanel, BorderLayout.CENTER);
+            rightPanel.add(codesPanel, BorderLayout.SOUTH);
             codesPanel.draw(rightPanelWidth, codesPanelHeight);
 
             screenFrame.add(rightPanel, BorderLayout.EAST);
