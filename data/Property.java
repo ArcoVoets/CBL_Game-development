@@ -52,14 +52,14 @@ class Property {
 
     public void addValue(int value) {
         this.value += value;
-        if (this.value > maxValue) {
+        if (this.value > maxValue || this.value < minValue) {
             this.value = maxValue;
         }
     }
 
     public void subtractValue(int value) {
         this.value -= value;
-        if (this.value < minValue) {
+        if (this.value < minValue || this.value > maxValue) {
             this.value = minValue;
         }
     }
