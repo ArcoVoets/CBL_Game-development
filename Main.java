@@ -38,9 +38,14 @@ class Main {
             if (creature.isDead()) {
                 continue;
             }
+            creature.getActionsContainer().selectActionCreature(creature);
+            updateScreen();
             creature.runAction();
-
+            updateScreen();
         }
+        Actions.actionCreature = null;
+        Actions.selectedCreature = null;
+        updateScreen();
     }
 
     /**

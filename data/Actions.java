@@ -2,6 +2,7 @@ package data;
 
 public class Actions implements interfaces.Actions {
     public static Creature selectedCreature;
+    public static Creature actionCreature;
 
     Creature creature;
 
@@ -40,5 +41,13 @@ public class Actions implements interfaces.Actions {
     @Override
     public boolean isSelectedCreature() {
         return selectedCreature == this.creature;
+    }
+
+    public void selectActionCreature(Creature creature) {
+        actionCreature = creature;
+    }
+
+    public boolean isActionCreature() {
+        return actionCreature == this.creature;
     }
 }
