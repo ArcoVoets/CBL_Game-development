@@ -68,7 +68,7 @@ public class ProgressBarPanel extends JPanel implements Panel {
             // create and show progressBar
             progressBars[i] = new JProgressBar();
             progressBars[i].setUI(new BasicProgressBarUI());
-            progressBars[i].setBackground(Color.WHITE);
+            progressBars[i].setBackground(new Color(230, 230, 230));
             progressBars[i].setForeground(Color.BLUE);
             progressBars[i].setBorder(BorderFactory.createEmptyBorder());
             progressBars[i].setStringPainted(true);

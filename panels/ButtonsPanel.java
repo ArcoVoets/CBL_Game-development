@@ -28,13 +28,13 @@ public class ButtonsPanel extends JPanel implements Panel {
                 actions.length));
         removeAll();
 
+        setBackground(Color.WHITE);
+
         for (Action action : actions) {
             JButton button = new JButton(action.name);
             button.addActionListener(e -> action.execute());
             add(button);
         }
-
-        setBackground(Color.GREEN);
     }
 
     public void update() {

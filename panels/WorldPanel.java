@@ -34,7 +34,7 @@ public class WorldPanel extends JPanel implements Panel {
         setPreferredSize(new Dimension(width, height));
         removeAll();
 
-        setBackground(Color.GRAY);
+        setBackground(Color.WHITE);
 
         playerCreaturePanel = new CreaturePanel(
             world.getPlayerCreature(),
