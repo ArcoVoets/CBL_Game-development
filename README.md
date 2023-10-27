@@ -1,35 +1,24 @@
-# survival iets ding
+# [Game Name]
 
-- evolutie
-  - wezen van speler
-    = speler bepaald
-    - pairen met andere wezens -> beïnvloedt permanente eigenschappen
-    - voeding enz. -> tijdelijke eigenschap
-  - andere wezens in wereld
-    = bepalen zelf (weighted decision making)
-    - verder zelfde als wezen van speler
-- omgeving
-  = computer bepaald (volledig random)
-  - invloed (temp, nat, enz.)
-- doel
-  = survival
-  - omstandigheden steeds moeilijker
-  - als enige overblijven
+An evolution survival game
 
-- World
-  - Creatures
-    - Codes (DNA) -> PropContainer
-      - Speed, damage, max energy, resistance, enz.. -> Code -> Prop
-      - Changed by pairing
-    - Stats -> PropContainer
-      - Energy -> Stat -> Prop
-        - Changed by actions (based on env)
-    - Actions
-      - Eat, Pair -> Action
-      - Weighted decision making/players
-  - Environment
-    - Temp, weather, enz..
+## Tutorial
 
-Usefull websites:
+After starting the game, you see your codes (akin to DNA) in the bottom-right corner.
+The top-right corner shows environment stats such as the temperature and luminosity.
+The bottom shows your own character and its energy.
+On the top of the screen, the other creatures in the world reside.
+On your turn, your character will be highlighted in green.
+You can choose to eat or pair with another creature.
+If you choose to pair, you will swap a code with the other creature and lose some energy in the process.
+If you choose to eat, you will gain energy and the other creature will die.
+Eating will only succeed if your codes are better than the other creature's codes.
+After your turn, the other creatures will take their turns.
+The last creature surviving will turn against you.
+If you manage to kill it, you win.
 
-- <https://nathanrooy.github.io/posts/2017-11-30/evolving-simple-organisms-using-a-genetic-algorithm-and-deep-learning/>
+## How to compile
+
+````bash
+javac -d build Main.java && cd build && jar cfe game.jar Main * && cd ..
+````
