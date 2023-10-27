@@ -24,7 +24,7 @@ public class EatAction extends Action {
             creature.statsContainer.energy
                 .addValue(otherCreature.statsContainer.energy.getValue() / 2);
             otherCreature.isDead = true;
-            World.winChecker.Callback();
+            World.winChecker.callback();
         } else {
             creature.statsContainer.energy.subtractValue(1);
         }

@@ -1,7 +1,5 @@
 package data;
 
-import javax.swing.JOptionPane;
-
 import interfaces.*;
 
 public abstract class Action implements interfaces.Action {
