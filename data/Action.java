@@ -16,6 +16,10 @@ public abstract class Action implements interfaces.Action {
         this.creature = creature;
     }
 
+    public String getName() {
+        return name;
+    }
+
     /**
      * Executes the action.
      */

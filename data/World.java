@@ -13,6 +13,10 @@ public class World implements interfaces.World {
     public World(Creature playerCreature, Creature[] worldCreatures) {
         this.playerCreature = playerCreature;
         this.worldCreatures = worldCreatures;
+        playerCreature.setWorld(this);
+        for (Creature worldCreature : worldCreatures) {
+            worldCreature.setWorld(this);
+        }
     }
 
     public void deleteCreature(Creature creature) {

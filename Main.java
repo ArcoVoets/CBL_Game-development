@@ -33,6 +33,16 @@ class Main {
         new ColorRange(new Range(90, 100), Color.RED)
     }, Color.WHITE);
 
+    void doWorldCreaturesActions() {
+        for (data.Creature creature : world.getWorldCreatures()) {
+            if (creature.isDead()) {
+                continue;
+            }
+            creature.runAction();
+
+        }
+    }
+
     /**
      * Creates a player creature.
      * 
@@ -41,10 +51,16 @@ class Main {
     data.Creature createPlayerCreature() {
         return new data.Creature(
             new data.Actions(new data.Action[] {
-                new EatAction(this::updateScreen),
-                new PairAction(this::updateScreen)
-            }),
-            environment);
+                new EatAction(() -> {
+                    updateScreen();
+                    doWorldCreaturesActions();
+                }),
+                new PairAction(() -> {
+                    updateScreen();
+                    doWorldCreaturesActions();
+                }),
+            }), environment);
+
     }
 
     /**
@@ -58,7 +74,8 @@ class Main {
                 new EatAction(this::updateScreen),
                 new PairAction(this::updateScreen)
             }),
-            environment);
+            environment,
+            new data.CreatureActionRunner());
     }
 
     /**

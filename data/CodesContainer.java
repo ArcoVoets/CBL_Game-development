@@ -7,8 +7,8 @@ class CodesContainer extends AbstractList<Code>
     implements ProgressBarDataProvider {
 
     private final Code[] a;
-    public int averageHeatResistance = 0;
     public int averageColdResistance = 0;
+    public int averageHeatResistance = 0;
     public int averageLightSensitivity = 0;
     public int averageMaxEnergy = 0;
 

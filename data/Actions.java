@@ -18,6 +18,15 @@ public class Actions implements interfaces.Actions {
         }
     }
 
+    public <T extends Action> Action getAction(Class<T> actionClass) {
+        for (Action action : actions) {
+            if (action.getClass().equals(actionClass)) {
+                return action;
+            }
+        }
+        return null;
+    }
+
     @Override
     public Action[] getActions() {
         return actions;

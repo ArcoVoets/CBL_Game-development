@@ -12,4 +12,8 @@ public class StatsContainer implements ProgressBarDataProvider {
                 energy.getMaxValue(), energy.getValue())
         };
     }
+
+    public Property getEnergy() {
+        return energy;
+    }
 }
