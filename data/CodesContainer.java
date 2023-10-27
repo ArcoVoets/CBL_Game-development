@@ -53,11 +53,20 @@ class CodesContainer extends AbstractList<Code>
         averageMaxEnergy = totalMaxEnergy / a.length;
     }
 
+    /**
+     * Calculates the score of the codes.
+     * 
+     * Remark: A higher cold resistance, means that the creatures resistance
+     * against cold is lower, therefore, the cold resistance is subtracted from
+     * the score.
+     * 
+     * @return The score of the codes
+     */
     public int calculateCodesScore() {
         int score = 0;
         for (Code code : a) {
+            score -= code.coldResistance;
             score += code.heatResistance;
-            score += code.coldResistance;
             score += code.lightSensitivity;
             score += code.maxEnergy;
         }

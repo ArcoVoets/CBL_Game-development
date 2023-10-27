@@ -64,4 +64,8 @@ public class Creature implements interfaces.Creature {
     public void runAction() {
         decisionMaker.chooseAction();
     }
+
+    public World getWorld() {
+        return world;
+    }
 }

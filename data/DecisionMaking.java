@@ -14,7 +14,7 @@ public class DecisionMaking {
 
     static Creature chooseCreature(Creature creature,
         Creature[] otherAliveWorldCreatures, double[][] decisionMatrix,
-        double[] criterionWeights) {
+        double[] criterionWeights, boolean[] hasPositiveImpact) {
 
         double[][] normalizedDecisionMatrix = normalizeMatrix(decisionMatrix);
 
@@ -22,7 +22,7 @@ public class DecisionMaking {
             normalizedDecisionMatrix, criterionWeights);
 
         ExtremeAlternatives extremeAlternatives = getExtremeAlternatives(
-            weightedDecisionMatrix);
+            weightedDecisionMatrix, hasPositiveImpact);
 
         EuclideanDistances euclideanDistances = getEuclideanDistances(
             weightedDecisionMatrix, extremeAlternatives);
@@ -58,11 +58,14 @@ public class DecisionMaking {
                 .getStatsContainer().getEnergy().getValue();
             j++;
         }
+        boolean[] hasPositiveImpact = new boolean[] {
+            false, true };
         double[] criterionWeights = new double[] {
             0.5, 0.5 };
 
         Creature creatureToEat = chooseCreature(creature,
-            otherAliveWorldCreatures, decisionMatrix, criterionWeights);
+            otherAliveWorldCreatures, decisionMatrix, criterionWeights,
+            hasPositiveImpact);
 
         return creatureToEat;
     }
@@ -86,11 +89,14 @@ public class DecisionMaking {
                 .getCodesContainer().averageMaxEnergy;
             j++;
         }
+        boolean[] hasPositiveImpact = new boolean[] {
+            false, true, true, true };
         double[] criterionWeights = {
             0.25, 0.25, 0.25, 0.25 };
 
         Creature creatureToPair = chooseCreature(creature,
-            otherAliveWorldCreatures, decisionMatrix, criterionWeights);
+            otherAliveWorldCreatures, decisionMatrix, criterionWeights,
+            hasPositiveImpact);
         return creatureToPair;
     }
 
@@ -122,17 +128,19 @@ public class DecisionMaking {
     }
 
     private static ExtremeAlternatives getExtremeAlternatives(
-        double[][] matrix) {
+        double[][] matrix, boolean[] hasPositiveImpact) {
         double[] bestAlternatives = new double[matrix[0].length];
         double[] worstAlternatives = new double[matrix[0].length];
         for (int col = 0; col < matrix[0].length; col++) {
             double best = matrix[0][col];
             double worst = matrix[0][col];
             for (int row = 1; row < matrix.length; row++) {
-                if (matrix[row][col] > best) {
+                if (hasPositiveImpact[col] && matrix[row][col] > best
+                    || !hasPositiveImpact[col] && matrix[row][col] < best) {
                     best = matrix[row][col];
                 }
-                if (matrix[row][col] < worst) {
+                if (hasPositiveImpact[col] && matrix[row][col] < worst
+                    || !hasPositiveImpact[col] && matrix[row][col] > worst) {
                     worst = matrix[row][col];
                 }
             }
@@ -183,6 +191,11 @@ public class DecisionMaking {
             if (!worldCreature.isDead() && worldCreature != creature) {
                 numAliveWorldCreatures++;
             }
+        }
+
+        if (numAliveWorldCreatures == 0) {
+            return new Creature[] {
+                creature.getWorld().getPlayerCreature() }; // player creature
         }
 
         Creature[] aliveWorldCreatures = new Creature[numAliveWorldCreatures];
