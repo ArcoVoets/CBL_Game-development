@@ -85,8 +85,6 @@ public class DecisionMaking {
                 .getCodesContainer().averageHeatResistance;
             decisionMatrix[j][2] = worldCreature
                 .getCodesContainer().averageLightSensitivity;
-            decisionMatrix[j][3] = worldCreature
-                .getCodesContainer().averageMaxEnergy;
             j++;
         }
         boolean[] hasPositiveImpact = new boolean[] {
