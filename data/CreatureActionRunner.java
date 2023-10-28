@@ -15,6 +15,9 @@ public class CreatureActionRunner {
         this.world = world;
     }
 
+    /**
+     * Chooses an action for the creature to perform and executes it.
+     */
     void chooseAction() {
         if (DecisionMaking.chooseToEat(actions.creature)) {
             Actions.selectedCreature = DecisionMaking.creatureToEat(

@@ -17,6 +17,7 @@ public class World implements interfaces.World {
      * 
      * @param playerCreature Player creature to add to the world
      * @param worldCreatures Other creatures in the world
+     * @param winChecker Callback to check if the player has won
      */
     public World(Creature playerCreature, Creature[] worldCreatures,
         UpdateCallback winChecker) {
@@ -81,6 +82,13 @@ public class World implements interfaces.World {
         return null;
     }
 
+    /**
+     * Checks if there is a next alive world creature that has not yet run an
+     * action this round.
+     * 
+     * @return True if there is a next alive world creature that has not yet
+     *         run, else false
+     */
     public boolean existsNextRunnableWorldCreature() {
         if (lastWorldCreatureActionIndex == -1) {
             return false;

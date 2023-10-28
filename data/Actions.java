@@ -27,6 +27,13 @@ public class Actions implements interfaces.Actions {
         }
     }
 
+    /**
+     * Get an action by its class.
+     * 
+     * @param <T> Action class type
+     * @param actionClass Action class
+     * @return The action
+     */
     public <T extends Action> Action getAction(Class<T> actionClass) {
         for (Action action : actions) {
             if (action.getClass().equals(actionClass)) {
@@ -51,10 +58,12 @@ public class Actions implements interfaces.Actions {
         return selectedCreature == this.creature;
     }
 
+    @Override
     public void selectActionCreature() {
         actionCreature = creature;
     }
 
+    @Override
     public boolean isActionCreature() {
         return actionCreature == this.creature;
     }

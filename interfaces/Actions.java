@@ -10,4 +10,8 @@ public interface Actions {
     public void selectCreature();
 
     public boolean isSelectedCreature();
+
+    public void selectActionCreature();
+
+    public boolean isActionCreature();
 }

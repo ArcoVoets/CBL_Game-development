@@ -22,6 +22,11 @@ public abstract class Action implements interfaces.Action {
         this.actionCallback = actionCallback;
     }
 
+    /**
+     * Sets the creature that is running the action.
+     * 
+     * @param creature Creature that is running the action
+     */
     void setCreature(Creature creature) {
         this.creature = creature;
     }

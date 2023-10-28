@@ -1,4 +1,4 @@
-# [Game Name]
+# Survival of the Codes
 
 An evolution survival game
 

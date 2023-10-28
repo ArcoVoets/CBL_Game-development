@@ -13,7 +13,11 @@ public class Creature implements interfaces.Creature {
     CreatureActionRunner decisionMaker;
 
     /**
-     * Constructor.
+     * Create a creature with all fields filled.
+     * 
+     * @param actionsContainer The actions container of the creature
+     * @param environment The environment of the creature
+     * @param decisionMaker The decision maker of the creature
      */
     public Creature(Actions actionsContainer,
         Environment environment, CreatureActionRunner decisionMaker) {
@@ -32,6 +36,11 @@ public class Creature implements interfaces.Creature {
         this(actionsContainer, environment, null);
     }
 
+    /**
+     * Sets the world of the creature.
+     * 
+     * @param world The world in which the creature lives
+     */
     void setWorld(World world) {
         this.world = world;
         if (decisionMaker != null) {

@@ -20,6 +20,8 @@ public class WorldPanel extends JPanel implements Panel {
      * Constructor.
      * 
      * @param world World to show
+     * @param statsColorScheme Color scheme to use for the stats
+     * @param updateCallback Callback to update the screen
      */
     public WorldPanel(World world, ColorScheme statsColorScheme,
         UpdateCallback updateCallback) {

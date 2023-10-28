@@ -62,7 +62,6 @@ class Property {
         } else if (this.value < minValue) {
             this.value = minValue;
         }
-
     }
 
     /**

@@ -6,6 +6,8 @@ import interfaces.UpdateCallback;
  * Pair action.
  */
 public class PairAction extends Action {
+    static final int CODES_MIX_AMOUNT = 1;
+
     public PairAction(UpdateCallback actionCallback) {
         super("Pair", actionCallback);
     }
@@ -24,8 +26,6 @@ public class PairAction extends Action {
         mixCodes(properties, otherProperties);
         return true;
     }
-
-    static final int CODES_MIX_AMOUNT = 1;
 
     /**
      * Mixes codes of two creatures.

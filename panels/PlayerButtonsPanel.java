@@ -1,6 +1,6 @@
 package panels;
 
-import data.Action;
+import interfaces.Action;
 import interfaces.Creature;
 import java.awt.*;
 import javax.swing.*;
@@ -38,7 +38,7 @@ public class PlayerButtonsPanel extends ButtonsPanel {
         for (int i = 0; i < actions.length; i++) {
             Action action = actions[i];
             buttons[i] = new JButton(String.format("%s (Energy cost: %d)",
-                action.name, action.calculateEnergyCost()));
+                action.getName(), action.calculateEnergyCost()));
             buttons[i].addActionListener(e -> action.execute());
             add(buttons[i]);
         }
@@ -53,7 +53,7 @@ public class PlayerButtonsPanel extends ButtonsPanel {
         for (int i = 0; i < actions.length; i++) {
             Action action = actions[i];
             buttons[i].setText(String.format("%s (Energy cost: %d)",
-                action.name, action.calculateEnergyCost()));
+                action.getName(), action.calculateEnergyCost()));
         }
     }
 

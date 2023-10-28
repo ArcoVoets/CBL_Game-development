@@ -42,6 +42,9 @@ class CodesContainer extends AbstractList<Code>
 
     /**
      * Sets the code at the specified index.
+     * 
+     * @param index The index of the code
+     * @param element The code
      */
     public Code set(int index, Code element) {
         Code oldValue = a[index];
@@ -51,7 +54,7 @@ class CodesContainer extends AbstractList<Code>
     }
 
     /**
-     * Updates the averages.
+     * Updates the code averages.
      */
     void updateAverages() {
         int totalHeatResistance = 0;
@@ -93,11 +96,11 @@ class CodesContainer extends AbstractList<Code>
      */
     public ProgressBarData[] getProgressBarData() {
         return new ProgressBarData[] {
-            new ProgressBarData("Heat resistance", 0, Code.MAX_VALUE,
+            new ProgressBarData("Heat resistance", 0, Code.MAX_CODE_VALUE,
                 averageHeatResistance, "°C"),
-            new ProgressBarData("Cold resistance", 0, Code.MAX_VALUE,
+            new ProgressBarData("Cold resistance", 0, Code.MAX_CODE_VALUE,
                 averageColdResistance, "°C"),
-            new ProgressBarData("Light sensitivity", 0, Code.MAX_VALUE,
+            new ProgressBarData("Light sensitivity", 0, Code.MAX_CODE_VALUE,
                 averageLightSensitivity)
         };
     }

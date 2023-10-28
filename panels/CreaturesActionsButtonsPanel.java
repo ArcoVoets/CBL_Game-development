@@ -8,7 +8,6 @@ import javax.swing.*;
  * Panel that displays the buttons to play world creature's actions.
  */
 public class CreaturesActionsButtonsPanel extends ButtonsPanel {
-
     UpdateCallback runNextWorldCreaturesAction;
     UpdateCallback runAllWorldCreaturesActions;
 
@@ -52,5 +51,10 @@ public class CreaturesActionsButtonsPanel extends ButtonsPanel {
         buttons[1]
             .addActionListener(e -> runAllWorldCreaturesActions.callback());
         add(buttons[1]);
+    }
+
+    @Override
+    public void update() {
+        // Do nothing
     }
 }

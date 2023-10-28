@@ -19,6 +19,9 @@ public class ProgressBarPanel extends JPanel implements Panel {
     /**
      * Constructor.
      * 
+     * @param dataProvider The data provider to get the data from
+     * @param colorScheme The color scheme to use
+     * @param backgroundColor The background color for the panel
      */
     public ProgressBarPanel(ProgressBarDataProvider dataProvider,
         ColorScheme colorScheme, Color backgroundColor) {
@@ -28,7 +31,7 @@ public class ProgressBarPanel extends JPanel implements Panel {
     }
 
     /**
-     * Draws the environment.
+     * Draws the progress bars.
      * 
      * @param width Width of the panel in pixels
      * @param height Height of the panel in pixels
@@ -97,7 +100,6 @@ public class ProgressBarPanel extends JPanel implements Panel {
 
     /**
      * Updates the codes in the PropertyContainer.
-     * 
      */
     public void update() {
         ProgressBarData[] data = dataProvider.getProgressBarData();
@@ -124,6 +126,7 @@ public class ProgressBarPanel extends JPanel implements Panel {
      * 
      * @param property The property to color the progressBar for
      * @param progressBar The progressBar to color
+     * @param colorScheme The color scheme to use
      */
     void colorProgressBar(ProgressBarData property, JProgressBar progressBar,
         ColorScheme colorScheme) {

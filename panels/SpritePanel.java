@@ -15,7 +15,7 @@ class SpritePanel extends JPanel implements Panel {
     public SpritePanel(String spritePath) {
         super(new BorderLayout());
 
-        URL resource = getClass().getResource("robot-idle.gif");
+        URL resource = getClass().getResource(spritePath);
         if (resource == null) {
             System.out.println("Image resource not found: " + spritePath);
             return;
@@ -61,5 +61,6 @@ class SpritePanel extends JPanel implements Panel {
     }
 
     public void update() {
+        // Do nothing
     }
 }

@@ -29,8 +29,4 @@ public abstract class ButtonsPanel extends JPanel implements Panel {
             button.setVisible(true);
         }
     }
-
-    public void update() {
-        // do nothing
-    }
 }

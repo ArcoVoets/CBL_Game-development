@@ -12,7 +12,7 @@ public class Environment implements ProgressBarDataProvider {
     private Property luminosity;
 
     /**
-     * Constructor.
+     * Constructor, fills the fields with default data.
      */
     public Environment() {
         temperature = new Property("Temperature", 20, -20, 100, "°C");
@@ -21,7 +21,6 @@ public class Environment implements ProgressBarDataProvider {
 
     /**
      * Calculates the total damage from the environment temperature.
-     * .
      * 
      * @param creature The creature to calculate the damage for
      * @return The total damage from the environment temperature

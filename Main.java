@@ -17,8 +17,6 @@ import panels.WorldPanel;
  * Main class of CBL game.
  */
 class Main {
-    static Main instance;
-
     data.World world;
     Environment environment = new Environment();
 
@@ -39,11 +37,11 @@ class Main {
         new ColorRange(90, 100, Color.GREEN)
     }, Color.WHITE);
     ColorScheme environmentStatsColorScheme = new ColorScheme(new ColorRange[] {
-        new ColorRange(new Range(0, 19), new Color(0, 0, 255)),
-        new ColorRange(new Range(20, 39), new Color(100, 0, 200)),
-        new ColorRange(new Range(40, 59), new Color(150, 0, 150)),
-        new ColorRange(new Range(60, 79), new Color(200, 0, 100)),
-        new ColorRange(new Range(80, 100), new Color(255, 0, 0))
+        new ColorRange(0, 19, new Color(0, 0, 255)),
+        new ColorRange(20, 39, new Color(100, 0, 200)),
+        new ColorRange(40, 59, new Color(150, 0, 150)),
+        new ColorRange(60, 79, new Color(200, 0, 100)),
+        new ColorRange(80, 100, new Color(255, 0, 0))
     }, Color.WHITE);
 
     /**
@@ -265,7 +263,7 @@ class Main {
     }
 
     public static void main(String[] args) {
-        instance = new Main();
+        Main instance = new Main();
         instance.setupWorld();
         instance.setupScreen();
     }
