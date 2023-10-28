@@ -1,1 +1,4 @@
+/build/**
+/ignore/**
 /.vscode/**
+/.VScodeCounter/**
