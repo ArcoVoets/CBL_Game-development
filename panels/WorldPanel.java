@@ -1,9 +1,14 @@
 package panels;
 
-import interfaces.*;
+import interfaces.Creature;
+import interfaces.UpdateCallback;
+import interfaces.World;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * Panel that displays all the creatures in the world.
+ */
 public class WorldPanel extends JPanel implements Panel {
     World world;
     CreaturePanel playerCreaturePanel;
@@ -70,6 +75,9 @@ public class WorldPanel extends JPanel implements Panel {
         }
     }
 
+    /**
+     * Updates the world.
+     */
     public void update() {
         playerCreaturePanel.update();
         for (int i = 0; i < worldCreaturePanels.length; i++) {

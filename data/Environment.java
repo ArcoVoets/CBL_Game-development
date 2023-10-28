@@ -1,7 +1,11 @@
 package data;
 
-import interfaces.*;
+import interfaces.ProgressBarData;
+import interfaces.ProgressBarDataProvider;
 
+/**
+ * Environment with temperature and luminosity.
+ */
 public class Environment implements ProgressBarDataProvider {
 
     private Property temperature;
@@ -15,6 +19,13 @@ public class Environment implements ProgressBarDataProvider {
         luminosity = new Property("Luminosity", 50, 100);
     }
 
+    /**
+     * Calculates the total damage from the environment temperature.
+     * .
+     * 
+     * @param creature The creature to calculate the damage for
+     * @return The total damage from the environment temperature
+     */
     int calculateTemperatureDamage(Creature creature) {
         int totalTemperatureDamage = 0;
         if (temperature
@@ -28,6 +39,12 @@ public class Environment implements ProgressBarDataProvider {
         return totalTemperatureDamage;
     }
 
+    /**
+     * Calculates the energy production from the environment luminosity.
+     * 
+     * @param creature The creature to calculate the energy production for
+     * @return The energy production from the environment luminosity
+     */
     int calculateEnergyProduction(Creature creature) {
         if (luminosity
             .getValue() >= creature.codesContainer.averageLightSensitivity) {
@@ -36,6 +53,9 @@ public class Environment implements ProgressBarDataProvider {
         return 0;
     }
 
+    /**
+     * Updates the environment stats.
+     */
     void updateEnvironmentStats() {
         temperature.addValue((int) ((Math.random() - 0.5) * 20));
         luminosity.addValue((int) ((Math.random() - 0.5) * 20));

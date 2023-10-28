@@ -2,6 +2,9 @@ package interfaces;
 
 import data.Actions;
 
+/**
+ * Creature interface with codes, stats, environment, and actions.
+ */
 public interface Creature {
     public ProgressBarDataProvider getCodesContainer();
 

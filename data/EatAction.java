@@ -1,7 +1,10 @@
 package data;
 
-import interfaces.*;
+import interfaces.UpdateCallback;
 
+/**
+ * Eat action.
+ */
 public class EatAction extends Action {
 
     public EatAction(UpdateCallback actionCallback) {
