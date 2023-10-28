@@ -4,8 +4,7 @@ import interfaces.*;
 import java.awt.*;
 import javax.swing.*;
 
-public class CreaturesActionsButtonsPanel extends ButtonsPanel
-    implements Panel {
+public class CreaturesActionsButtonsPanel extends ButtonsPanel {
 
     UpdateCallback runNextWorldCreaturesAction;
     UpdateCallback runAllWorldCreaturesActions;

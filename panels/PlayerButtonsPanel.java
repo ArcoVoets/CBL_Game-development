@@ -5,7 +5,7 @@ import interfaces.*;
 import java.awt.*;
 import javax.swing.*;
 
-public class PlayerButtonsPanel extends ButtonsPanel implements Panel {
+public class PlayerButtonsPanel extends ButtonsPanel {
     Creature creature;
 
     public PlayerButtonsPanel(Creature creature) {

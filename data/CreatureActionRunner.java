@@ -1,7 +1,7 @@
 package data;
 
 /**
- * ...
+ * CreatureActionRunner class with methods to run actions, based on TOPSIS.
  */
 public class CreatureActionRunner {
     Actions actions;

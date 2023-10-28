@@ -1,12 +1,14 @@
+import data.Actions;
 import data.Creature;
 import data.EatAction;
 import data.Environment;
 import data.PairAction;
 import java.awt.*;
 import javax.swing.*;
-import panels.ButtonsPanel;
 import panels.ColorRange;
 import panels.ColorScheme;
+import panels.CreaturesActionsButtonsPanel;
+import panels.PlayerButtonsPanel;
 import panels.ProgressBarPanel;
 import panels.Range;
 import panels.WorldPanel;
@@ -126,7 +128,6 @@ class Main {
             createWorldCreature(), createWorldCreature(), createWorldCreature(),
             createWorldCreature(), createWorldCreature()
         };
-
         world = new data.World(playerCreature, worldCreatures,
             this::checkIfWon);
     }
@@ -232,7 +233,6 @@ class Main {
             JOptionPane.PLAIN_MESSAGE);
         System.exit(0);
     }
-
 
     /**
      * Checks if the player lost the game and shows a message.

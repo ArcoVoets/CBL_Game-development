@@ -73,7 +73,7 @@ public class DecisionMaking {
     public static Creature creatureToPair(Creature creature,
         Creature[] worldCreatures) {
 
-        int numCriteria = 4;
+        int numCriteria = 3;
         Creature[] otherAliveWorldCreatures = getOtherAliveWorldCreatures(
             worldCreatures, creature);
         double[][] decisionMatrix = new double[otherAliveWorldCreatures.length][numCriteria];
@@ -85,14 +85,12 @@ public class DecisionMaking {
                 .getCodesContainer().averageHeatResistance;
             decisionMatrix[j][2] = worldCreature
                 .getCodesContainer().averageLightSensitivity;
-            decisionMatrix[j][3] = worldCreature
-                .getCodesContainer().averageMaxEnergy;
             j++;
         }
         boolean[] hasPositiveImpact = new boolean[] {
-            false, true, true, true };
+            false, true, true };
         double[] criterionWeights = {
-            0.25, 0.25, 0.25, 0.25 };
+            0.25, 0.25, 0.25 };
 
         Creature creatureToPair = chooseCreature(creature,
             otherAliveWorldCreatures, decisionMatrix, criterionWeights,
@@ -155,18 +153,20 @@ public class DecisionMaking {
         double[] euclideanDistancesToBestAlternative = new double[matrix.length];
         double[] euclideanDistancesToWorstAlternative = new double[matrix.length];
         for (int row = 0; row < matrix.length; row++) {
-            double sumOfGreekYoghurt = 0.0;
-            double sumOfFrenchKwark = 0.0;
+            double sumOfSquaredDistancesToBestAlternative = 0.0;
+            double sumOfSquaredDistancesToWorstAlternative = 0.0;
             for (int col = 0; col < matrix[0].length; col++) {
-                sumOfGreekYoghurt += Math.pow(matrix[row][col]
-                    - extremeAlternatives.bestAlternatives[col], 2.0);
-                sumOfFrenchKwark += Math.pow(matrix[row][col]
-                    - extremeAlternatives.worstAlternatives[col], 2.0);
+                sumOfSquaredDistancesToBestAlternative += Math
+                    .pow(matrix[row][col]
+                        - extremeAlternatives.bestAlternatives[col], 2.0);
+                sumOfSquaredDistancesToWorstAlternative += Math
+                    .pow(matrix[row][col]
+                        - extremeAlternatives.worstAlternatives[col], 2.0);
             }
             euclideanDistancesToBestAlternative[row] = Math
-                .sqrt(sumOfGreekYoghurt);
+                .sqrt(sumOfSquaredDistancesToBestAlternative);
             euclideanDistancesToWorstAlternative[row] = Math
-                .sqrt(sumOfFrenchKwark);
+                .sqrt(sumOfSquaredDistancesToWorstAlternative);
         }
         return new EuclideanDistances(euclideanDistancesToBestAlternative,
             euclideanDistancesToWorstAlternative);
