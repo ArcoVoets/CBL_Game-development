@@ -253,10 +253,18 @@ class Main {
      */
     public void checkIfLost() {
         if (world.getPlayerCreature().isDead()) {
-            JOptionPane.showMessageDialog(null,
-                "You died because you ran out of energy",
-                "You lost!",
-                JOptionPane.PLAIN_MESSAGE);
+            if (world.getPlayerCreature().getStatsContainer()
+                .getEnergy().getValue() <= 0) {
+                JOptionPane.showMessageDialog(null,
+                    "You died because you ran out of energy",
+                    "You lost!",
+                    JOptionPane.PLAIN_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null,
+                    "You died because you were eaten by another robot",
+                    "You lost!",
+                    JOptionPane.PLAIN_MESSAGE);
+            }
             System.exit(0);
         }
     }

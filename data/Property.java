@@ -3,7 +3,7 @@ package data;
 /**
  * Property.
  */
-class Property {
+public class Property {
     private String key;
     private int value;
     private int minValue;

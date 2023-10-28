@@ -12,6 +12,8 @@ On your turn, your character will be highlighted in green.
 You can choose to eat or pair with another creature.
 If you choose to pair, you will swap a code with the other creature and lose some energy in the process.
 If you choose to eat, you will gain energy and the other creature will die.
+Often, it will disappear because you have eaten it.
+Sometimes, its corpse will remain as a reminder of your cruelty.
 Eating will only succeed if your codes are better than the other creature's codes.
 After your turn, the other creatures will take their turns.
 The last creature surviving will turn against you.
