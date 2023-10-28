@@ -42,8 +42,6 @@ class CreaturePanel extends JPanel implements Panel {
         setPreferredSize(new Dimension(width, height));
         removeAll();
 
-        setBackground(Color.WHITE);
-
         if (creature.isDead()) {
             return;
         }
@@ -55,12 +53,14 @@ class CreaturePanel extends JPanel implements Panel {
 
         spritePanel = new SpritePanel("./robot-idle.gif");
         if (layout == CreatureLayout.PLAYER) {
+            setBackground(Color.GREEN);
             add(spritePanel, BorderLayout.EAST);
             spriteWidth = height;
             spriteHeight = height;
             statsWidth = width - spriteWidth;
             statsHeight = height;
         } else {
+            setBackground(Color.WHITE);
             add(spritePanel, BorderLayout.NORTH);
             spriteWidth = width;
             spriteHeight = width;

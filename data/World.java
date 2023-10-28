@@ -24,6 +24,7 @@ public class World implements interfaces.World {
         this.playerCreature = playerCreature;
         this.worldCreatures = worldCreatures;
         World.winChecker = winChecker;
+        playerCreature.getActionsContainer().selectActionCreature();
         playerCreature.setWorld(this);
         for (Creature creature : worldCreatures) {
             creature.setWorld(this);
@@ -70,10 +71,9 @@ public class World implements interfaces.World {
             + 1; i < worldCreatures.length; i++) {
             Creature creature = worldCreatures[i];
             if (!creature.isDead()) {
-                if (i == worldCreatures.length - 1) {
+                lastWorldCreatureActionIndex = i;
+                if (!hasNextRunnableWorldCreature()) {
                     lastWorldCreatureActionIndex = -1;
-                } else {
-                    lastWorldCreatureActionIndex = i;
                 }
                 return creature;
             }
@@ -93,6 +93,17 @@ public class World implements interfaces.World {
         if (lastWorldCreatureActionIndex == -1) {
             return false;
         }
+        return hasNextRunnableWorldCreature();
+    }
+
+    /**
+     * Checks if there is a next alive world creature that has not yet run an
+     * action this round.
+     * 
+     * @return True if there is a next alive world creature that has not yet
+     *         run, else false
+     */
+    private boolean hasNextRunnableWorldCreature() {
         for (int i = lastWorldCreatureActionIndex
             + 1; i < worldCreatures.length; i++) {
             Creature creature = worldCreatures[i];
