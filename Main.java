@@ -43,7 +43,7 @@ class Main {
             creature.runAction();
             updateScreen();
         }
-        Actions.actionCreature = null;
+        Actions.actionCreature = world.getPlayerCreature();
         Actions.selectedCreature = null;
         updateScreen();
     }
@@ -65,7 +65,6 @@ class Main {
                     doWorldCreaturesActions();
                 }),
             }), environment);
-
     }
 
     /**
