@@ -25,7 +25,7 @@ class Main {
     JFrame screenFrame;
     ProgressBarPanel codesPanel;
     WorldPanel worldPanel;
-    PlayerButtonsPanel buttonsPanel;
+    PlayerButtonsPanel playerButtonsPanel;
     CreaturesActionsButtonsPanel creaturesActionsButtonsPanel;
     ProgressBarPanel environmentPanel;
 
@@ -46,6 +46,9 @@ class Main {
         new ColorRange(new Range(80, 100), new Color(255, 0, 0))
     }, Color.WHITE);
 
+    /**
+     * Runs the next world creature's action.
+     */
     void runNextWorldCreaturesAction() {
         Creature nextRunnableWorldCreature = world
             .getNextRunnableWorldCreature();
@@ -59,6 +62,9 @@ class Main {
         updateScreen();
     }
 
+    /**
+     * Runs all world creature's actions.
+     */
     void runAllWorldCreatureActions() {
         do {
             Creature nextRunnableWorldCreature = world
@@ -73,15 +79,25 @@ class Main {
         updateScreen();
     }
 
+    /**
+     * Shows the buttons to play world creature's actions.
+     */
     void showWorldCreatureActionButtons() {
-        buttonsPanel.hide(screenFrame);
-        creaturesActionsButtonsPanel.show(screenFrame);
+        playerButtonsPanel.hide();
+        screenFrame.remove(playerButtonsPanel);
+        screenFrame.add(creaturesActionsButtonsPanel, BorderLayout.SOUTH);
+        creaturesActionsButtonsPanel.show();
         world.setWorldCreatureActionBeingRun(true);
     }
 
+    /**
+     * Shows the buttons to play player creature's actions.
+     */
     void showPlayerActionButtons() {
-        creaturesActionsButtonsPanel.hide(screenFrame);
-        buttonsPanel.show(screenFrame);
+        creaturesActionsButtonsPanel.hide();
+        screenFrame.remove(creaturesActionsButtonsPanel);
+        screenFrame.add(playerButtonsPanel, BorderLayout.SOUTH);
+        playerButtonsPanel.show();
         world.setWorldCreatureActionBeingRun(false);
     }
 
@@ -152,11 +168,12 @@ class Main {
                 this::runAllWorldCreatureActions);
             screenFrame.add(creaturesActionsButtonsPanel, BorderLayout.SOUTH);
             creaturesActionsButtonsPanel.draw(screenWidth, buttonsPanelHeight);
-            // creaturesActionsButtonsPanel.setVisible(false);
+            screenFrame.remove(creaturesActionsButtonsPanel);
 
-            buttonsPanel = new PlayerButtonsPanel(world.getPlayerCreature());
-            screenFrame.add(buttonsPanel, BorderLayout.SOUTH);
-            buttonsPanel.draw(screenWidth, buttonsPanelHeight);
+            playerButtonsPanel = new PlayerButtonsPanel(
+                world.getPlayerCreature());
+            screenFrame.add(playerButtonsPanel, BorderLayout.SOUTH);
+            playerButtonsPanel.draw(screenWidth, buttonsPanelHeight);
 
             int rightPanelWidth = screenWidth / 5;
             JPanel rightPanel = new JPanel();
@@ -203,7 +220,7 @@ class Main {
         worldPanel.update();
         environmentPanel.update();
         if (!world.isWorldCreatureActionBeingRun()) {
-            buttonsPanel.update();
+            playerButtonsPanel.update();
         }
         checkIfLost();
     }

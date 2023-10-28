@@ -4,11 +4,22 @@ import interfaces.UpdateCallback;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * Panel that displays the buttons to play world creature's actions.
+ */
 public class CreaturesActionsButtonsPanel extends ButtonsPanel {
 
     UpdateCallback runNextWorldCreaturesAction;
     UpdateCallback runAllWorldCreaturesActions;
 
+    /**
+     * Constructor.
+     * 
+     * @param runNextWorldCreaturesAction Callback to run next world creature's
+     *            action
+     * @param runAllWorldCreaturesActions Callback to run all world creature's
+     *            actions
+     */
     public CreaturesActionsButtonsPanel(
         UpdateCallback runNextWorldCreaturesAction,
         UpdateCallback runAllWorldCreaturesActions) {
@@ -16,6 +27,12 @@ public class CreaturesActionsButtonsPanel extends ButtonsPanel {
         this.runAllWorldCreaturesActions = runAllWorldCreaturesActions;
     }
 
+    /**
+     * Draws the buttons.
+     * 
+     * @param width Width of the panel
+     * @param height Height of the panel
+     */
     public void draw(int width, int height) {
         setPreferredSize(new Dimension(width, height));
 
@@ -35,9 +52,5 @@ public class CreaturesActionsButtonsPanel extends ButtonsPanel {
         buttons[1]
             .addActionListener(e -> runAllWorldCreaturesActions.callback());
         add(buttons[1]);
-    }
-
-    public void update() {
-        return;
     }
 }

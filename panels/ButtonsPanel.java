@@ -1,7 +1,6 @@
 package panels;
 
 import interfaces.Creature;
-import java.awt.*;
 import javax.swing.*;
 
 /**
@@ -11,17 +10,27 @@ public abstract class ButtonsPanel extends JPanel implements Panel {
     Creature creature;
     JButton[] buttons;
 
-    public void hide(JFrame parentPanel) {
+    /**
+     * Hides the buttons.
+     */
+    public void hide() {
         for (JButton button : buttons) {
             button.setEnabled(false);
+            button.setVisible(false);
         }
-        parentPanel.remove(this);
     }
 
-    public void show(JFrame parentPanel) {
+    /**
+     * Shows the buttons.
+     */
+    public void show() {
         for (JButton button : buttons) {
             button.setEnabled(true);
+            button.setVisible(true);
         }
-        parentPanel.add(this, BorderLayout.SOUTH);
+    }
+
+    public void update() {
+        // do nothing
     }
 }

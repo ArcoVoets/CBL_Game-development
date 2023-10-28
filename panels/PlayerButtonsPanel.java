@@ -5,6 +5,9 @@ import interfaces.Creature;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * Panel that displays the buttons corresponding to the actions of the creature.
+ */
 public class PlayerButtonsPanel extends ButtonsPanel {
     Creature creature;
 
@@ -41,6 +44,9 @@ public class PlayerButtonsPanel extends ButtonsPanel {
         }
     }
 
+    /**
+     * Updates the buttons.
+     */
     public void update() {
         Action[] actions = creature.getActionsContainer().getActions();
 
