@@ -6,6 +6,10 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 
+/**
+ * Panel that displays progress bars corresponding to the data provided by the
+ * data provider.
+ */
 public class ProgressBarPanel extends JPanel implements Panel {
     ColorScheme colorScheme;
     Color backgroundColor;

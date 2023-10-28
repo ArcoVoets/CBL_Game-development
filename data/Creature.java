@@ -1,5 +1,8 @@
 package data;
 
+/**
+ * Creature with codes, stats, environment, and actions.
+ */
 public class Creature implements interfaces.Creature {
     CodesContainer codesContainer;
     StatsContainer statsContainer;

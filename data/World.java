@@ -1,7 +1,10 @@
 package data;
 
-import interfaces.*;
+import interfaces.UpdateCallback;
 
+/**
+ * World class with a list of creatures in the world and the player creature.
+ */
 public class World implements interfaces.World {
     static UpdateCallback winChecker;
     Creature playerCreature;
@@ -20,6 +23,11 @@ public class World implements interfaces.World {
         World.winChecker = winChecker;
     }
 
+    /**
+     * Deletes a creature from the world.
+     * 
+     * @param creature Creature to delete
+     */
     public void deleteCreature(Creature creature) {
         Creature[] newWorldCreatures = new Creature[worldCreatures.length - 1];
         int i = 0;

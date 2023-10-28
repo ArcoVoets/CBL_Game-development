@@ -1,10 +1,13 @@
 package panels;
 
 import data.Action;
-import interfaces.*;
+import interfaces.Creature;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * Panel that displays the buttons corresponding to the actions of the creature.
+ */
 public class ButtonsPanel extends JPanel implements Panel {
     Creature creature;
     JButton[] buttons;
@@ -44,6 +47,9 @@ public class ButtonsPanel extends JPanel implements Panel {
         }
     }
 
+    /**
+     * Updates the buttons.
+     */
     public void update() {
         Action[] actions = creature.getActionsContainer().getActions();
 

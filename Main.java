@@ -1,8 +1,15 @@
+import data.Creature;
+import data.EatAction;
+import data.Environment;
+import data.PairAction;
 import java.awt.*;
 import javax.swing.*;
-
-import data.*;
-import panels.*;
+import panels.ButtonsPanel;
+import panels.ColorRange;
+import panels.ColorScheme;
+import panels.ProgressBarPanel;
+import panels.Range;
+import panels.WorldPanel;
 
 /**
  * Main class of CBL game.
@@ -74,7 +81,7 @@ class Main {
         };
 
         world = new data.World(playerCreature, worldCreatures,
-            this::CheckIfWon);
+            this::checkIfWon);
     }
 
     /**
@@ -133,14 +140,20 @@ class Main {
         });
     }
 
+    /**
+     * Updates the screen after changes in the game data.
+     */
     void updateScreen() {
         codesPanel.update();
         worldPanel.update();
         environmentPanel.update();
         buttonsPanel.update();
-        CheckIfLost();
+        checkIfLost();
     }
 
+    /**
+     * Redraws the world. Only used after UI-breaking changes in the data.
+     */
     void redrawWorld() {
         Dimension dimension = worldPanel.getPreferredSize();
         int width = (int) dimension.getWidth();
@@ -148,7 +161,10 @@ class Main {
         worldPanel.draw(width, height);
     }
 
-    public void CheckIfWon() {
+    /**
+     * Checks if the player won the game and shows a message.
+     */
+    public void checkIfWon() {
         for (Creature creature : world.getWorldCreatures()) {
             if (!creature.isDead()) {
                 return;
@@ -161,7 +177,10 @@ class Main {
         System.exit(0);
     }
 
-    public void CheckIfLost() {
+    /**
+     * Checks if the player lost the game and shows a message.
+     */
+    public void checkIfLost() {
         if (world.getPlayerCreature().isDead()) {
             JOptionPane.showMessageDialog(null,
                 "You died because you ran out of energy",

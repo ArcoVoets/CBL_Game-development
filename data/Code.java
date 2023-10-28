@@ -8,6 +8,14 @@ class Code {
     int lightSensitivity;
     int maxEnergy;
 
+    /**
+     * Constructor.
+     * 
+     * @param heatResistance Heat resistance
+     * @param coldResistance Cold resistance
+     * @param lightSensitivity Light sensitivity
+     * @param maxEnergy Max energy
+     */
     public Code(int heatResistance, int coldResistance, int lightSensitivity,
         int maxEnergy) {
         this.heatResistance = heatResistance;
@@ -16,6 +24,11 @@ class Code {
         this.maxEnergy = maxEnergy;
     }
 
+    /**
+     * Generates a random code.
+     * 
+     * @return A random code
+     */
     static Code generateRandomCode() {
         return new Code(
             (int) (Math.random() * Code.MAX_VALUE),

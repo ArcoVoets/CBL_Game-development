@@ -1,5 +1,8 @@
 package data;
 
+/**
+ * Actions container with actions.
+ */
 public class Actions implements interfaces.Actions {
     public static Creature selectedCreature;
 
@@ -11,6 +14,11 @@ public class Actions implements interfaces.Actions {
         this.actions = actions;
     }
 
+    /**
+     * Set the creature for the actions to be executed on.
+     * 
+     * @param creature Creature to execute actions on
+     */
     void setActionsCreature(Creature creature) {
         this.creature = creature;
         for (Action action : actions) {

@@ -50,6 +50,11 @@ class Property {
         this.value = value;
     }
 
+    /**
+     * Adds a value to the property.
+     * 
+     * @param value The value to add
+     */
     public void addValue(int value) {
         this.value += value;
         if (this.value > maxValue) {
@@ -57,6 +62,11 @@ class Property {
         }
     }
 
+    /**
+     * Subtracts a value from the property.
+     * 
+     * @param value The value to subtract
+     */
     public void subtractValue(int value) {
         this.value -= value;
         if (this.value < minValue) {

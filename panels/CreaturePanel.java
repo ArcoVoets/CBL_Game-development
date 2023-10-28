@@ -1,6 +1,7 @@
 package panels;
 
-import interfaces.*;
+import interfaces.Creature;
+import interfaces.UpdateCallback;
 import java.awt.*;
 import javax.swing.*;
 
@@ -82,6 +83,9 @@ class CreaturePanel extends JPanel implements Panel {
         }
     }
 
+    /**
+     * Updates the panel after changes in the game data.
+     */
     public void update() {
         if (creature.isDead()) {
             removeAll();
