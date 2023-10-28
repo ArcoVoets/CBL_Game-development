@@ -59,7 +59,10 @@ class Property {
         this.value += value;
         if (this.value > maxValue) {
             this.value = maxValue;
+        } else if (this.value < minValue) {
+            this.value = minValue;
         }
+
     }
 
     /**
@@ -71,6 +74,8 @@ class Property {
         this.value -= value;
         if (this.value < minValue) {
             this.value = minValue;
+        } else if (this.value > maxValue) {
+            this.value = maxValue;
         }
     }
 

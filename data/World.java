@@ -9,6 +9,8 @@ public class World implements interfaces.World {
     static UpdateCallback winChecker;
     Creature playerCreature;
     Creature[] worldCreatures;
+    private int lastWorldCreatureActionIndex = -1;
+    boolean isWorldCreatureActionBeingRun = false;
 
     /**
      * Constructor.
@@ -21,6 +23,10 @@ public class World implements interfaces.World {
         this.playerCreature = playerCreature;
         this.worldCreatures = worldCreatures;
         World.winChecker = winChecker;
+        playerCreature.setWorld(this);
+        for (Creature creature : worldCreatures) {
+            creature.setWorld(this);
+        }
     }
 
     /**
@@ -48,5 +54,53 @@ public class World implements interfaces.World {
     @Override
     public Creature[] getWorldCreatures() {
         return worldCreatures;
+    }
+
+    /**
+     * Gets the next alive world creature that has not yet run an action this
+     * round.
+     * 
+     * @return The next alive world creature that has not yet run an action this
+     *         round, if all world creatures have run an action this round,
+     *         returns null
+     */
+    public Creature getNextRunnableWorldCreature() {
+        for (int i = lastWorldCreatureActionIndex
+            + 1; i < worldCreatures.length; i++) {
+            Creature creature = worldCreatures[i];
+            if (!creature.isDead()) {
+                if (i == worldCreatures.length - 1) {
+                    lastWorldCreatureActionIndex = -1;
+                } else {
+                    lastWorldCreatureActionIndex = i;
+                }
+                return creature;
+            }
+        }
+        lastWorldCreatureActionIndex = -1;
+        return null;
+    }
+
+    public boolean existsNextRunnableWorldCreature() {
+        if (lastWorldCreatureActionIndex == -1) {
+            return false;
+        }
+        for (int i = lastWorldCreatureActionIndex
+            + 1; i < worldCreatures.length; i++) {
+            Creature creature = worldCreatures[i];
+            if (!creature.isDead()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isWorldCreatureActionBeingRun() {
+        return isWorldCreatureActionBeingRun;
+    }
+
+    public void setWorldCreatureActionBeingRun(
+        boolean worldCreatureActionBeingRun) {
+        this.isWorldCreatureActionBeingRun = worldCreatureActionBeingRun;
     }
 }

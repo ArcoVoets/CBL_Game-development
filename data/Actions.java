@@ -5,6 +5,7 @@ package data;
  */
 public class Actions implements interfaces.Actions {
     public static Creature selectedCreature;
+    public static Creature actionCreature;
 
     Creature creature;
 
@@ -26,6 +27,15 @@ public class Actions implements interfaces.Actions {
         }
     }
 
+    public <T extends Action> Action getAction(Class<T> actionClass) {
+        for (Action action : actions) {
+            if (action.getClass().equals(actionClass)) {
+                return action;
+            }
+        }
+        return null;
+    }
+
     @Override
     public Action[] getActions() {
         return actions;
@@ -39,5 +49,13 @@ public class Actions implements interfaces.Actions {
     @Override
     public boolean isSelectedCreature() {
         return selectedCreature == this.creature;
+    }
+
+    public void selectActionCreature() {
+        actionCreature = creature;
+    }
+
+    public boolean isActionCreature() {
+        return actionCreature == this.creature;
     }
 }

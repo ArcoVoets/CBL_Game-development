@@ -37,6 +37,10 @@ public abstract class Action implements interfaces.Action {
             - creature.environment.calculateEnergyProduction(creature);
     }
 
+    public String getName() {
+        return name;
+    }
+
     /**
      * Executes the action.
      */

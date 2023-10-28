@@ -95,6 +95,8 @@ class CreaturePanel extends JPanel implements Panel {
         statsPanel.update();
         if (creature.getActionsContainer().isSelectedCreature()) {
             setBackground(Color.YELLOW);
+        } else if (creature.getActionsContainer().isActionCreature()) {
+            setBackground(Color.GREEN);
         } else {
             setBackground(Color.WHITE);
         }

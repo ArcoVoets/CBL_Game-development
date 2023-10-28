@@ -20,9 +20,11 @@ class Main {
     data.World world;
     Environment environment = new Environment();
 
+    JFrame screenFrame;
     ProgressBarPanel codesPanel;
     WorldPanel worldPanel;
-    ButtonsPanel buttonsPanel;
+    PlayerButtonsPanel buttonsPanel;
+    CreaturesActionsButtonsPanel creaturesActionsButtonsPanel;
     ProgressBarPanel environmentPanel;
 
     ColorScheme codesColorScheme = new ColorScheme(new ColorRange[] {
@@ -42,6 +44,45 @@ class Main {
         new ColorRange(new Range(80, 100), new Color(255, 0, 0))
     }, Color.WHITE);
 
+    void runNextWorldCreaturesAction() {
+        Creature nextRunnableWorldCreature = world
+            .getNextRunnableWorldCreature();
+        nextRunnableWorldCreature.getActionsContainer().selectActionCreature();
+        nextRunnableWorldCreature.runAction();
+        if (!world.existsNextRunnableWorldCreature()) {
+            showPlayerActionButtons();
+            Actions.selectedCreature = null;
+            Actions.actionCreature = world.getPlayerCreature();
+        }
+        updateScreen();
+    }
+
+    void runAllWorldCreatureActions() {
+        do {
+            Creature nextRunnableWorldCreature = world
+                .getNextRunnableWorldCreature();
+            nextRunnableWorldCreature.getActionsContainer()
+                .selectActionCreature();
+            nextRunnableWorldCreature.runAction();
+        } while (world.existsNextRunnableWorldCreature());
+        showPlayerActionButtons();
+        Actions.selectedCreature = null;
+        Actions.actionCreature = world.getPlayerCreature();
+        updateScreen();
+    }
+
+    void showWorldCreatureActionButtons() {
+        buttonsPanel.hide(screenFrame);
+        creaturesActionsButtonsPanel.show(screenFrame);
+        world.setWorldCreatureActionBeingRun(true);
+    }
+
+    void showPlayerActionButtons() {
+        creaturesActionsButtonsPanel.hide(screenFrame);
+        buttonsPanel.show(screenFrame);
+        world.setWorldCreatureActionBeingRun(false);
+    }
+
     /**
      * Creates a player creature.
      * 
@@ -50,10 +91,15 @@ class Main {
     data.Creature createPlayerCreature() {
         return new data.Creature(
             new data.Actions(new data.Action[] {
-                new EatAction(this::updateScreen),
-                new PairAction(this::updateScreen)
-            }),
-            environment);
+                new EatAction(() -> {
+                    updateScreen();
+                    showWorldCreatureActionButtons();
+                }),
+                new PairAction(() -> {
+                    updateScreen();
+                    showWorldCreatureActionButtons();
+                }),
+            }), environment);
     }
 
     /**
@@ -67,7 +113,8 @@ class Main {
                 new EatAction(this::updateScreen),
                 new PairAction(this::updateScreen)
             }),
-            environment);
+            environment,
+            new data.CreatureActionRunner());
     }
 
     /**
@@ -93,13 +140,20 @@ class Main {
             int screenWidth = (int) screenSize.getWidth();
             int screenHeight = (int) screenSize.getHeight();
 
-            JFrame screenFrame = new JFrame();
+            screenFrame = new JFrame();
             screenFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
             screenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             screenFrame.setUndecorated(true);
 
             int buttonsPanelHeight = screenHeight / 10;
-            buttonsPanel = new ButtonsPanel(world.getPlayerCreature());
+            creaturesActionsButtonsPanel = new CreaturesActionsButtonsPanel(
+                this::runNextWorldCreaturesAction,
+                this::runAllWorldCreatureActions);
+            screenFrame.add(creaturesActionsButtonsPanel, BorderLayout.SOUTH);
+            creaturesActionsButtonsPanel.draw(screenWidth, buttonsPanelHeight);
+            // creaturesActionsButtonsPanel.setVisible(false);
+
+            buttonsPanel = new PlayerButtonsPanel(world.getPlayerCreature());
             screenFrame.add(buttonsPanel, BorderLayout.SOUTH);
             buttonsPanel.draw(screenWidth, buttonsPanelHeight);
 
@@ -147,7 +201,9 @@ class Main {
         codesPanel.update();
         worldPanel.update();
         environmentPanel.update();
-        buttonsPanel.update();
+        if (!world.isWorldCreatureActionBeingRun()) {
+            buttonsPanel.update();
+        }
         checkIfLost();
     }
 
@@ -176,6 +232,7 @@ class Main {
             JOptionPane.PLAIN_MESSAGE);
         System.exit(0);
     }
+
 
     /**
      * Checks if the player lost the game and shows a message.

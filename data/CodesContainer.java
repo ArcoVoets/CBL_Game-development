@@ -8,8 +8,8 @@ class CodesContainer extends AbstractList<Code>
     implements ProgressBarDataProvider {
 
     private final Code[] a;
-    public int averageHeatResistance = 0;
     public int averageColdResistance = 0;
+    public int averageHeatResistance = 0;
     public int averageLightSensitivity = 0;
 
     /**
@@ -70,13 +70,17 @@ class CodesContainer extends AbstractList<Code>
     /**
      * Calculates the total score of the codes.
      * 
+     * Remark: A higher cold resistance, means that the creatures resistance
+     * against cold is lower, therefore, the cold resistance is subtracted from
+     * the score.
+     *
      * @return The total score of the codes
      */
     public int calculateCodesScore() {
         int score = 0;
         for (Code code : a) {
+            score -= code.coldResistance;
             score += code.heatResistance;
-            score += code.coldResistance;
             score += code.lightSensitivity;
         }
         return score;
