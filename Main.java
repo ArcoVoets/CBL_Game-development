@@ -191,9 +191,7 @@ class Main {
         codesPanel.update();
         worldPanel.update();
         environmentPanel.update();
-        if (world.isWorldCreatureActionBeingRun()) {
-            creaturesActionsButtonsPanel.update();
-        } else {
+        if (!world.isWorldCreatureActionBeingRun()) {
             buttonsPanel.update();
         }
         checkIfLost();
