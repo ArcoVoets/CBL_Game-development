@@ -19,6 +19,17 @@ After your turn, the other creatures will take their turns.
 The last creature surviving will turn against you.
 If you manage to kill it, you win.
 
+## Learning goals
+
+Our two learning goals are:
+
+- Learn how to use the Component Architecture (see [here](./Component%20architecture.md))
+- Learn how to use the TOPSIS for decision making (see [here](./TOPSIS.md))
+
+## Backlog
+
+<https://github.com/users/CodingArco/projects/1/>
+
 ## How to compile
 
 ````bash
