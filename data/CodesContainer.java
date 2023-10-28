@@ -11,7 +11,6 @@ class CodesContainer extends AbstractList<Code>
     public int averageHeatResistance = 0;
     public int averageColdResistance = 0;
     public int averageLightSensitivity = 0;
-    public int averageMaxEnergy = 0;
 
     /**
      * Generates a random codes container.
@@ -58,17 +57,14 @@ class CodesContainer extends AbstractList<Code>
         int totalHeatResistance = 0;
         int totalColdResistance = 0;
         int totalLightSensitivity = 0;
-        int totalMaxEnergy = 0;
         for (Code code : a) {
             totalHeatResistance += code.heatResistance;
             totalColdResistance += code.coldResistance;
             totalLightSensitivity += code.lightSensitivity;
-            totalMaxEnergy += code.maxEnergy;
         }
         averageHeatResistance = totalHeatResistance / a.length;
         averageColdResistance = totalColdResistance / a.length;
         averageLightSensitivity = totalLightSensitivity / a.length;
-        averageMaxEnergy = totalMaxEnergy / a.length;
     }
 
     /**
@@ -82,7 +78,6 @@ class CodesContainer extends AbstractList<Code>
             score += code.heatResistance;
             score += code.coldResistance;
             score += code.lightSensitivity;
-            score += code.maxEnergy;
         }
         return score;
     }
@@ -99,9 +94,7 @@ class CodesContainer extends AbstractList<Code>
             new ProgressBarData("Cold resistance", 0, Code.MAX_VALUE,
                 averageColdResistance, "°C"),
             new ProgressBarData("Light sensitivity", 0, Code.MAX_VALUE,
-                averageLightSensitivity),
-            new ProgressBarData("Max energy", 0, Code.MAX_VALUE,
-                averageMaxEnergy)
+                averageLightSensitivity)
         };
     }
 
