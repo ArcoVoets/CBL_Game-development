@@ -51,7 +51,7 @@ class CreaturePanel extends JPanel implements Panel {
         int statsWidth;
         int statsHeight;
 
-        spritePanel = new SpritePanel("./robot-idle.gif");
+        spritePanel = new SpritePanel("robot-idle.gif");
         if (layout == CreatureLayout.PLAYER) {
             setBackground(Color.GREEN);
             add(spritePanel, BorderLayout.EAST);
