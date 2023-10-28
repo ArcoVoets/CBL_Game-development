@@ -41,11 +41,11 @@ class CreaturePanel extends JPanel implements Panel {
         setPreferredSize(new Dimension(width, height));
         removeAll();
 
+        setBackground(Color.WHITE);
+
         if (creature.isDead()) {
-            setBackground(Color.WHITE);
             return;
         }
-        setBackground(Color.WHITE);
 
         int spriteWidth;
         int spriteHeight;
@@ -70,7 +70,7 @@ class CreaturePanel extends JPanel implements Panel {
 
         statsPanel = new ProgressBarPanel(creature.getCodesContainer(),
             colorScheme,
-            Color.ORANGE);
+            Color.WHITE);
         add(statsPanel, BorderLayout.CENTER);
         statsPanel.draw(statsWidth, statsHeight);
 

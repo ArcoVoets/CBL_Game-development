@@ -16,6 +16,12 @@ public abstract class Action implements interfaces.Action {
         this.creature = creature;
     }
 
+    public int calculateEnergyCost() {
+        return 1
+            + creature.environment.calculateTemperatureDamage(creature)
+            - creature.environment.calculateEnergyProduction(creature);
+    }
+
     public String getName() {
         return name;
     }
@@ -24,16 +30,15 @@ public abstract class Action implements interfaces.Action {
      * Executes the action.
      */
     public void execute() {
-        int energyCost = 1
-            + creature.environment.calculateTemperatureDamage(creature)
-            - creature.environment.calculateEnergyProduction(creature);
-        if (creature.statsContainer.energy.getValue() < energyCost) {
+        int energyCost = calculateEnergyCost();
+        if (creature.statsContainer.getEnergy().getValue() < energyCost) {
             return;
         }
         boolean success = runAction();
         if (success) {
             creature.statsContainer.energy.subtractValue(energyCost);
             creature.environment.updateEnvironmentStats();
+            creature.isDead = creature.statsContainer.energy.getValue() <= 0;
             actionCallback.callback();
         }
     }
