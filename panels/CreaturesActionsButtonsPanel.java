@@ -1,6 +1,6 @@
 package panels;
 
-import interfaces.*;
+import interfaces.UpdateCallback;
 import java.awt.*;
 import javax.swing.*;
 

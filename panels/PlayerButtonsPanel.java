@@ -1,7 +1,7 @@
 package panels;
 
 import data.Action;
-import interfaces.*;
+import interfaces.Creature;
 import java.awt.*;
 import javax.swing.*;
 
