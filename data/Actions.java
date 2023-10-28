@@ -28,11 +28,11 @@ public class Actions implements interfaces.Actions {
     }
 
     /**
-     * Get an action by its class.
+     * Get action by type.
      * 
-     * @param <T> Action class type
-     * @param actionClass Action class
-     * @return The action
+     * @param <T> Action type
+     * @param actionClass Class of the action type
+     * @return The desired action or null if no action of that type exists
      */
     public <T extends Action> Action getAction(Class<T> actionClass) {
         for (Action action : actions) {
