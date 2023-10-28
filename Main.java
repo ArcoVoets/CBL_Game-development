@@ -10,7 +10,6 @@ import panels.ColorScheme;
 import panels.CreaturesActionsButtonsPanel;
 import panels.PlayerButtonsPanel;
 import panels.ProgressBarPanel;
-import panels.Range;
 import panels.WorldPanel;
 
 /**
