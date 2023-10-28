@@ -43,7 +43,7 @@ public class Actions implements interfaces.Actions {
         return selectedCreature == this.creature;
     }
 
-    public void selectActionCreature(Creature creature) {
+    public void selectActionCreature() {
         actionCreature = creature;
     }
 

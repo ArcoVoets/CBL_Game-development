@@ -68,7 +68,7 @@ class CreaturePanel extends JPanel implements Panel {
         }
         spritePanel.draw(spriteWidth, spriteHeight);
 
-        statsPanel = new ProgressBarPanel(creature.getCodesContainer(),
+        statsPanel = new ProgressBarPanel(creature.getStatsContainer(),
             colorScheme,
             Color.WHITE);
         add(statsPanel, BorderLayout.CENTER);

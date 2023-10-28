@@ -13,9 +13,11 @@ class Main {
     data.World world;
     Environment environment = new Environment();
 
+    JFrame screenFrame;
     ProgressBarPanel codesPanel;
     WorldPanel worldPanel;
-    ButtonsPanel buttonsPanel;
+    PlayerButtonsPanel buttonsPanel;
+    CreaturesActionsButtonsPanel creaturesActionsButtonsPanel;
     ProgressBarPanel environmentPanel;
 
     ColorScheme codesColorScheme = new ColorScheme(new ColorRange[] {
@@ -35,19 +37,43 @@ class Main {
         new ColorRange(new Range(80, 100), new Color(255, 0, 0))
     }, Color.WHITE);
 
-    void doWorldCreaturesActions() {
-        for (data.Creature creature : world.getWorldCreatures()) {
-            if (creature.isDead()) {
-                continue;
-            }
-            creature.getActionsContainer().selectActionCreature(creature);
-            updateScreen();
-            creature.runAction();
-            updateScreen();
+    void runNextWorldCreaturesAction() {
+        Creature nextRunnableWorldCreature = world
+            .getNextRunnableWorldCreature();
+        nextRunnableWorldCreature.getActionsContainer().selectActionCreature();
+        nextRunnableWorldCreature.runAction();
+        if (!world.existsNextRunnableWorldCreature()) {
+            showPlayerActionButtons();
+            Actions.selectedCreature = null;
+            Actions.actionCreature = world.getPlayerCreature();
         }
-        Actions.actionCreature = world.getPlayerCreature();
-        Actions.selectedCreature = null;
         updateScreen();
+    }
+
+    void runAllWorldCreatureActions() {
+        do {
+            Creature nextRunnableWorldCreature = world
+                .getNextRunnableWorldCreature();
+            nextRunnableWorldCreature.getActionsContainer()
+                .selectActionCreature();
+            nextRunnableWorldCreature.runAction();
+        } while (world.existsNextRunnableWorldCreature());
+        showPlayerActionButtons();
+        Actions.selectedCreature = null;
+        Actions.actionCreature = world.getPlayerCreature();
+        updateScreen();
+    }
+
+    void showWorldCreatureActionButtons() {
+        buttonsPanel.hide(screenFrame);
+        creaturesActionsButtonsPanel.show(screenFrame);
+        world.setWorldCreatureActionBeingRun(true);
+    }
+
+    void showPlayerActionButtons() {
+        creaturesActionsButtonsPanel.hide(screenFrame);
+        buttonsPanel.show(screenFrame);
+        world.setWorldCreatureActionBeingRun(false);
     }
 
     /**
@@ -60,11 +86,11 @@ class Main {
             new data.Actions(new data.Action[] {
                 new EatAction(() -> {
                     updateScreen();
-                    doWorldCreaturesActions();
+                    showWorldCreatureActionButtons();
                 }),
                 new PairAction(() -> {
                     updateScreen();
-                    doWorldCreaturesActions();
+                    showWorldCreatureActionButtons();
                 }),
             }), environment);
     }
@@ -95,7 +121,7 @@ class Main {
         };
 
         world = new data.World(playerCreature, worldCreatures,
-            this::CheckIfWon);
+            this::checkIfWon);
     }
 
     /**
@@ -107,13 +133,20 @@ class Main {
             int screenWidth = (int) screenSize.getWidth();
             int screenHeight = (int) screenSize.getHeight();
 
-            JFrame screenFrame = new JFrame();
+            screenFrame = new JFrame();
             screenFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
             screenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             screenFrame.setUndecorated(true);
 
             int buttonsPanelHeight = screenHeight / 10;
-            buttonsPanel = new ButtonsPanel(world.getPlayerCreature());
+            creaturesActionsButtonsPanel = new CreaturesActionsButtonsPanel(
+                this::runNextWorldCreaturesAction,
+                this::runAllWorldCreatureActions);
+            screenFrame.add(creaturesActionsButtonsPanel, BorderLayout.SOUTH);
+            creaturesActionsButtonsPanel.draw(screenWidth, buttonsPanelHeight);
+            // creaturesActionsButtonsPanel.setVisible(false);
+
+            buttonsPanel = new PlayerButtonsPanel(world.getPlayerCreature());
             screenFrame.add(buttonsPanel, BorderLayout.SOUTH);
             buttonsPanel.draw(screenWidth, buttonsPanelHeight);
 
@@ -158,8 +191,12 @@ class Main {
         codesPanel.update();
         worldPanel.update();
         environmentPanel.update();
-        buttonsPanel.update();
-        CheckIfLost();
+        if (world.isWorldCreatureActionBeingRun()) {
+            creaturesActionsButtonsPanel.update();
+        } else {
+            buttonsPanel.update();
+        }
+        checkIfLost();
     }
 
     void redrawWorld() {
@@ -169,7 +206,7 @@ class Main {
         worldPanel.draw(width, height);
     }
 
-    public void CheckIfWon() {
+    public void checkIfWon() {
         for (Creature creature : world.getWorldCreatures()) {
             if (!creature.isDead()) {
                 return;
@@ -182,7 +219,7 @@ class Main {
         System.exit(0);
     }
 
-    public void CheckIfLost() {
+    public void checkIfLost() {
         if (world.getPlayerCreature().isDead()) {
             JOptionPane.showMessageDialog(null,
                 "You died because you ran out of energy",

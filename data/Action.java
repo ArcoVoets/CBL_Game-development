@@ -31,9 +31,6 @@ public abstract class Action implements interfaces.Action {
      */
     public void execute() {
         int energyCost = calculateEnergyCost();
-        if (creature.statsContainer.getEnergy().getValue() < energyCost) {
-            return;
-        }
         boolean success = runAction();
         if (success) {
             creature.statsContainer.energy.subtractValue(energyCost);
