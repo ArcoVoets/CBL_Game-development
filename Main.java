@@ -237,10 +237,10 @@ class Main {
             }
         }
         updateScreen();
-        JOptionPane.showMessageDialog(null, "You killed all other robots",
+        JOptionPane.showMessageDialog(null,
+            "You killed all other robots\n\nBut we still won't let you go HAHAHAHAHAHAHA",
             "You won!",
             JOptionPane.PLAIN_MESSAGE);
-        System.exit(0);
     }
 
     /**
@@ -251,16 +251,15 @@ class Main {
             if (world.getPlayerCreature().getStatsContainer()
                 .getEnergy().getValue() <= 0) {
                 JOptionPane.showMessageDialog(null,
-                    "You died because you ran out of energy",
+                    "You died because you ran out of energy\n\nBut we still won't let you go HAHAHAHAHAHAHA",
                     "You lost!",
                     JOptionPane.PLAIN_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null,
-                    "You died because you were eaten by another robot",
+                    "You died because you were eaten by another robot\n\nBut we still won't let you go HAHAHAHAHAHAHA",
                     "You lost!",
                     JOptionPane.PLAIN_MESSAGE);
             }
-            System.exit(0);
         }
     }
 
