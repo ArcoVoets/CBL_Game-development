@@ -3,7 +3,7 @@ package data;
 /**
  * Property.
  */
-class Property {
+public class Property {
     private String key;
     private int value;
     private int minValue;
@@ -50,17 +50,31 @@ class Property {
         this.value = value;
     }
 
+    /**
+     * Adds a value to the property.
+     * 
+     * @param value The value to add
+     */
     public void addValue(int value) {
         this.value += value;
         if (this.value > maxValue) {
             this.value = maxValue;
+        } else if (this.value < minValue) {
+            this.value = minValue;
         }
     }
 
+    /**
+     * Subtracts a value from the property.
+     * 
+     * @param value The value to subtract
+     */
     public void subtractValue(int value) {
         this.value -= value;
         if (this.value < minValue) {
             this.value = minValue;
+        } else if (this.value > maxValue) {
+            this.value = maxValue;
         }
     }
 

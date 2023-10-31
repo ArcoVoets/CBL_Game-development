@@ -1,42 +1,32 @@
 package panels;
 
-import data.Action;
-import interfaces.*;
-import java.awt.*;
+import interfaces.Creature;
 import javax.swing.*;
 
-public class ButtonsPanel extends JPanel implements Panel {
+/**
+ * Panel that displays the buttons corresponding to the actions of the creature.
+ */
+public abstract class ButtonsPanel extends JPanel implements Panel {
     Creature creature;
+    JButton[] buttons;
 
-    public ButtonsPanel(Creature creature) {
-        this.creature = creature;
+    /**
+     * Hides the buttons.
+     */
+    public void hide() {
+        for (JButton button : buttons) {
+            button.setEnabled(false);
+            button.setVisible(false);
+        }
     }
 
     /**
-     * Draws the buttons.
-     * 
-     * @param width Width of the panel in pixels
-     * @param height Height of the panel in pixels
+     * Shows the buttons.
      */
-    public void draw(int width, int height) {
-        setPreferredSize(new Dimension(width, height));
-
-        Action[] actions = creature.getActionsContainer().getActions();
-
-        setLayout(
-            new GridLayout(1,
-                actions.length));
-        removeAll();
-
-        for (Action action : actions) {
-            JButton button = new JButton(action.name);
-            button.addActionListener(e -> action.execute());
-            add(button);
+    public void show() {
+        for (JButton button : buttons) {
+            button.setEnabled(true);
+            button.setVisible(true);
         }
-
-        setBackground(Color.GREEN);
-    }
-
-    public void update() {
     }
 }

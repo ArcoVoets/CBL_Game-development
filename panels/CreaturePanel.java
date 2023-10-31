@@ -1,6 +1,7 @@
 package panels;
 
-import interfaces.*;
+import interfaces.Creature;
+import interfaces.UpdateCallback;
 import java.awt.*;
 import javax.swing.*;
 
@@ -42,24 +43,24 @@ class CreaturePanel extends JPanel implements Panel {
         removeAll();
 
         if (creature.isDead()) {
-            setBackground(Color.WHITE);
             return;
         }
-        setBackground(Color.WHITE);
 
         int spriteWidth;
         int spriteHeight;
         int statsWidth;
         int statsHeight;
 
-        spritePanel = new SpritePanel("./robot-idle.gif");
+        spritePanel = new SpritePanel("robot-idle.gif");
         if (layout == CreatureLayout.PLAYER) {
+            setBackground(Color.GREEN);
             add(spritePanel, BorderLayout.EAST);
             spriteWidth = height;
             spriteHeight = height;
             statsWidth = width - spriteWidth;
             statsHeight = height;
         } else {
+            setBackground(Color.WHITE);
             add(spritePanel, BorderLayout.NORTH);
             spriteWidth = width;
             spriteHeight = width;
@@ -70,7 +71,7 @@ class CreaturePanel extends JPanel implements Panel {
 
         statsPanel = new ProgressBarPanel(creature.getStatsContainer(),
             colorScheme,
-            Color.ORANGE);
+            Color.WHITE);
         add(statsPanel, BorderLayout.CENTER);
         statsPanel.draw(statsWidth, statsHeight);
 
@@ -82,6 +83,9 @@ class CreaturePanel extends JPanel implements Panel {
         }
     }
 
+    /**
+     * Updates the panel after changes in the game data.
+     */
     public void update() {
         if (creature.isDead()) {
             removeAll();
@@ -91,6 +95,8 @@ class CreaturePanel extends JPanel implements Panel {
         statsPanel.update();
         if (creature.getActionsContainer().isSelectedCreature()) {
             setBackground(Color.YELLOW);
+        } else if (creature.getActionsContainer().isActionCreature()) {
+            setBackground(Color.GREEN);
         } else {
             setBackground(Color.WHITE);
         }

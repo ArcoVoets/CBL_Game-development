@@ -1,9 +1,14 @@
 package panels;
 
-import interfaces.*;
+import interfaces.Creature;
+import interfaces.UpdateCallback;
+import interfaces.World;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * Panel that displays all the creatures in the world.
+ */
 public class WorldPanel extends JPanel implements Panel {
     World world;
     CreaturePanel playerCreaturePanel;
@@ -15,6 +20,8 @@ public class WorldPanel extends JPanel implements Panel {
      * Constructor.
      * 
      * @param world World to show
+     * @param statsColorScheme Color scheme to use for the stats
+     * @param updateCallback Callback to update the screen
      */
     public WorldPanel(World world, ColorScheme statsColorScheme,
         UpdateCallback updateCallback) {
@@ -34,7 +41,7 @@ public class WorldPanel extends JPanel implements Panel {
         setPreferredSize(new Dimension(width, height));
         removeAll();
 
-        setBackground(Color.GRAY);
+        setBackground(Color.WHITE);
 
         playerCreaturePanel = new CreaturePanel(
             world.getPlayerCreature(),
@@ -70,6 +77,9 @@ public class WorldPanel extends JPanel implements Panel {
         }
     }
 
+    /**
+     * Updates the world.
+     */
     public void update() {
         playerCreaturePanel.update();
         for (int i = 0; i < worldCreaturePanels.length; i++) {

@@ -1,7 +1,10 @@
 package data;
 
-import interfaces.*;
+import interfaces.UpdateCallback;
 
+/**
+ * Eat action.
+ */
 public class EatAction extends Action {
 
     public EatAction(UpdateCallback actionCallback) {
@@ -24,6 +27,7 @@ public class EatAction extends Action {
             creature.statsContainer.energy
                 .addValue(otherCreature.statsContainer.energy.getValue() / 2);
             otherCreature.isDead = true;
+            World.winChecker.callback();
         } else {
             creature.statsContainer.energy.subtractValue(1);
         }

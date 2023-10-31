@@ -1,27 +1,36 @@
 package data;
 
 class Code {
-    static final int MAX_VALUE = 100;
+    static final int MAX_CODE_VALUE = 100;
 
     int heatResistance;
     int coldResistance;
     int lightSensitivity;
-    int maxEnergy;
 
-    public Code(int heatResistance, int coldResistance, int lightSensitivity,
-        int maxEnergy) {
+    /**
+     * Constructor.
+     * 
+     * @param heatResistance Heat resistance of the code
+     * @param coldResistance Cold resistance of the code
+     * @param lightSensitivity Light sensitivity of the code
+     */
+    public Code(int heatResistance, int coldResistance, int lightSensitivity) {
         this.heatResistance = heatResistance;
         this.coldResistance = coldResistance;
         this.lightSensitivity = lightSensitivity;
-        this.maxEnergy = maxEnergy;
     }
 
+    /**
+     * Generates a random code.
+     * 
+     * @return A random code
+     */
     static Code generateRandomCode() {
         return new Code(
-            (int) (Math.random() * Code.MAX_VALUE),
-            (int) (Math.random() * Code.MAX_VALUE),
-            (int) (Math.random() * Code.MAX_VALUE),
-            (int) (Math.random() * Code.MAX_VALUE));
+            (int) (Math.random() * Code.MAX_CODE_VALUE / 2
+                + Code.MAX_CODE_VALUE / 2),
+            (int) (Math.random() * Code.MAX_CODE_VALUE / 2),
+            (int) (Math.random() * Code.MAX_CODE_VALUE));
     }
 
     public int getHeatResistance() {
@@ -34,9 +43,5 @@ class Code {
 
     public int getLightSensitivity() {
         return lightSensitivity;
-    }
-
-    public int getMaxEnergy() {
-        return maxEnergy;
     }
 }

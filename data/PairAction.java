@@ -2,7 +2,12 @@ package data;
 
 import interfaces.UpdateCallback;
 
+/**
+ * Pair action.
+ */
 public class PairAction extends Action {
+    static final int CODES_MIX_AMOUNT = 1;
+
     public PairAction(UpdateCallback actionCallback) {
         super("Pair", actionCallback);
     }
@@ -22,8 +27,12 @@ public class PairAction extends Action {
         return true;
     }
 
-    static final int CODES_MIX_AMOUNT = 1;
-
+    /**
+     * Mixes codes of two creatures.
+     * 
+     * @param codes Codes of the creature executing the action
+     * @param otherCodes Codes of the other creature
+     */
     void mixCodes(CodesContainer codes,
         CodesContainer otherCodes) {
         for (int i = 0; i < CODES_MIX_AMOUNT; i++) {

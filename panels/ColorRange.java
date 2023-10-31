@@ -2,6 +2,9 @@ package panels;
 
 import java.awt.*;
 
+/**
+ * A range of colors used for coloring the progress bars.
+ */
 public class ColorRange {
     public Range range;
     public Color color;
