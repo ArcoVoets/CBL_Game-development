@@ -4,8 +4,6 @@ import data.EatAction;
 import data.Environment;
 import data.PairAction;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import javax.swing.*;
 import panels.ColorRange;
 import panels.ColorScheme;
@@ -179,14 +177,8 @@ class Main {
             JPanel rightPanel = new JPanel();
             rightPanel.setLayout(new BorderLayout());
 
-            JButton closeGameButton = new JButton("Close game");
-            closeGameButton.addActionListener(e -> System.exit(0));
-            closeGameButton.setPreferredSize(new Dimension(rightPanelWidth,
-                buttonsPanelHeight));
-            rightPanel.add(closeGameButton, BorderLayout.NORTH);
-
             int environmentPanelHeight = screenHeight / 2
-                - buttonsPanelHeight / 2 - buttonsPanelHeight;
+                - buttonsPanelHeight / 2;
             environmentPanel = new ProgressBarPanel(
                 environment,
                 environmentStatsColorScheme, Color.WHITE);
