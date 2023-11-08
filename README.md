@@ -28,7 +28,7 @@ Our two learning goals are:
 
 ## Backlog
 
-<https://github.com/users/CodingArco/projects/1/>
+<https://github.com/users/ArcoVoets/projects/1/>
 
 ## How to compile
 
