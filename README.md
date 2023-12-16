@@ -1,3 +1,6 @@
+| :warning: ARCHIVED         |
+|:---------------------------|
+
 # Survival of the Codes
 
 An evolution survival game
